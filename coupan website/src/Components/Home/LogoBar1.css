@@ -1,3 +1,5 @@
+/* test gitttt */
+
 *{
     margin: 0;
     padding: 0;
@@ -5,11 +7,16 @@
 }
 .logocontainer{
     padding: 0;
+    height: 45px;
 }
 .atag{
     gap: 10px;
     text-decoration: none;
     color: #003a8c;
+}
+
+.atag img{
+    width: 100px;
 }
 
 .back{

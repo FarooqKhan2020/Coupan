@@ -2,7 +2,7 @@ import React from 'react'
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FaRegArrowAltCircleLeft } from "react-icons/fa";
 import './LogoBar1.css';
-import logo from '../../assets/images/logo.webp';
+import logo from '../../assets/images/logo.png';
 
 function LogoBar1() {
   return (
