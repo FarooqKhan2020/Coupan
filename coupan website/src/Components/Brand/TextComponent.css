@@ -1,0 +1,27 @@
+.text-component {
+    color: #333;
+    margin-left: 75px;
+  }
+  
+  .text-component h3 {
+    font-size: 1.12em;
+    margin-bottom: 0.5em;
+    font-weight: 600;
+    /* color: gray; */
+  }
+  
+  .text-component p {
+    font-size: 1em;
+    margin-bottom: 1em;
+    line-height: 1.6;
+  }
+  
+  .text-component a {
+    color: var(--primary);
+    text-decoration: none;
+  }
+  
+  .text-component a:hover {
+    text-decoration: underline;
+  }
+  

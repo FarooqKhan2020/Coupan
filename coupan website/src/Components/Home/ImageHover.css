@@ -1,0 +1,103 @@
+.image-hover-container {
+    text-align: center;
+    background-color: #f5f5f5;
+    padding: 20px 20px 50px 20px;
+  }
+  .image-hover-container h2{
+    color: #003a8c;
+  }
+  .image-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 90px;
+  }
+  
+  .hover-image {
+    filter: grayscale(100%);
+    transition: filter 0.3s ease-in-out;
+  }
+  
+  .hover-image:hover {
+    filter: grayscale(0%);
+  }
+  
+  /* Specific styles for each logo if needed */
+/* .bild-logo {
+    width: 40px;
+     height: 45px;
+  }
+  
+  .die-welt-logo {
+    width: 237px;
+     height: 45px;
+  }
+  
+  .chip-logo {
+    width: 139px;
+     height: 45px;
+  }
+  
+  .stern-logo {
+    width: 127px;
+     height: 45px;
+  } */
+   /* Specific styles for each logo with responsive widths */
+.bild-logo {
+    width: 10%; /* Adjust percentage as needed */
+    max-width: 40px; /* Ensure it does not exceed original size */
+    height: auto;
+  }
+  
+  .die-welt-logo {
+    width: 30%; /* Adjust percentage as needed */
+    max-width: 237px; /* Ensure it does not exceed original size */
+    height: auto;
+  }
+  
+  .chip-logo {
+    width: 20%; /* Adjust percentage as needed */
+    max-width: 139px; /* Ensure it does not exceed original size */
+    height: auto;
+  }
+  
+  .stern-logo {
+    width: 20%; /* Adjust percentage as needed */
+    max-width: 127px; /* Ensure it does not exceed original size */
+    height: auto;
+  }
+  
+  /* Optional: Media queries for further fine-tuning */
+  @media (max-width: 991px) {
+    .image-grid {
+      gap: 40px;
+    }
+    .bild-logo,
+    .die-welt-logo,
+    .chip-logo,
+    .stern-logo {
+      width: 30%; /* Increase width percentage for smaller screens */
+    }
+  }
+  @media (max-width: 767px) {
+    .image-grid {
+      gap: 20px;
+    }
+    .bild-logo,
+    .die-welt-logo,
+    .chip-logo,
+    .stern-logo {
+      width: 25%; /* Increase width percentage for smaller screens */
+    }
+  }
+  @media (max-width: 576px) {
+    .image-grid {
+      gap: 20px;
+    }
+    .bild-logo,
+    .die-welt-logo,
+    .chip-logo,
+    .stern-logo {
+      width: 20%; /* Increase width percentage for smaller screens */
+    }
+  }

@@ -1,0 +1,52 @@
+.brand-info {
+  padding-top: 38px;
+  width: 88%;
+  font-size: 1.5rem;
+  margin: auto;
+  margin-right: 75px;
+}
+
+.brand-info .bd-img {
+  max-width: 200px;
+  padding: 5px;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: none;
+}
+.brand-info .bd-img img{
+  width: 100%;
+  height: auto;
+}
+
+
+.brand-info h1 {
+  font-size: 1.5rem;
+}
+
+
+@media (max-width: 992px) {
+   .brand-info .bd-img {
+    display: block;
+  }
+  .brand-info {
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 576px) {
+  .brand-info {
+    width: 94%;
+  }
+  .brand-info .bd-img {
+    width: 175px;
+    padding: 10px;
+  }
+  .brand-info h1 {
+    font-size: 1.2rem;
+    margin-bottom: 0px;
+}
+.brand-info p{
+  margin-bottom: 0px;
+}
+}

@@ -1,0 +1,47 @@
+.main-aside{
+  background-color: #f5f5f5;
+  padding-top: 38px;
+  margin-left: 75px;
+}
+.logo-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    /* width: 300px; */
+    width: 100%;
+  }
+  
+  .brand-logo {
+    /* max-width: 50%; */
+    max-width: 150px;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  
+  .rating-stars {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  
+  .star {
+    font-size: 24px;
+    color: gold;
+  }
+  
+  /* .half-star {
+
+  } */
+  
+  .empty-star {
+    color: #ddd;
+  }
+  
+  .logo-card p {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+  }
+  

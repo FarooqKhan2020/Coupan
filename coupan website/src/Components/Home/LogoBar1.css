@@ -1,0 +1,25 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.logocontainer{
+    padding: 0;
+}
+.atag{
+    gap: 10px;
+    text-decoration: none;
+    color: #003a8c;
+}
+
+.back{
+    gap: 0px;
+}
+.icon{
+    
+    font-size: 26px;
+}
+
+.back:hover{
+    color: black;
+}

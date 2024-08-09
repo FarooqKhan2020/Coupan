@@ -1,0 +1,161 @@
+/* Footer.css */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  background-color: #1f2532;
+  color: #ffffff;
+  padding: 30px 20px 20px 20px;
+}
+
+.footer-section {
+  flex: 1;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.footer-section h4 {
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #333;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-section ul li a {
+  color: #00bcd4;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.footer-section ul li a .icon {
+  margin-left: 5px;
+}
+
+.footer-flags {
+  margin-top: 20px;
+}
+
+.footer-flags div {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.footer-flags img {
+  width: 24px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.footer-flags a {
+  font-size: 16px;
+  color: #00bcd4;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.footer-flags .icon {
+  margin-left: 5px;
+  font-size: 14px;
+  color: gray;
+}
+
+/* .footer-flags .icon {
+    margin-left: 5px;
+  } */
+
+.footer-logo-section {
+  text-align: left;
+}
+
+.footer-logo {
+  width: 160px;
+  height: auto;
+  margin: 0px 0px 30px 0px;
+}
+
+.footer-icons {
+  display: flex;
+  justify-content: center;
+  margin: 17px 0px 26px 0px;
+}
+
+.footer-icons svg {
+  margin: 0 10px;
+  font-size: 26px;
+}
+.footer-links {
+  display: flex;
+  justify-content: center;
+}
+
+.footer-links a {
+  margin: 0 10px;
+  color: #00bcd4;
+  text-decoration: none;
+}
+
+/* Media query for screen sizes 924px or less */
+@media screen and (max-width: 924px) {
+  .footer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-section {
+    margin: 0;
+    text-align: center;
+  }
+
+  .footer-icons {
+    justify-content: center;
+    margin: 20px 0;
+  }
+  .footer-icons a{
+    color: white;
+  }
+
+  .footer-links {
+    flex-direction: row !important;
+    justify-content: center;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .footer-links a {
+    margin: 5px 0;
+  }
+
+  .footer-flags div {
+    justify-content: center;
+  }
+
+  .footer-flags img {
+    margin-right: 5px;
+  }
+
+  .footer-section ul li {
+    justify-content: center;
+  }
+
+  .footer-section ul li a {
+    justify-content: center;
+  }
+
+  .footer-section ul li a .icon {
+    margin-left: 5px;
+  }
+}
