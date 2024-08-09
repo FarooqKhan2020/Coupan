@@ -20,6 +20,10 @@
     padding: 20px;
     position: relative;
   }
+  .container-items .a-main{
+    text-decoration: none;
+    color: black;
+  }
   
   .container-header {
     display: flex;

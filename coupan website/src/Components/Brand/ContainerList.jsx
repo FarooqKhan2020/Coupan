@@ -51,6 +51,8 @@ const ContainerList = ({ containers ,storecoupons }) => {
   };
 
   const renderIcon = (container) => {
+    if (!container) return null;
+
     if (container.type === "offer") {
       return container.iconType === "van" ? (
         <FaTruck style={{ fontSize: "24px" }} />
@@ -58,7 +60,7 @@ const ContainerList = ({ containers ,storecoupons }) => {
         <FaGift style={{ fontSize: "24px" }} />
       );
     }
-    return container.percentage;
+    return container.offer
   };
 
   const handleViewOffer = (container) => {
@@ -79,15 +81,27 @@ const ContainerList = ({ containers ,storecoupons }) => {
     setSelectedRefundedOffer(null);
   };
 
-  const activeContainers = containers.filter((container) => !container.expired);
-  const expiredContainers = containers.filter((container) => container.expired);
+  // const activeContainers = containers.filter((container) => !container.expired);
+  // const expiredContainers = containers.filter((container) => container.expired);
+  const today = new Date();
+
+  const activeContainers = storecoupons.filter((container) => {
+    const expireDate = new Date(container.expire_date);
+    return expireDate >= today;
+  });
+
+  const expiredContainers = storecoupons.filter((container) => {
+    const expireDate = new Date(container.expire_date);
+    return expireDate < today;
+  });
 
   return (
     <div className="container-list">
       {/* Active Containers */}
       {activeContainers.map((container) => (
+
         <div key={container.id} className={`container-items ${container.type}`}>
-          <div className="row">
+          <div className="row d-flex align-items-center">
             <div className="col-md-2 col-lg-2">
               <div className="container-header">
                 <div className="container-type-percentage">
@@ -99,7 +113,11 @@ const ContainerList = ({ containers ,storecoupons }) => {
                       : "Refunded"}
                   </div>
                   <div className="container-percentage">
-                    {renderIcon(container)}
+                    {renderIcon(container) !== null && renderIcon(container) !== undefined && (
+                        <>
+                          {renderIcon(container)}%
+                        </>
+                    )}
                   </div>
                   <button
                     className="container-details"
@@ -115,16 +133,20 @@ const ContainerList = ({ containers ,storecoupons }) => {
                 </div>
               </div>
             </div>
-            <div className="col-md-7 col-lg-7">
+
+
+            <a href={container.link} className="col-md-7 col-lg-7 a-main">
               <div className="container-main">
-                <p>{container.details}</p>
+                <p>{container.description}</p>
                 <div className="container-info">
                   <div className="container-recommended">
                     <FaThumbsUp className="thumb-icon" /> Recommended
                   </div>
                 </div>
               </div>
-            </div>
+            </a>
+
+
             <div className="col-md-3 col-lg-3 viewbutton">
               <div>
                 <button
@@ -148,6 +170,7 @@ const ContainerList = ({ containers ,storecoupons }) => {
             </div>
           )}
         </div>
+
       ))}
 
       {/* Expired Containers */}
@@ -159,7 +182,7 @@ const ContainerList = ({ containers ,storecoupons }) => {
               key={container.id}
               className={`container-items ${container.type}`}
             >
-              <div className="row">
+              <div className="row d-flex align-items-center">
                 <div className="col-lg-2">
                   <div className="container-header">
                     <div className="container-type-percentage">
@@ -171,7 +194,12 @@ const ContainerList = ({ containers ,storecoupons }) => {
                           : "Refunded"}
                       </div>
                       <div className="container-percentage">
-                        {renderIcon(container)}
+                        {/*{renderIcon(container)}*/}
+                        {renderIcon(container) !== null && renderIcon(container) !== undefined && (
+                            <>
+                              {renderIcon(container)}%
+                            </>
+                        )}
                       </div>
                       <button
                         className="container-details"
@@ -191,7 +219,7 @@ const ContainerList = ({ containers ,storecoupons }) => {
                 </div>
                 <div className="col-lg-7">
                   <div className="container-main">
-                    <p>{container.details}</p>
+                    <p>{container.description}</p>
                     <div className="container-info">
                       <div className="container-recommended">
                         <FaThumbsUp className="thumb-icon" /> Recommended
