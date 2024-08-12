@@ -10,18 +10,8 @@ import FAQComponent from './FAQComponent';
 import ShopsComponent from './ShopsComponent';
 
 const MainComponent = () => {
-  const [selectedType, setSelectedType] = useState('all');
-  const [containers, setContainers] = useState([
-    { id: 1, type: 'code', percentage: '90%', details: 'Treat yourself to an exceptional 90% discount on your favorite items on the Amazon website or app', expired: false },
-    { id: 2, type: 'offer', percentage: '15%', details: 'Treat yourself to FREE DELIVERY on your Amazon order', iconType: 'van', expired: false },
-    { id: 3, type: 'code', percentage: '20%', details: 'SECOND-HAND GOOD DEAL: Save an additional 20% with second-hand products offered by Amazon', expired: false },
-    { id: 4, type: 'offer', percentage: '20%', details: 'READING PLAN: Find your current book in ebook form with Amazon Reading', iconType: 'gift', expired: false },
-    { id: 5, type: 'refunded', percentage: '5.3%', details: '5.3% cashback on your purchases at Nike', expired: false },
-    { id: 6, type: 'offer', percentage: '25%', details: 'Get 25% off on your next purchase', iconType: 'van', expired: false },
-    { id: 7, type: 'offer', percentage: '20%', details: 'READING PLAN: Find your current book in ebook form with Amazon Reading', iconType: 'gift', expired: true },
-    { id: 8, type: 'refunded', percentage: '5.3%', details: '5.3% cashback on your purchases at Nike', expired: true },
-    { id: 9, type: 'offer', percentage: '25%', details: 'Get 25% off on your next purchase', iconType: 'van', expired: true },
-  ]);
+  const [selectedType, setSelectedType] = useState(0);
+
 
   const brand = useLoaderData(); // Get the initial data from the loader
   const [brandName, setBrandName] = useState(brand);
@@ -77,18 +67,20 @@ const MainComponent = () => {
   const handleRadioChange = (type) => {
     setSelectedType(type);
   };
-  
-  const filteredContainers = selectedType === 'all'
-    ? containers
-    : containers.filter(container => container.type === selectedType);
-
+  console.log("types123",typeof selectedType);
+  const filteredContainers = selectedType === 0
+    ? storecoupons
+    : storecoupons.filter(container => container.highlight == selectedType);
+console.log("filteredContainers",filteredContainers);
+console.log('coupons', storecoupons.filter(container => typeof container.highlight));
   return (
     <div>
     <div className="main-component">
       <LeftSection 
         selectedType={selectedType} 
-        handleRadioChange={handleRadioChange} 
-        containers={containers} 
+        handleRadioChange={handleRadioChange}
+        // storecoupons={storecoupons}
+        containers={storecoupons}
         bannerImage={bannerImage} // Pass the banner image to LeftSection
         totalReviews={totalReviews}
         averageRating={averageRating}

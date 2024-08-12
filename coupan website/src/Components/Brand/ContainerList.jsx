@@ -39,8 +39,8 @@ const sampleRefundedOffer = {
   additionalRequirements: 'Valid for selected items only'
 };
 
-const ContainerList = ({ containers ,storecoupons }) => {
-  console.log('abc',storecoupons);
+const ContainerList = ({ containers  }) => {
+  console.log('abcd',containers);
   const [openDetails, setOpenDetails] = useState(null);
   const [selectedOffer, setSelectedOffer] = useState(null);
   const [selectedCodeOffer, setSelectedCodeOffer] = useState(null);
@@ -53,23 +53,23 @@ const ContainerList = ({ containers ,storecoupons }) => {
   const renderIcon = (container) => {
     if (!container) return null;
 
-    if (container.type === "offer") {
+    if (container.highlight == "verified") {
       return container.iconType === "van" ? (
         <FaTruck style={{ fontSize: "24px" }} />
       ) : (
         <FaGift style={{ fontSize: "24px" }} />
       );
     }
-    return container.offer
+    return container.verified
   };
 
   const handleViewOffer = (container) => {
     if (!container.expired) {
-      if (container.type === "offer") {
+      if (container.highlight == 2) {
         setSelectedOffer(sampleOffer); // Use sampleOffer data
-      } else if (container.type === "code") {
+      } else if (container.highlight == 1) {
         setSelectedCodeOffer(sampleCodeOffer); // Use sampleCodeOffer data
-      } else if (container.type === "refunded") {
+      } else if (container.highlight == 3) {
         setSelectedRefundedOffer(sampleRefundedOffer); // Use sampleRefundedOffer data
       }
     }
@@ -85,12 +85,12 @@ const ContainerList = ({ containers ,storecoupons }) => {
   // const expiredContainers = containers.filter((container) => container.expired);
   const today = new Date();
 
-  const activeContainers = storecoupons.filter((container) => {
+  const activeContainers = containers.filter((container) => {
     const expireDate = new Date(container.expire_date);
     return expireDate >= today;
   });
 
-  const expiredContainers = storecoupons.filter((container) => {
+  const expiredContainers = containers.filter((container) => {
     const expireDate = new Date(container.expire_date);
     return expireDate < today;
   });
@@ -100,17 +100,20 @@ const ContainerList = ({ containers ,storecoupons }) => {
       {/* Active Containers */}
       {activeContainers.map((container) => (
 
-        <div key={container.id} className={`container-items ${container.type}`}>
+        <div key={container.id} className={`container-items ${container.highlight}`}>
           <div className="row d-flex align-items-center">
             <div className="col-md-2 col-lg-2">
               <div className="container-header">
                 <div className="container-type-percentage">
                   <div className="container-type">
-                    {container.type === "code"
-                      ? "Coded"
-                      : container.type === "offer"
-                      ? "Offer"
-                      : "Refunded"}
+                    {container.highlight == 1
+                      ? "Featured"
+                      : container.highlight == 2
+                      ? "Verified"
+                      : container.highlight == 3
+                      ? "Exclusive"
+                      : "All"
+                    }
                   </div>
                   <div className="container-percentage">
                     {renderIcon(container) !== null && renderIcon(container) !== undefined && (
@@ -153,9 +156,9 @@ const ContainerList = ({ containers ,storecoupons }) => {
                   className="view-button"
                   onClick={() => handleViewOffer(container)}
                 >
-                  {container.type === "code"
-                    ? "View code"
-                    : container.type === "refunded"
+                  {container.highlight === "1"
+                    ? "View 1"
+                    : container.highlight === "2"
                     ? "View refunded offer"
                     : "View the offer"}
                 </button>
@@ -180,18 +183,21 @@ const ContainerList = ({ containers ,storecoupons }) => {
           {expiredContainers.map((container) => (
             <div
               key={container.id}
-              className={`container-items ${container.type}`}
+              className={`container-items ${container.highlight}`}
             >
               <div className="row d-flex align-items-center">
                 <div className="col-lg-2">
                   <div className="container-header">
                     <div className="container-type-percentage">
                       <div className="container-type">
-                        {container.type === "code"
-                          ? "Coded"
-                          : container.type === "offer"
-                          ? "Offer"
-                          : "Refunded"}
+                        {container.highlight == 1
+                            ? "Featured"
+                            : container.highlight == 2
+                                ? "Verified"
+                                : container.highlight == 3
+                                    ? "Exclusive"
+                                    : "All"
+                        }
                       </div>
                       <div className="container-percentage">
                         {/*{renderIcon(container)}*/}
@@ -233,10 +239,10 @@ const ContainerList = ({ containers ,storecoupons }) => {
                       className="view-button"
                       onClick={() => handleViewOffer(container)}
                     >
-                      {container.type === "code"
-                        ? "View code"
-                        : container.type === "refunded"
-                        ? "View refunded offer"
+                      {container.highlight == 1
+                        ? "View Featured"
+                        : container.highlight == 3
+                        ? "View Exclusive offer"
                         : "View the offer"}
                     </button>
                   </div>

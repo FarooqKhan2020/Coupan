@@ -9,11 +9,14 @@ import SecondCardComponent from './SecondCardComponent';
 import samsungLogo from "../../assets/carouseImg/samsung-logo.webp"; // Adjust the path accordingly
 import SimilarStores from './SimilarStores';
 
-const LeftSection = ({ selectedType, handleRadioChange, containers, bannerImage, totalReviews, averageRating, storeName, storedescription, featureStoreNames}) => {
-
+const LeftSection = ({ selectedType, handleRadioChange,containers, bannerImage, totalReviews, averageRating, storeName, storedescription, featureStoreNames}) => {
+console.log('abc',selectedType)
   const countContainers = (type) => {
-    return containers.filter(container => container.type === type).length;
+      console.log('consolcount',type);
+    return containers.filter(container => container.highlight == type).length;
+
   };
+
   const sampleCard = {
     // icon: <FaStar />,
     label: "Current offer",
@@ -32,9 +35,9 @@ const LeftSection = ({ selectedType, handleRadioChange, containers, bannerImage,
         handleRadioChange={handleRadioChange} 
         counts={{
           all: containers.length,
-          code: countContainers('code'),
-          offer: countContainers('offer'),
-          refunded: countContainers('refunded'),
+            featured: countContainers(1),
+            verified: countContainers(2),
+            exclusive: countContainers(3),
         }}
       />
       <TextComponent storeName={storeName} storedescription={storedescription}/>
