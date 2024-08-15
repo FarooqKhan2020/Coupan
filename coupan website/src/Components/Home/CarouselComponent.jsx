@@ -21,7 +21,7 @@ import christ from "../../assets/images/d.webp";
 import migros from "../../assets/images/e.webp";
 import shein from "../../assets/images/f.webp";
 import { Link } from "react-router-dom";
-const CarouselComponent = (props) => {
+const CarouselComponent = ({data}) => {
   const settings = {
     dots: false,
     infinite: true,
@@ -64,34 +64,19 @@ const CarouselComponent = (props) => {
     ],
   };
 
-  const brands = [
-    { id: 1, name: "Amazon", imgSrc: amazon, link: "/brand" },
-    { id: 2, name: "Booking", imgSrc: booking, link: "/brand" },
-    { id: 3, name: "H&M", imgSrc: hm, link: "/brand" },
-    { id: 4, name: "Korner", imgSrc: korner, link: "/brand" },
-    { id: 5, name: "Levis", imgSrc: levis, link: "/brand" },
-    { id: 6, name: "Prisma Shop", imgSrc: prismashop, link: "/brand" },
-    { id: 7, name: "Dockers", imgSrc: dockers, link: "/brand" },
-    { id: 8, name: "Zooplus", imgSrc: zooplus, link: "/brand" },
-    { id: 9, name: "Lounge", imgSrc: lounge, link: "/brand" },
-    { id: 10, name: "Christ", imgSrc: christ, link: "/brand" },
-    { id: 11, name: "Migros", imgSrc: migros, link: "/brand" },
-    { id: 12, name: "Shein", imgSrc: shein, link: "/brand" },
-    // Add more brands as needed
-  ];
 
   return (
     <div className="main">
       <div className="carousel-container">
         <h1 className="pt-5 heading">
-          Get your promo code and discount with 20 minutes!{props?.title}
+          Get your promo code and discount with 20 minutes!{data?.slug}
         </h1>
         <Slider {...settings}>
-          {brands.map((brand) => (
+          {data.map((brand) => (
             <div key={brand.id} className="carousel-item">
-               <Link to={brand.link} target="_blank" rel="noopener noreferrer">
+               <Link to={"/brand/"+brand.name} target="_blank" rel="noopener noreferrer">
               <img
-                src={brand.imgSrc}
+                src={"http://coupon.gynerium.com/"+brand.banner}
                 alt={brand.name}
                 className="brand-image"
               />

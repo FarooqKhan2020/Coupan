@@ -138,7 +138,7 @@ const ContainerList = ({ containers  }) => {
             </div>
 
 
-            <a href={container.link} className="col-md-7 col-lg-7 a-main">
+            <a href={container.link} target="_blank" className="col-md-7 col-lg-7 a-main">
               <div className="container-main">
                 <p>{container.description}</p>
                 <div className="container-info">

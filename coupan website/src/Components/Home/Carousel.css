@@ -50,8 +50,8 @@
 }
 
 .carousel-logo img {
-  width: 77%;
-  height: 30%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
