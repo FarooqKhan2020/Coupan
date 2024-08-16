@@ -461,7 +461,7 @@ function Navbar() {
                     {store.name} <FaAngleRight />
                   </button>
                 ))}
-                <Link to={"/"} className="see-all-categories">
+                <Link to={"/store"} target={"_blank"} className="see-all-categories">
                   See all Stores
                 </Link>
               </div>
@@ -547,7 +547,7 @@ function Navbar() {
                     {category.name} <FaAngleRight />
                   </button>
                 ))}
-                <Link to={"/"} className="see-all-categories">
+                <Link to={"/category"} target={"_blank"} className="see-all-categories">
                   See all categories
                 </Link>
               </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import './CardLogoSection.css';
+import './AllStores.css';
 import Logo from "../../assets/cardsImg/expedia.webp";
 import aLogo from "../../assets/cardsImg/logo-ad.webp";
 import smartboxLogo from "../../assets/cardsImg/smartbox.webp";
@@ -51,23 +51,23 @@ const logos = [
   { href: '/brand', src: rakuten, alt: 'eBay', text: '44 vouchers' },
 ];
 
-const CardLogoSection = () => {
+const AllStores = ({heading}) => {
   return (
-    <div className="mainLogo">
-    <div className="card-logo-section">
-      <h2>Where do you want to save?</h2>
-      <div className="card-logo-container">
+    <div className="mainStoreLogo">
+    <div className="card-store-section">
+      <h2>{heading}</h2>
+      <div className="card-store-container">
         {logos.map((logo, index) => (
-          <Link to={logo.href} key={index} className="card-logo">
-            <img src={logo.src} alt={logo.alt} className="card-logo-image" />
+          <Link to={logo.href} key={index} className="store-logo">
+            <img src={logo.src} alt={logo.alt} className="store-logo-image" />
             <p>{logo.text}</p>
           </Link>
         ))}
       </div>
-      <Link to="/store" className="card-logo-button">Shops & brands from A-Z</Link>
+      <Link to="/brand" className="store-logo-button">Shops & brands from A-Z</Link>
     </div>
     </div>
   );
 };
 
-export default CardLogoSection;
+export default AllStores;
