@@ -10,9 +10,9 @@ const Categories = ({data}) => {
   return (
     <div className="categories-container">
       <h2>Browse the categories</h2>
-      <div className="categories-grid">
+      <div className="categories-home">
         {data.map((category, index) => (
-            <Link to={`/brand/${category.slug}`} key={index} className="category-card">
+            <Link to={`/brand/${category.slug}`} key={index} className="category-card-home">
                 <div className='category-icon'>
                     <i className={category.icon}></i>
                 </div>
@@ -21,7 +21,7 @@ const Categories = ({data}) => {
             </Link>
         ))}
       </div>
-        <a href="#" className="all-categories-button">All Categories</a>
+        <Link to={"/category"} className="all-categories-button">All Categories</Link>
     </div>
   );
 };
