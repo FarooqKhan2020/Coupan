@@ -11,9 +11,9 @@ function LogoBar1({logo}) {
         <a href="" className="d-flex align-items-center atag">
             <img src={apiUrl+logo} alt="logo" />
 
-            <div className="back d-flex align-items-center">
-            <FaRegArrowAltCircleLeft className="icon"/><span>Back</span>
-            </div>
+            {/*<div className="back d-flex align-items-center">*/}
+            {/*<FaRegArrowAltCircleLeft className="icon"/><span>Back</span>*/}
+            {/*</div>*/}
         </a>  
     </div>
   )

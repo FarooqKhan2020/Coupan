@@ -573,7 +573,8 @@ function Navbar() {
                               return (
                                 <>
                                   <Link
-                                    to="/brand"
+                                    to="/categorycoupon"
+                                    //   to={`/category/${coupon.name}`}
                                     key={coupon.id}
                                     className="store-link"
                                     onClick={handleLinkClick}

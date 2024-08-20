@@ -44,7 +44,7 @@ const CardComponent = ({ data }) => {
                     onClick={() => setActiveCategoryId(category.id)}
                 >
                   <i className={category.icon}></i>
-                  {category.name}
+                  {" "+category.name}
                 </button>
             ))}
           </div>

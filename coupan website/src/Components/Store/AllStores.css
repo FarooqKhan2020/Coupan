@@ -25,7 +25,7 @@
     flex-direction: column;
     align-items: center;
     background-color: #fff;
-    padding: 20px;
+    /*padding: 20px;*/
     border-radius: 10px;
     text-decoration: none;
     color: #1e3a8a;
@@ -42,6 +42,7 @@
     width: 100%;
     height: auto;
     margin-bottom: 10px;
+    border-radius: 10px 10px 0px 0px;
   }
   
   .store-logo p {

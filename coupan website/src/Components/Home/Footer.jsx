@@ -15,14 +15,14 @@ const Footer = ({footerLogo}) => {
       <div className="footer-section">
         <h4>Help</h4>
         <ul>
-          <li><Link to="/">All shops from AZ</Link></li>
+          <li><Link to="/store">All Stores</Link></li>
+          <li><Link to="/Category">All Categories</Link></li>
           <li><Link to="/">FAQ – Frequently Asked Questions</Link></li>
-          <li><Link to="/">Partner FAQ</Link></li>
-          <li><Link to="/">Contact & Feedback</Link></li>
+          <li><Link to="/contactus">Contact Us</Link></li>
         </ul>
         <div className="footer-flags">
           <div>
-            <img src={uk} alt="UK Flag" />
+          <img src={uk} alt="UK Flag" />
             <Link to="/">Voucherbox (UK) <BsBoxArrowUpRight className="icon" /></Link>
           </div>
           <div>
