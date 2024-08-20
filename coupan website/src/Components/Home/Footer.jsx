@@ -8,7 +8,8 @@ import { FaFacebook, FaEnvelope, FaTwitter } from 'react-icons/fa';
 import { BsBoxArrowUpRight } from 'react-icons/bs';
 import { Link } from "react-router-dom";
 
-const Footer = () => {
+const Footer = ({footerLogo}) => {
+  const apiUrl = import.meta.env.VITE_API_URL;
   return (
     <footer className="footer">
       <div className="footer-section">
@@ -49,7 +50,7 @@ const Footer = () => {
       </div>
       
       <div className="footer-section footer-logo-section">
-        <Link to="/"><img src={ftlogo} alt="Logo" className="footer-logo" /></Link>
+        <Link to="/"><img src={apiUrl+footerLogo} alt="Logo" className="footer-logo" /></Link>
         <p>
           Exclusive vouchers may not be further published without written permission.<br />
           Copyright © 2010 - 2024 Voucher Collector - All rights reserved

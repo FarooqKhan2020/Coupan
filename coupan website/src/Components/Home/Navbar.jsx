@@ -363,11 +363,11 @@ function Navbar() {
    
     setSelectedStore(store);
   };
-
+  const apiUrl = import.meta.env.VITE_API_URL;
   // khan-sab api
   useEffect(() => {
     const fetchCategories = async () => {
-      let response = await axios.get("http://coupon.gynerium.com/api/coupons");
+      let response = await axios.get(apiUrl + "api/coupons");
       // console.log(response)
       let categories = response.data.categories.map((category) => {
         return {
@@ -391,7 +391,7 @@ function Navbar() {
   }, []);
   useEffect(() => {
     const fetchStores = async () => {
-      let response = await axios.get("http://coupon.gynerium.com/api/coupons");
+      let response = await axios.get(apiUrl + "api/coupons");
       // console.log(response)
      
       let stores = response.data.stores.map((store) => {
@@ -495,7 +495,7 @@ function Navbar() {
                                   >
                                     <div className="store-image">
                                       <img
-                                        src={`http://coupon.gynerium.com/public/${storecoupons.banner}`}
+                                        src={apiUrl+`public/${storecoupons.banner}`}
                                       />
                                     </div>
                                     <span>{storecoupons.title}</span>
@@ -580,7 +580,7 @@ function Navbar() {
                                   >
                                     <div className="store-image">
                                       <img
-                                        src={`http://coupon.gynerium.com/public/${coupon.banner}`}
+                                        src={apiUrl+`public/${coupon.banner}`}
                                       />
                                     </div>
                                     <span>{coupon.title}</span>

@@ -3,6 +3,7 @@ import "./CardComponent.css";
 import { Link } from "react-router-dom";
 
 const CardComponent = ({ data }) => {
+  const apiUrl = import.meta.env.VITE_API_URL;
   const [activeCategoryId, setActiveCategoryId] = useState(null);
 
   useEffect(() => {
@@ -61,7 +62,7 @@ const CardComponent = ({ data }) => {
                   )}
                   <Link to={coupon.link} rel="noopener noreferrer">
                     <img
-                        src={`http://coupon.gynerium.com/public/${coupon.banner}`}
+                        src={apiUrl+`public/${coupon.banner}`}
                         alt="Coupon Banner"
                         className="card-logoImg"
                     />

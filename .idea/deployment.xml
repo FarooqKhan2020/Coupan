@@ -2,6 +2,13 @@
 <project version="4">
   <component name="PublishConfigData" serverName="copuon" remoteFilesAllowedToDisappearOnAutoupload="false">
     <serverData>
+      <paths name="barakah">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="copuon">
         <serverdata>
           <mappings>

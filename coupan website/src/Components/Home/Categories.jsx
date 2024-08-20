@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
 const Categories = ({data}) => {
-    console.log('data',data);
+
   return (
     <div className="categories-container">
       <h2>Browse the categories</h2>

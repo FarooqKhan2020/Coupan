@@ -9,6 +9,13 @@
           </advancedOptions>
         </fileTransfer>
       </webServer>
+      <webServer id="4509a91a-12c8-4c39-a93b-58551ac770cc" name="barakah" url="https://barakahjobs.com/">
+        <fileTransfer rootFolder="/var/www" accessType="SFTP" host="18.156.178.115" port="22" sshConfigId="2a0a8410-4c89-4e40-b246-92fb89b774bc" sshConfig="barakah" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
     </option>
   </component>
 </project>

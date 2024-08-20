@@ -12,8 +12,10 @@ import ImageHover from '../Components/Home/ImageHover';
 export default function HomePage(){
     const [data, setData] = useState({
         sliders: [],
+        categoryCoupon: [],
         categories: [],
         stores: [],
+        storesCoupons: [],
         exclusiveCoupons: [],
         verifiedCoupons: [],
         featuredCoupons: [],
@@ -26,13 +28,14 @@ export default function HomePage(){
     });
 
     useEffect(() => {
+        const apiUrl = import.meta.env.VITE_API_URL;
         async function fetchData() {
             try {
-                const response = await fetch('http://coupon.gynerium.com/api/homepage');
+                const response = await fetch(apiUrl + 'api/homepage');
                 if (!response.ok) throw new Error('Network response was not ok');
                 const data = await response.json();
                 setData(data);
-                console.log('API Data:', data);
+
             } catch (error) {
                 console.error('Fetch error:', error);
             }
@@ -47,7 +50,7 @@ export default function HomePage(){
             <CardComponent data={data.categoryCoupon}/>
             <Categories data={data.categories}/>
             <PromiseComponent/>
-            <CardLogoSection/>
+            <CardLogoSection data={data.storesCoupons}/>
             <ImageHover/>
         </>
     );

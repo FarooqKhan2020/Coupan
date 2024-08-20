@@ -51,20 +51,21 @@ const logos = [
   { href: '/brand', src: rakuten, alt: 'eBay', text: '44 vouchers' },
 ];
 
-const CardLogoSection = () => {
+const CardLogoSection = ({data}) => {
+  const apiUrl = import.meta.env.VITE_API_URL;
   return (
     <div className="mainLogo">
     <div className="card-logo-section">
       <h2>Where do you want to save?</h2>
       <div className="card-logo-container">
-        {logos.map((logo, index) => (
-          <Link to={logo.href} key={index} className="card-logo">
-            <img src={logo.src} alt={logo.alt} className="card-logo-image" />
-            <p>{logo.text}</p>
+        {data.map((logo, index) => (
+          <Link to={"/brand/"+logo.name} key={index} className="card-logo">
+            <img src={apiUrl+logo.banner} alt={logo.alt} className="card-logo-image" />
+            <p>{logo.coupons_count+" vouchers"}</p>
           </Link>
         ))}
       </div>
-      <Link to="/store" className="card-logo-button">Shops & brands from A-Z</Link>
+      <Link to="/store" className="card-logo-button">All Stores</Link>
     </div>
     </div>
   );

@@ -22,6 +22,7 @@ import migros from "../../assets/images/e.webp";
 import shein from "../../assets/images/f.webp";
 import { Link } from "react-router-dom";
 const CarouselComponent = ({data}) => {
+  const apiUrl = import.meta.env.VITE_API_URL;
   const settings = {
     dots: false,
     infinite: true,
@@ -76,7 +77,7 @@ const CarouselComponent = ({data}) => {
             <div key={brand.id} className="carousel-item">
                <Link to={"/brand/"+brand.name} target="_blank" rel="noopener noreferrer">
               <img
-                src={"http://coupon.gynerium.com/"+brand.banner}
+                src={apiUrl+brand.banner}
                 alt={brand.name}
                 className="brand-image"
               />

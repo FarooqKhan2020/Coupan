@@ -10,9 +10,9 @@ import samsungLogo from "../../assets/carouseImg/samsung-logo.webp"; // Adjust t
 import SimilarStores from './SimilarStores';
 
 const LeftSection = ({ selectedType, handleRadioChange,containers, bannerImage, totalReviews, averageRating, storeName, storedescription, featureStoreNames}) => {
-console.log('abc',selectedType)
+
   const countContainers = (type) => {
-      console.log('consolcount',type);
+
     return containers.filter(container => container.highlight == type).length;
 
   };
