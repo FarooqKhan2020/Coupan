@@ -6,6 +6,7 @@ import { FaAngleRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
 const Carousel = ({data}) => {
+  const apiUrl = import.meta.env.VITE_API_URL;
     // Find the initial slide based on serial
   const initialSlide = data.findIndex(slide => slide.serial === 1); // Adjust the serial value as needed
 
@@ -35,10 +36,10 @@ const Carousel = ({data}) => {
         <div className="carousel-content">
           <div
             className="carousel-background"
-            style={{ backgroundImage: `url(${"http://coupon.gynerium.com/"+data[currentSlide].image})` }}
+            style={{ backgroundImage: `url(${apiUrl+data[currentSlide].image})` }}
           >
             <Link to={data[currentSlide].link} target={"_blank"} className="carousel-logo">
-              <img src={"http://coupon.gynerium.com/"+data[currentSlide].image} alt="Logo" />
+              <img src={apiUrl+data[currentSlide].image} alt="Logo" />
             </Link>
           </div>
           <div className="carousel-text">

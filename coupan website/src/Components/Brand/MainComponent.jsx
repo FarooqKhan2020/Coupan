@@ -10,6 +10,7 @@ import FAQComponent from './FAQComponent';
 import ShopsComponent from './ShopsComponent';
 
 const MainComponent = () => {
+  const apiUrl = import.meta.env.VITE_API_URL;
   const [selectedType, setSelectedType] = useState(0);
 
 
@@ -31,7 +32,7 @@ const MainComponent = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://coupon.gynerium.com/api/store-detail/${brandName}`);
+        const response = await axios.get(apiUrl + `api/store-detail/${brandName}`);
         const storeData = response.data.store;
         const featureStores = response.data.featureStores;
         
@@ -44,7 +45,7 @@ const MainComponent = () => {
         const featureStoreNames = featureStores.map(store => store.name);
         setFeatureStoresName(featureStoreNames);
          
-        setBannerImage(`http://coupon.gynerium.com/public/${storeData.banner}`);
+        setBannerImage(apiUrl + `public/${storeData.banner}`);
         setstoreName(storeData.name);
         setStoreDescription(storeData.description);
         setStoreCoupons(storeData.coupons);
