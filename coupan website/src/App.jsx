@@ -15,12 +15,14 @@ function App() {
     const [logo, setLogo] = useState('');
     const [footerLogo, setFooterLogo] = useState('');
     const [favicon, setFavicon] = useState('');
+    const [footer, setFooter] = useState('');
     useEffect(() => {
         // Fetch the settings from your API
         axios.get(`${apiUrl}api/settings`)
             .then(response => {
-                const {  logo,footer_logo,favicon } = response.data;
-
+                const { logo, footer_logo, favicon } = response.data.setting;
+                const{footer}=response.data;
+                setFooter(footer);
                 setLogo(logo);
                 setFooterLogo(footer_logo);
                 setFavicon(favicon);
@@ -46,7 +48,8 @@ function App() {
     <Navbar/>
     <Highlight/>
     <Outlet/>
-    <Footer footerLogo={footerLogo}></Footer>
+    <Footer footerLogo={footerLogo} footer={footer}
+    ></Footer>
     </>
   )
 }

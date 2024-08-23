@@ -4,9 +4,15 @@ import { FaFacebook, FaEnvelope} from 'react-icons/fa';
 import { FaXTwitter } from "react-icons/fa6";
 import { BsBoxArrowUpRight } from 'react-icons/bs';
 import { Link } from "react-router-dom";
+import { IoIosPhonePortrait } from "react-icons/io";
+import { CiLocationOn } from "react-icons/ci";
+import { CiMail } from "react-icons/ci";
+import { FaRegCopyright } from "react-icons/fa6";
 
 
-const Footer = ({footerLogo}) => {
+
+
+const Footer = ({footerLogo,footer}) => {
   const apiUrl = import.meta.env.VITE_API_URL;
   return (
     <footer className="footer">
@@ -32,8 +38,10 @@ const Footer = ({footerLogo}) => {
       <div className="footer-section footer-logo-section">
         <Link to="/"><img src={apiUrl+footerLogo} alt="Logo" className="footer-logo" /></Link>
         <p>
-          Exclusive vouchers may not be further published without written permission.<br />
-          Copyright © 2010 - 2024 Voucher Collector - All rights reserved
+          <IoIosPhonePortrait />  {footer.phone}.<br />
+           <CiMail /> {footer.email}.<br />
+          <CiLocationOn /> {footer.address}.<br />
+          <FaRegCopyright/> {footer.copyright}
         </p>
         <div className="footer-icons">
           <Link to="/" style={{color:'white'}}> <FaFacebook /></Link>
