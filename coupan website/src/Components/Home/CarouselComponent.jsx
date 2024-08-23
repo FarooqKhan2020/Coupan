@@ -57,9 +57,9 @@ const CarouselComponent = ({data}) => {
   return (
     <div className="main">
       <div className="carousel-container">
-        <h1 className="pt-5 heading">
+        {/* <h1 className="pt-5 heading">
           Get your promo code and discount with 20 minutes!{data?.slug}
-        </h1>
+        </h1> */}
         <Slider {...settings}>
           {data.map((brand) => (
             <div key={brand.id} className="carousel-item">
