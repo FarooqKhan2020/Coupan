@@ -1,5 +1,6 @@
 import React from 'react';
 import './TextComponent.css';
+import {Link} from "react-router-dom";
 
 const TextComponent = ({storeName, storedescription}) => {
   return (
@@ -11,7 +12,7 @@ const TextComponent = ({storeName, storedescription}) => {
       {/* <p>
         No need to wait for sales or Black Friday to benefit from discounts on the online store. If you don't have Amazon Prime yet, try it quickly, you won't be able to do without it! With an Amazon promo code valid in July 2024, you can save money on your everyday products.
       </p> */}
-      <a href="#">The best promo codes of the moment</a>
+      {/*<Link to="/">The best promo codes of the moment</Link>*/}
     </div>
   );
 };

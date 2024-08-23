@@ -28,7 +28,7 @@ export default function AllCategories() {
             <h2 className="categories-heading">All Categories</h2>
             <div className="categories-grid">
                 {categories.map((category, index) => (
-                    <Link to={'/brand'} className="category-box" key={index}>
+                    <Link to={`/categorycoupon/${category.name}`} className="category-box" key={index}>
                         <i className={`category-icon ${category.icon}`} />
                         <p className="category-name">{category.name}</p>
                     </Link>

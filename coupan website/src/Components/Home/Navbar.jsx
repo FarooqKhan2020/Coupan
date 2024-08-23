@@ -3,20 +3,20 @@ import { FaSearch, FaAngleDown, FaAngleUp } from "react-icons/fa";
 import axios from "axios";
 import { IoMenu } from "react-icons/io5";
 import { FaAngleRight } from "react-icons/fa6";
-import { FaMedal, FaShoppingBag, FaUmbrellaBeach } from "react-icons/fa";
+// import { FaMedal, FaShoppingBag, FaUmbrellaBeach } from "react-icons/fa";
 import {
   FaHome,
   FaStore,
-  FaBlog,
-  FaTrophy,
-  FaClock,
-  FaTshirt,
-  FaHeartbeat,
-  FaGift,
-  FaFemale,
-  FaDumbbell,
-  FaShoePrints,
-  FaPaintBrush,
+  // FaBlog,
+  // FaTrophy,
+  // FaClock,
+  // FaTshirt,
+  // FaHeartbeat,
+  // FaGift,
+  // FaFemale,
+  // FaDumbbell,
+  // FaShoePrints,
+  // FaPaintBrush,
   FaLaptop,
   FaHotel,
 } from "react-icons/fa";
@@ -30,9 +30,9 @@ function Navbar() {
   const [storesDropdownOpen, setstoresDropdownOpen] = useState(false);
   const [keepstoresDropdownOpen, setKeepstoresDropdownOpen] = useState(false);
   // const [categoriesDropdownOpen, setCategoriesDropdownOpen] = useState(false);
-  const [rightNowDropdownOpen, setRightNowDropdownOpen] = useState(false);
-  const [keepRightNowDropdownOpen, setkeepRightNowDropdownOpen] =
-    useState(false); // remains open when on right now dropdown
+  // const [rightNowDropdownOpen, setRightNowDropdownOpen] = useState(false);
+  // const [keepRightNowDropdownOpen, setkeepRightNowDropdownOpen] =
+  //   useState(false); // remains open when on right now dropdown
   const [selectedCategory, setSelectedCategory] =
     useState("Clothing & Apparel"); // Set default to "Clothing & Apparel"
   const [selectedStore, setSelectedStore] =
@@ -72,7 +72,7 @@ function Navbar() {
   const dropdownRefs = {
     categories: useRef(null),
     stores: useRef(null),
-    rightNow: useRef(null),
+    // rightNow: useRef(null),
     sidebarRightNow: useRef(null),
     sidebarClothing: useRef(null),
     sidebarHealth: useRef(null),
@@ -102,12 +102,12 @@ function Navbar() {
         setstoresDropdownOpen(false);
       }
 
-      if (
-        dropdownRefs.rightNow.current &&
-        !dropdownRefs.rightNow.current.contains(event.target)
-      ) {
-        setRightNowDropdownOpen(false);
-      }
+      // if (
+      //   dropdownRefs.rightNow.current &&
+      //   !dropdownRefs.rightNow.current.contains(event.target)
+      // ) {
+      //   setRightNowDropdownOpen(false);
+      // }
 
       if (
         dropdownRefs.sidebarRightNow.current &&
@@ -317,22 +317,22 @@ function Navbar() {
     setSidebarOpen(!sidebarOpen);
   };
 
-  const handleMouseEnter = () => {
-    if (!keepRightNowDropdownOpen) {
-      setRightNowDropdownOpen(true);
-    }
-  };
+  // const handleMouseEnter = () => {
+  //   if (!keepRightNowDropdownOpen) {
+  //     setRightNowDropdownOpen(true);
+  //   }
+  // };
 
-  const handleMouseLeave = () => {
-    if (!keepRightNowDropdownOpen) {
-      setRightNowDropdownOpen(false);
-    }
-  };
+  // const handleMouseLeave = () => {
+  //   if (!keepRightNowDropdownOpen) {
+  //     setRightNowDropdownOpen(false);
+  //   }
+  // };
 
-  const handleButtonClick = () => {
-    setkeepRightNowDropdownOpen(!keepRightNowDropdownOpen);
-    setRightNowDropdownOpen(!keepRightNowDropdownOpen);
-  };
+  // const handleButtonClick = () => {
+  //   setkeepRightNowDropdownOpen(!keepRightNowDropdownOpen);
+  //   setRightNowDropdownOpen(!keepRightNowDropdownOpen);
+  // };
 
   // Function to close the sidebar
   const closeSidebar = () => {
@@ -457,7 +457,7 @@ function Navbar() {
                     }`}
                   >
                     {/* {iconMap[category.name]} */}
-                    
+
                     {store.name} <FaAngleRight />
                   </button>
                 ))}
@@ -478,7 +478,7 @@ function Navbar() {
                                 ? `Top ${store.name} stores`
                                 : "Select a store"}
                             </p>
-                            <Link to={"/"} className="see-all-clothing-apparel">
+                            <Link  to={`/brand/${store.name}`} target="_blank" className="see-all-clothing-apparel">
                               See all {store.name}
                             </Link>
                           </div>
@@ -564,7 +564,7 @@ function Navbar() {
                                 ? `Top ${category.name} categories`
                                 : "Select a category"}
                             </p>
-                            <Link to={"/"} className="see-all-clothing-apparel">
+                            <Link to={`/categorycoupon/${category.name}`} target={"_blank"} className="see-all-clothing-apparel">
                               See all {category.name}
                             </Link>
                           </div>
@@ -573,8 +573,8 @@ function Navbar() {
                               return (
                                 <>
                                   <Link
-                                    to="/categorycoupon"
-                                    //   to={`/category/${coupon.name}`}
+                                    // to="/categorycoupon"
+                                      to={`/categorycoupon/${category.name}`}
                                     key={coupon.id}
                                     className="store-link"
                                     onClick={handleLinkClick}
@@ -598,65 +598,65 @@ function Navbar() {
             </div>
           </li>
 
-          <li className="navbar-item">
-            <Link to="/">
-              <button className="navbar-button">Blog</button>
-            </Link>
-          </li>
-          <li className="navbar-item">
-            <Link to="/">
-              <button className="navbar-button">Top 20</button>
-            </Link>
-          </li>
+          {/*<li className="navbar-item">*/}
+          {/*  <Link to="/">*/}
+          {/*    <button className="navbar-button">Blog</button>*/}
+          {/*  </Link>*/}
+          {/*</li>*/}
+          {/*<li className="navbar-item">*/}
+          {/*  <Link to="/">*/}
+          {/*    <button className="navbar-button">Top 20</button>*/}
+          {/*  </Link>*/}
+          {/*</li>*/}
 
           {/* <li className="navbar-item dropdown" ref={dropdownRefs.rightNow}> */}
-          <li
-            className="navbar-item dropdown"
-            ref={dropdownRefs.rightNow}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-          >
-            <button
-              className="navbar-button"
-              style={{ backgroundColor: "white", color: "#0056b3" }}
-              // onClick={toggleRightNowDropdown}
-              onClick={handleButtonClick}
-            >
-              Right now {rightNowDropdownOpen ? <FaAngleUp /> : <FaAngleDown />}
-            </button>
-            <div
-              className={`rightnow-dropdown-content ${
-                rightNowDropdownOpen ? "show" : ""
-              }`}
-            >
-              <ul className="dropdown-grid">
-                <li>
-                  <Link to={"/"} onClick={handleLinkClick}>
-                    <div className="icon">
-                      <FaMedal size={30} />
-                    </div>
-                    Olympic Games
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={handleLinkClick}>
-                    <div className="icon">
-                      <FaShoppingBag size={30} />
-                    </div>
-                    Tommy Hilfiger offers
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={handleLinkClick}>
-                    <div className="icon">
-                      <FaUmbrellaBeach size={30} />
-                    </div>
-                    Summer holidays
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </li>
+          {/*<li*/}
+          {/*  className="navbar-item dropdown"*/}
+          {/*  ref={dropdownRefs.rightNow}*/}
+          {/*  onMouseEnter={handleMouseEnter}*/}
+          {/*  onMouseLeave={handleMouseLeave}*/}
+          {/*>*/}
+          {/*  <button*/}
+          {/*    className="navbar-button"*/}
+          {/*    style={{ backgroundColor: "white", color: "#0056b3" }}*/}
+          {/*    // onClick={toggleRightNowDropdown}*/}
+          {/*    onClick={handleButtonClick}*/}
+          {/*  >*/}
+          {/*    Right now {rightNowDropdownOpen ? <FaAngleUp /> : <FaAngleDown />}*/}
+          {/*  </button>*/}
+          {/*  <div*/}
+          {/*    className={`rightnow-dropdown-content ${*/}
+          {/*      rightNowDropdownOpen ? "show" : ""*/}
+          {/*    }`}*/}
+          {/*  >*/}
+          {/*    <ul className="dropdown-grid">*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={handleLinkClick}>*/}
+          {/*          <div className="icon">*/}
+          {/*            <FaMedal size={30} />*/}
+          {/*          </div>*/}
+          {/*          Olympic Games*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={handleLinkClick}>*/}
+          {/*          <div className="icon">*/}
+          {/*            <FaShoppingBag size={30} />*/}
+          {/*          </div>*/}
+          {/*          Tommy Hilfiger offers*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={handleLinkClick}>*/}
+          {/*          <div className="icon">*/}
+          {/*            <FaUmbrellaBeach size={30} />*/}
+          {/*          </div>*/}
+          {/*          Summer holidays*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*    </ul>*/}
+          {/*  </div>*/}
+          {/*</li>*/}
         </ul>
         <div className="d-flex align-items-center mainSM">
           <div className="navbar-search">
@@ -681,559 +681,559 @@ function Navbar() {
               </button>
             </Link>
           </li>
-          <li className="sidebar-item">
-            <button className="sidebar-button" onClick={closeSidebar}>
-              <FaBlog /> Blog
-            </button>
-          </li>
-          <li className="sidebar-item">
-            <button className="sidebar-button" onClick={closeSidebar}>
-              <FaTrophy /> Top 20
-            </button>
-          </li>
-          <li
-            className="sidebar-item dropdown"
-            ref={dropdownRefs.sidebarRightNow}
-          >
-            <button
-              className="sidebar-button right-now"
-              onClick={toggleSidebarRightNowDropdown}
-            >
-              <FaClock /> Right now <FaAngleDown />
-            </button>
-            <div
-              className={`dropdown-content ${
-                sidebarRightNowDropdownOpen ? "show" : ""
-              }`}
-            >
-              <ul>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    {" "}
-                    <FaMedal /> Olympic Games
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    <FaShoppingBag /> Tommy Hilfiger offers
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    <FaUmbrellaBeach /> Summer holidays
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </li>
+          {/*<li className="sidebar-item">*/}
+          {/*  <button className="sidebar-button" onClick={closeSidebar}>*/}
+          {/*    <FaBlog /> Blog*/}
+          {/*  </button>*/}
+          {/*</li>*/}
+          {/*<li className="sidebar-item">*/}
+          {/*  <button className="sidebar-button" onClick={closeSidebar}>*/}
+          {/*    <FaTrophy /> Top 20*/}
+          {/*  </button>*/}
+          {/*</li>*/}
+          {/*<li*/}
+          {/*  className="sidebar-item dropdown"*/}
+          {/*  ref={dropdownRefs.sidebarRightNow}*/}
+          {/*>*/}
+          {/*  <button*/}
+          {/*    className="sidebar-button right-now"*/}
+          {/*    onClick={toggleSidebarRightNowDropdown}*/}
+          {/*  >*/}
+          {/*    <FaClock /> Right now <FaAngleDown />*/}
+          {/*  </button>*/}
+          {/*  <div*/}
+          {/*    className={`dropdown-content ${*/}
+          {/*      sidebarRightNowDropdownOpen ? "show" : ""*/}
+          {/*    }`}*/}
+          {/*  >*/}
+          {/*    <ul>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          {" "}*/}
+          {/*          <FaMedal /> Olympic Games*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          <FaShoppingBag /> Tommy Hilfiger offers*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          <FaUmbrellaBeach /> Summer holidays*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*    </ul>*/}
+          {/*  </div>*/}
+          {/*</li>*/}
 
           <div className="stores-label">
             <FaStore /> Stores
           </div>
 
-          <li
-            className="sidebar-item dropdown"
-            ref={dropdownRefs.sidebarClothing}
-          >
-            <button
-              className="sidebar-button"
-              onClick={toggleSidebarClothingDropdown}
-            >
-              <FaTshirt /> Clothing & Apparel <FaAngleDown />
-            </button>
-            <div
-              className={`dropdown-content ${
-                sidebarClothingDropdownOpen ? "show" : ""
-              }`}
-            >
-              <ul>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    See all Clothing & Apparel
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    Land's End
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    AMI Club Wear
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    ModCloth.com
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    Gap.com
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    Avenue
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    Old Navy
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    Old Navy
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    Coach
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li
-            className="sidebar-item dropdown"
-            ref={dropdownRefs.sidebarHealth}
-          >
-            <button
-              className="sidebar-button"
-              onClick={toggleSidebarHealthDropdown}
-            >
-              <FaHeartbeat /> Health & Beauty <FaAngleDown />
-            </button>
-            <div
-              className={`dropdown-content ${
-                sidebarHealthDropdownOpen ? "show" : ""
-              }`}
-            >
-              <ul>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    See all Health & Beauty
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    L'Occitane
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    Olay
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    Sephora
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    Walgreens
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    Puritan's Pride
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    StrawberryNET Cosmetics
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    Benefit Cosmetics
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    Modeloness
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li className="sidebar-item dropdown" ref={dropdownRefs.sidebarGifts}>
-            <button
-              className="sidebar-button"
-              onClick={toggleSidebarGiftsDropdown}
-            >
-              <FaGift /> Gifts <FaAngleDown />
-            </button>
-            <div
-              className={`dropdown-content ${
-                sidebarGiftsDropdownOpen ? "show" : ""
-              }`}
-            >
-              <ul>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    See all Gifts
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    Snapfish
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    Yankee Candle
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    From You Flowers
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    Shutterfly
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    FTD Flowers
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    1--800-FLOWERS
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    Fine Stationery
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    ProFlowers
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li className="sidebar-item dropdown" ref={dropdownRefs.sidebarWomen}>
-            <button
-              className="sidebar-button"
-              onClick={toggleSidebarWomenDropdown}
-            >
-              <FaFemale /> Women <FaAngleDown />
-            </button>
-            <div
-              className={`dropdown-content ${
-                sidebarWomenDropdownOpen ? "show" : ""
-              }`}
-            >
-              <ul>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    See all Women
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    ProFlowers
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    bebe.com
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    J.Jill
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    Allay
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    Rosewe
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    The White Company
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    Talbots
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    DIANE von FURSTENBERG
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li
-            className="sidebar-item dropdown"
-            ref={dropdownRefs.sidebarSportingGoods}
-          >
-            <button
-              className="sidebar-button"
-              onClick={toggleSidebarSportingGoodsDropdown}
-            >
-              <FaDumbbell /> Sporting Goods <FaAngleDown />
-            </button>
-            <div
-              className={`dropdown-content ${
-                sidebarSportingGoodsDropdownOpen ? "show" : ""
-              }`}
-            >
-              <ul>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    See all Sporting Goods
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    Puma
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    Nike
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    SOCCER.COM
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    Finish Line
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    Yeti
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    Wilson Sporting Goods
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    TaylorMade Golf
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    Leatherman
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li className="sidebar-item dropdown" ref={dropdownRefs.sidebarShoes}>
-            <button
-              className="sidebar-button"
-              onClick={toggleSidebarShoesDropdown}
-            >
-              <FaShoePrints /> Shoes <FaAngleDown />
-            </button>
-            <div
-              className={`dropdown-content ${
-                sidebarShoesDropdownOpen ? "show" : ""
-              }`}
-            >
-              <ul>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    See all Shoes
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    Famous Footwear
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    ShoeDazzle
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    TOMS Shoes
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    Brooks Running
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    Foot Locker
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    Coach Outlet
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    Converse
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    Skechers
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li
-            className="sidebar-item dropdown"
-            ref={dropdownRefs.sidebarBeauty}
-          >
-            <button
-              className="sidebar-button"
-              onClick={toggleSidebarBeautyDropdown}
-            >
-              <FaPaintBrush /> Beauty & Cosmetics <FaAngleDown />
-            </button>
-            <div
-              className={`dropdown-content ${
-                sidebarBeautyDropdownOpen ? "show" : ""
-              }`}
-            >
-              <ul>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    See all Beauty & Cosmetics
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    Yves Rocher
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    Nars Cosmetics
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    Philosophy
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    NYX Professional Makeup
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    MAC Cosmetics
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    Tarte Cosmetics
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    UrbanDecay.com
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    Motives Cosmetics
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li
-            className="sidebar-item dropdown"
-            ref={dropdownRefs.sidebarDepartmentStores}
-          >
-            <button
-              className="sidebar-button"
-              onClick={toggleSidebarDepartmentStoresDropdown}
-            >
-              <FaStore /> Department Stores <FaAngleDown />
-            </button>
-            <div
-              className={`dropdown-content ${
-                sidebarDepartmentStoresDropdownOpen ? "show" : ""
-              }`}
-            >
-              <ul>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    See all Department Stores
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    Target
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    JCPenney
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    Amazon
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    Macys.com
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    Bloomingdale's
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    Walmart
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    Saks Fifth Avenue
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/"} onClick={closeSidebar}>
-                    Kohl's
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </li>
+          {/*<li*/}
+          {/*  className="sidebar-item dropdown"*/}
+          {/*  ref={dropdownRefs.sidebarClothing}*/}
+          {/*>*/}
+          {/*  <button*/}
+          {/*    className="sidebar-button"*/}
+          {/*    onClick={toggleSidebarClothingDropdown}*/}
+          {/*  >*/}
+          {/*    <FaTshirt /> Clothing & Apparel <FaAngleDown />*/}
+          {/*  </button>*/}
+          {/*  <div*/}
+          {/*    className={`dropdown-content ${*/}
+          {/*      sidebarClothingDropdownOpen ? "show" : ""*/}
+          {/*    }`}*/}
+          {/*  >*/}
+          {/*    <ul>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          See all Clothing & Apparel*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          Land's End*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          AMI Club Wear*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          ModCloth.com*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          Gap.com*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          Avenue*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          Old Navy*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          Old Navy*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          Coach*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*    </ul>*/}
+          {/*  </div>*/}
+          {/*</li>*/}
+          {/*<li*/}
+          {/*  className="sidebar-item dropdown"*/}
+          {/*  ref={dropdownRefs.sidebarHealth}*/}
+          {/*>*/}
+          {/*  <button*/}
+          {/*    className="sidebar-button"*/}
+          {/*    onClick={toggleSidebarHealthDropdown}*/}
+          {/*  >*/}
+          {/*    <FaHeartbeat /> Health & Beauty <FaAngleDown />*/}
+          {/*  </button>*/}
+          {/*  <div*/}
+          {/*    className={`dropdown-content ${*/}
+          {/*      sidebarHealthDropdownOpen ? "show" : ""*/}
+          {/*    }`}*/}
+          {/*  >*/}
+          {/*    <ul>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          See all Health & Beauty*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          L'Occitane*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          Olay*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          Sephora*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          Walgreens*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          Puritan's Pride*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          StrawberryNET Cosmetics*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          Benefit Cosmetics*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          Modeloness*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*    </ul>*/}
+          {/*  </div>*/}
+          {/*</li>*/}
+          {/*<li className="sidebar-item dropdown" ref={dropdownRefs.sidebarGifts}>*/}
+          {/*  <button*/}
+          {/*    className="sidebar-button"*/}
+          {/*    onClick={toggleSidebarGiftsDropdown}*/}
+          {/*  >*/}
+          {/*    <FaGift /> Gifts <FaAngleDown />*/}
+          {/*  </button>*/}
+          {/*  <div*/}
+          {/*    className={`dropdown-content ${*/}
+          {/*      sidebarGiftsDropdownOpen ? "show" : ""*/}
+          {/*    }`}*/}
+          {/*  >*/}
+          {/*    <ul>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          See all Gifts*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          Snapfish*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          Yankee Candle*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          From You Flowers*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          Shutterfly*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          FTD Flowers*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          1--800-FLOWERS*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          Fine Stationery*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          ProFlowers*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*    </ul>*/}
+          {/*  </div>*/}
+          {/*</li>*/}
+          {/*<li className="sidebar-item dropdown" ref={dropdownRefs.sidebarWomen}>*/}
+          {/*  <button*/}
+          {/*    className="sidebar-button"*/}
+          {/*    onClick={toggleSidebarWomenDropdown}*/}
+          {/*  >*/}
+          {/*    <FaFemale /> Women <FaAngleDown />*/}
+          {/*  </button>*/}
+          {/*  <div*/}
+          {/*    className={`dropdown-content ${*/}
+          {/*      sidebarWomenDropdownOpen ? "show" : ""*/}
+          {/*    }`}*/}
+          {/*  >*/}
+          {/*    <ul>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          See all Women*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          ProFlowers*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          bebe.com*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          J.Jill*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          Allay*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          Rosewe*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          The White Company*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          Talbots*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          DIANE von FURSTENBERG*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*    </ul>*/}
+          {/*  </div>*/}
+          {/*</li>*/}
+          {/*<li*/}
+          {/*  className="sidebar-item dropdown"*/}
+          {/*  ref={dropdownRefs.sidebarSportingGoods}*/}
+          {/*>*/}
+          {/*  <button*/}
+          {/*    className="sidebar-button"*/}
+          {/*    onClick={toggleSidebarSportingGoodsDropdown}*/}
+          {/*  >*/}
+          {/*    <FaDumbbell /> Sporting Goods <FaAngleDown />*/}
+          {/*  </button>*/}
+          {/*  <div*/}
+          {/*    className={`dropdown-content ${*/}
+          {/*      sidebarSportingGoodsDropdownOpen ? "show" : ""*/}
+          {/*    }`}*/}
+          {/*  >*/}
+          {/*    <ul>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          See all Sporting Goods*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          Puma*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          Nike*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          SOCCER.COM*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          Finish Line*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          Yeti*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          Wilson Sporting Goods*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          TaylorMade Golf*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          Leatherman*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*    </ul>*/}
+          {/*  </div>*/}
+          {/*</li>*/}
+          {/*<li className="sidebar-item dropdown" ref={dropdownRefs.sidebarShoes}>*/}
+          {/*  <button*/}
+          {/*    className="sidebar-button"*/}
+          {/*    onClick={toggleSidebarShoesDropdown}*/}
+          {/*  >*/}
+          {/*    <FaShoePrints /> Shoes <FaAngleDown />*/}
+          {/*  </button>*/}
+          {/*  <div*/}
+          {/*    className={`dropdown-content ${*/}
+          {/*      sidebarShoesDropdownOpen ? "show" : ""*/}
+          {/*    }`}*/}
+          {/*  >*/}
+          {/*    <ul>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          See all Shoes*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          Famous Footwear*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          ShoeDazzle*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          TOMS Shoes*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          Brooks Running*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          Foot Locker*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          Coach Outlet*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          Converse*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          Skechers*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*    </ul>*/}
+          {/*  </div>*/}
+          {/*</li>*/}
+          {/*<li*/}
+          {/*  className="sidebar-item dropdown"*/}
+          {/*  ref={dropdownRefs.sidebarBeauty}*/}
+          {/*>*/}
+          {/*  <button*/}
+          {/*    className="sidebar-button"*/}
+          {/*    onClick={toggleSidebarBeautyDropdown}*/}
+          {/*  >*/}
+          {/*    <FaPaintBrush /> Beauty & Cosmetics <FaAngleDown />*/}
+          {/*  </button>*/}
+          {/*  <div*/}
+          {/*    className={`dropdown-content ${*/}
+          {/*      sidebarBeautyDropdownOpen ? "show" : ""*/}
+          {/*    }`}*/}
+          {/*  >*/}
+          {/*    <ul>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          See all Beauty & Cosmetics*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          Yves Rocher*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          Nars Cosmetics*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          Philosophy*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          NYX Professional Makeup*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          MAC Cosmetics*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          Tarte Cosmetics*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          UrbanDecay.com*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          Motives Cosmetics*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*    </ul>*/}
+          {/*  </div>*/}
+          {/*</li>*/}
+          {/*<li*/}
+          {/*  className="sidebar-item dropdown"*/}
+          {/*  ref={dropdownRefs.sidebarDepartmentStores}*/}
+          {/*>*/}
+          {/*  <button*/}
+          {/*    className="sidebar-button"*/}
+          {/*    onClick={toggleSidebarDepartmentStoresDropdown}*/}
+          {/*  >*/}
+          {/*    <FaStore /> Department Stores <FaAngleDown />*/}
+          {/*  </button>*/}
+          {/*  <div*/}
+          {/*    className={`dropdown-content ${*/}
+          {/*      sidebarDepartmentStoresDropdownOpen ? "show" : ""*/}
+          {/*    }`}*/}
+          {/*  >*/}
+          {/*    <ul>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          See all Department Stores*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          Target*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          JCPenney*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          Amazon*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          Macys.com*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          Bloomingdale's*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          Walmart*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          Saks Fifth Avenue*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*      <li>*/}
+          {/*        <Link to={"/"} onClick={closeSidebar}>*/}
+          {/*          Kohl's*/}
+          {/*        </Link>*/}
+          {/*      </li>*/}
+          {/*    </ul>*/}
+          {/*  </div>*/}
+          {/*</li>*/}
           <li
             className="sidebar-item dropdown"
             ref={dropdownRefs.sidebarSoftware}

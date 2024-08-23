@@ -10,6 +10,7 @@ import "./ContainerList.css";
 import OfferPopup from "./OfferPopup";
 import CodePopup from "./CodePopup";
 import amazonLogo from "../../assets/images/amazon.webp";
+import {Link} from "react-router-dom";
 
 const sampleOffer = {
   logo: amazonLogo,
@@ -60,7 +61,7 @@ const ContainerList = ({ containers  }) => {
         <FaGift style={{ fontSize: "24px" }} />
       );
     }
-    return container.verified
+    return container.offer
   };
 
   const handleViewOffer = (container) => {
@@ -138,7 +139,7 @@ const ContainerList = ({ containers  }) => {
             </div>
 
 
-            <a href={container.link} target="_blank" className="col-md-7 col-lg-7 a-main">
+            <Link to={container.link} target="_blank" className="col-md-7 col-lg-7 a-main">
               <div className="container-main">
                 <p>{container.description}</p>
                 <div className="container-info">
@@ -147,7 +148,7 @@ const ContainerList = ({ containers  }) => {
                   </div>
                 </div>
               </div>
-            </a>
+            </Link>
 
 
             <div className="col-md-3 col-lg-3 viewbutton">
@@ -156,11 +157,16 @@ const ContainerList = ({ containers  }) => {
                   className="view-button"
                   onClick={() => handleViewOffer(container)}
                 >
-                  {container.highlight === "1"
+                  {/* {container.highlight === "1"
                     ? "View 1"
                     : container.highlight === "2"
                     ? "View refunded offer"
-                    : "View the offer"}
+                    : "View the offer"} */}
+                     {container.highlight == 1
+                        ? "View Featured"
+                        : container.highlight == 3
+                        ? "View Exclusive offer"
+                        : "View the offer"}
                 </button>
               </div>
             </div>
@@ -186,7 +192,7 @@ const ContainerList = ({ containers  }) => {
               className={`container-items ${container.highlight}`}
             >
               <div className="row d-flex align-items-center">
-                <div className="col-lg-2">
+                <div className="col-md-2 col-lg-2">
                   <div className="container-header">
                     <div className="container-type-percentage">
                       <div className="container-type">
@@ -223,7 +229,7 @@ const ContainerList = ({ containers  }) => {
                     </div>
                   </div>
                 </div>
-                <div className="col-lg-7">
+                <div className="col-md-7 col-lg-7">
                   <div className="container-main">
                     <p>{container.description}</p>
                     <div className="container-info">
@@ -233,7 +239,7 @@ const ContainerList = ({ containers  }) => {
                     </div>
                   </div>
                 </div>
-                <div className="col-lg-3 viewbutton">
+                <div className="col-md-3 col-lg-3 viewbutton">
                   <div>
                     <button
                       className="view-button"

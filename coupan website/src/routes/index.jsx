@@ -42,7 +42,8 @@ const router=createBrowserRouter([
 
             },
             {
-                path: 'categorycoupon/',
+                path: 'categorycoupon/:categorycouponName',
+                // path: 'categorycoupon/',
                 element: <CategoryCouponPage/>,
 
             },
