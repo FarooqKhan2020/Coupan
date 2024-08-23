@@ -1,0 +1,34 @@
+/* StatsSection.css */
+
+.stats-section {
+    display: flex;
+    justify-content: space-around;
+    padding: 40px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #FFFF; /* Light grey background for the whole section */
+  }
+  
+  .stat-card {
+    text-align: center;
+    padding: 15px;
+    width: 270px;
+  }
+
+  
+  .stat-card .icon {
+    font-size: 40px;
+    color: var(--primary); 
+  }
+  
+  .stat-card .title {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 10px 0;
+    color: var(--primary);
+  }
+  
+  .stat-card .text {
+    font-size: 14px;
+    color: #333; /* Dark grey color */
+  }
+  
