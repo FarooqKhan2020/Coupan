@@ -5,6 +5,7 @@ import CarouselComponent from '../Components/Home/CarouselComponent';
 import Carousel from '../Components/Home/Carousel';
 import CardComponent from '../Components/Home/CardComponent';
 import Categories from '../Components/Home/Categories';
+import StatsSection from '../Components/Home/StatsSection';
 import PromiseComponent from '../Components/Home/PromiseComponent';
 import CardLogoSection from '../Components/Home/CardLogoSection';
 import ImageHover from '../Components/Home/ImageHover';
@@ -49,6 +50,7 @@ export default function HomePage(){
             <Carousel data={data.sliders}/>
             <CardComponent data={data.categoryCoupon}/>
             <Categories data={data.categories}/>
+            <StatsSection data={data}/>
             <PromiseComponent/>
             <CardLogoSection data={data.storesCoupons}/>
             <ImageHover/>
