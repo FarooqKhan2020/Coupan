@@ -4,6 +4,7 @@ import "./Carousel.css";
 import { FaAngleLeft } from "react-icons/fa6";
 import { FaAngleRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import { MdKeyboardArrowRight } from "react-icons/md";
 
 const Carousel = ({data}) => {
   const apiUrl = import.meta.env.VITE_API_URL;
@@ -50,7 +51,7 @@ const Carousel = ({data}) => {
               {/* <button>{slides[currentSlide].buttonText}</button> */}
 
               <Link target={"_blank"}  to={data[currentSlide].link}>
-                <button> See The Offers >
+                <button> See The Offers <MdKeyboardArrowRight />
                 </button>
               </Link>
             </div>
