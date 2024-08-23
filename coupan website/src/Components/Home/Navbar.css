@@ -232,6 +232,7 @@
 .mainSM .menu-icon {
   color: white;
   font-size: 26px;
+  display: none;
 }
 
 /* Media query for max-width 992px */
@@ -239,6 +240,7 @@
   .navbar {
     flex-direction: column;
     align-items: flex-start;
+    display: block;
   }
 
   .navbar-menu {

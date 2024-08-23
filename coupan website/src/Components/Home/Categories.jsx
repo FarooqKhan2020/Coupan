@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 
 // eslint-disable-next-line react/prop-types
+const apiUrl = import.meta.env.VITE_API_URL;
 const Categories = ({data}) => {
 
   return (
@@ -12,16 +13,22 @@ const Categories = ({data}) => {
       <h2>Browse the categories</h2>
       <div className="categories-home">
         {data.map((category, index) => (
-            <Link to={`/brand/${category.slug}`} key={index} className="category-card-home">
-                <div className='category-icon'>
+            <Link to={`/categorycoupon/${category.slug}`} key={index} className="category-card-home">
+          
+                {/* <div className='category-icon'>
                     <i className={category.icon}></i>
-                </div>
+                </div> */}
+                
+                    <img src={apiUrl +category.category_image} alt={category.category_image} />
+               
 
-                <div className="category-name">{category.name}</div>
+                <div className="category-name-home">{category.name}</div>
             </Link>
         ))}
       </div>
-        <Link to={"/category"} className="all-categories-button">All Categories</Link>
+        <Link to={"/category"} className="all-categories-button">
+        All Categories
+        </Link>
     </div>
   );
 };

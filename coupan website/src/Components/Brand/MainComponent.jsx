@@ -95,12 +95,13 @@ console.log('coupons', storecoupons.filter(container => typeof container.highlig
         storeName ={storeName}
         bannerImage={bannerImage} // Pass the banner image to LeftSection
         storecoupons={storecoupons}
+
       />
     </div>
     <Summary/>
     <PromoTable/>
     <FAQComponent/>
-    <ShopsComponent/>
+    <ShopsComponent featureStoreNames={featureStoreNames}/>
     </div>
   );
 };

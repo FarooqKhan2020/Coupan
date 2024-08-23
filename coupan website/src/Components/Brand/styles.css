@@ -4,7 +4,9 @@
   --btn-primary-hover: #0056b3;
   --btn-group: #007bff;
 }
-
+ body{
+   background-color: var(--bg-main);
+ }
 .main-component {
   display: flex;
 }

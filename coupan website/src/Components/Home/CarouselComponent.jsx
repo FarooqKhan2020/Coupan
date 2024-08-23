@@ -8,18 +8,6 @@ import { FaCircleChevronLeft } from "react-icons/fa6";
 import "./CarouselComponent.css";
 
 // Importing images
-import amazon from "../../assets/images/amazon.webp";
-import booking from "../../assets/images/booking.webp";
-import hm from "../../assets/images/h&m.webp";
-import korner from "../../assets/images/korner.webp";
-import levis from "../../assets/images/levis.webp";
-import prismashop from "../../assets/images/prismashop.webp";
-import dockers from "../../assets/images/dockers.webp";
-import zooplus from "../../assets/images/a.webp";
-import lounge from "../../assets/images/c.webp";
-import christ from "../../assets/images/d.webp";
-import migros from "../../assets/images/e.webp";
-import shein from "../../assets/images/f.webp";
 import { Link } from "react-router-dom";
 const CarouselComponent = ({data}) => {
   const apiUrl = import.meta.env.VITE_API_URL;

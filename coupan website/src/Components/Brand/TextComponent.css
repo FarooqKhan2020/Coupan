@@ -16,12 +16,12 @@
     line-height: 1.6;
   }
   
-  .text-component a {
-    color: var(--primary);
-    text-decoration: none;
-  }
+  /*.text-component a {*/
+  /*  color: var(--primary);*/
+  /*  text-decoration: none;*/
+  /*}*/
   
-  .text-component a:hover {
-    text-decoration: underline;
-  }
+  /*.text-component a:hover {*/
+  /*  text-decoration: underline;*/
+  /*}*/
   

@@ -6,6 +6,9 @@ import HomePage from "../pages/HomePage";
 import BrandPage from "../pages/BrandPage";
 import CategoryPage from "../pages/CategoryPage";
 import StorePage from "../pages/StorePage";
+import CategoryCouponPage from "../pages/CategoryCouponPage";
+import ContactUsPage from "../pages/ContactUsPage";
+import AboutUsPage from "../pages/AboutUsPage.jsx"
 
 
 
@@ -37,7 +40,24 @@ const router=createBrowserRouter([
                 path: 'store/',
                 element: <StorePage/>,
 
-            }
+            },
+            {
+                path: 'categorycoupon/:categorycouponName',
+                // path: 'categorycoupon/',
+                element: <CategoryCouponPage/>,
+
+            },
+            {
+                path: 'contactus/',
+                element: <ContactUsPage/>,
+
+            },
+            {
+                path: 'aboutus/',
+                element: <AboutUsPage/>,
+
+            },
+
         ]
     }
 ]);

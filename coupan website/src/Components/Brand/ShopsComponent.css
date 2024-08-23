@@ -36,7 +36,8 @@
 
   
   .shop-link {
-    flex: 1 0 15%;
+    /*flex: 1 0 14%;*/
+    flex: 0 0 22%;
     text-align: center;
     margin: 10px 15px;
     padding: 10px;
