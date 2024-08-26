@@ -11,7 +11,7 @@
 }
 
 .card-heading {
-  color: #003a8c;
+  color: var(--primary);
 }
 
 /* group btn */
@@ -63,11 +63,11 @@
   top: -2px;
 }
 /* .group-buttons button:hover {
-  background-color: #0056b3;
+  background-color: var(--btn-primary-hover);
 } */
 
 .group-buttons button.active {
-  /* background-color: #0056b3; */
+  /* background-color: var(--btn-primary-hover); */
   border-style: solid;
   border-width: 0px 0px 2px 0px;
   border-color: var(--btn-primary-hover);
@@ -135,7 +135,7 @@
 .card-title {
   font-size: 16px;
   font-weight: bold;
-  color: #003a8c !important;
+  color: var(--primary) !important;
 }
 
 .card-description-home {

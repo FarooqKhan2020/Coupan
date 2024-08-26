@@ -8,7 +8,7 @@
   }
   
   .second-card h3 {
-    color: #0056b3;
+    color: var(--btn-primary-hover);
     font-size: 1.25em;
     margin-bottom: 8px;
   }

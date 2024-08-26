@@ -1,11 +1,32 @@
 :root {
   --bg-main:#f5f5f5;
+  /* --primary: #C16F04; */
   --primary: #003a8c;
+  /* --btn-primary-hover: #F2BD44; */
   --btn-primary-hover: #0056b3;
   --btn-group: #007bff;
 }
+
+body *:focus {
+  outline: 2px solid var(--btn-primary-hover); /* A solid blue outline */
+  outline-offset: 4px; /* Adds space between the element and the outline */
+  /* border-radius: 4px; Smooths out the corners of the outline */
+}
+
+body *:focus:not(:focus-visible) {
+  outline: none; /* Removes outline for non-keyboard interactions */
+}
+
+body *:focus-visible {
+  outline: 2px dashed #ff5722; /* Different style for visible focus */
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+
  body{
    background-color: var(--bg-main);
+  font-family: 'Open Sans', sans-serif;
  }
 .main-component {
   display: flex;

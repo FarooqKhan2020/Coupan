@@ -36,20 +36,41 @@ function App() {
                     const faviconLink = document.getElementById('favicon');
                     if (faviconLink) {
                         faviconLink.href = `${apiUrl}${favicon}`;
-                    }
+                    }       
                 }
             })
             .catch(error => {
                 console.error('Error fetching settings:', error);
             });
     }, []);
+
+    // color api testing
+    const [themeColors, setThemeColors] = useState({ themeOne: '#FFC0CB', themeTwo: ' #FF69B4' });
+
+    useEffect(() => {
+      axios.get('http://coupon.gynerium.com/api/settings')
+        .then(response => {
+          const { theme_one, theme_two } = response.data;
+          setThemeColors({ themeOne: theme_one, themeTwo: theme_two });
+          
+          // Update CSS variables
+          document.documentElement.style.setProperty('--theme-one', theme_one);
+          document.documentElement.style.setProperty('--theme-two', theme_two);
+        })
+        .catch(error => {
+          console.error('Error fetching theme colors:', error);
+        });
+    }, []);
+//   color api testing
+
+
   return (
 
     <>
 
 <ScrollToTop/>
-    <LogoBar1 logo={logo}/>
-    <Navbar/>
+    {/* <LogoBar1 logo={logo}/> */}
+    <Navbar logo={logo}/>
     <Outlet/>
     <Footer footerLogo={footerLogo} footer={footer} footerSocialLinks={footerSocialLinks}
     ></Footer>

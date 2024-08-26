@@ -25,9 +25,9 @@ export default function HomePage(){
         homepageBannerTwo: null,
         seo_setup: null,
         sections: [],
-        popupModal: null
+        popupModal: null,
+        statistic:[],
     });
-
     useEffect(() => {
         const apiUrl = import.meta.env.VITE_API_URL;
         async function fetchData() {
@@ -49,9 +49,9 @@ export default function HomePage(){
             <CarouselComponent data={data.stores}/>
             <Carousel data={data.sliders}/>
             <CardComponent data={data.categoryCoupon}/>
-            <StatsSection data={data}/>
+            <StatsSection data={data.statistic}/>
             <Categories data={data.categories}/>
-            <PromiseComponent/>
+            {data.homepageBannerOne && <PromiseComponent data={data.homepageBannerOne} />}
             <CardLogoSection data={data.storesCoupons}/>
             <ImageHover/>
         </>

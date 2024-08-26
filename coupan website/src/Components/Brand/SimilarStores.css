@@ -42,7 +42,11 @@
     height: 100%;
     border-radius: 8px;
     transition: transform 0.3s ease;
-    transform: scale(1.05);
+    /* transform: scale(1.05); */
+  }
+
+  .store-tag:hover img {
+    transform: scale(1.05); 
   }
 
   .store-tag p {
@@ -57,7 +61,7 @@
     max-width: 70%;
   }
   /* .store-tag:hover {
-    background-color: #003a8c;
+    background-color: var(--primary);
     color: white;
   } */
   

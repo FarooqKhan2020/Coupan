@@ -1,6 +1,6 @@
 import React from "react";
 import "./Summary.css";
-import codes from "../../assets/images/codes.webp";
+import codes from "../../assets/img/summary.webp";
 
 const Summary = () => {
   return (

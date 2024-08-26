@@ -8,9 +8,9 @@ import { Link } from "react-router-dom";
 const apiUrl = import.meta.env.VITE_API_URL;
 const Categories = ({data}) => {
 
-  if (!data || data.length === 0) {
-    return <Loader/>
-  }
+  // if (!data || data.length === 0) {
+  //   return <Loader/>
+  // }
   return (
     <div className="categories-container">
       <h2>Browse the categories</h2>

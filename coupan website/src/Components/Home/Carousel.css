@@ -57,7 +57,7 @@
 
 .carousel-text {
   width: 30%;
-  background-color: #003a8c;
+  background-color: var(--primary);
   color: white;
   display: flex;
   align-items: center;
@@ -103,7 +103,7 @@
 .carousel-description button {
   margin-top: 10px;
   padding: 5px 5px;
-  background-color: #003a8c;
+  background-color: var(--primary);
   color: white;
   border: none;
   cursor: pointer;
@@ -122,10 +122,12 @@
   right: 0;
 }
 .left .faleft:hover{
-  color: #0550b9 !important;
+  color: var(--btn-primary-hover) !important;
+  /* color: #0550b9 !important; */
 }
 .right .faright:hover{
-  color: #0550b9 !important;
+  color: var(--btn-primary-hover) !important;
+  /* color: #0550b9 !important; */
 }
 
 
@@ -170,7 +172,7 @@
   .carousel-text {
     /* width: 100%; */
     width: 45%;
-    background-color: #003a8c;
+    background-color: var(--primary);
     padding: 10px;
     text-align: left;
   }

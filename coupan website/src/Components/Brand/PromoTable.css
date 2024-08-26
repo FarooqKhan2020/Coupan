@@ -9,7 +9,7 @@
   }
   
  .promo-table-container h2 {
-    color: #003a8c;
+    color: var(--primary);
     text-align: center; /* Center the heading */
     margin: 0;
     padding: 20px 0;

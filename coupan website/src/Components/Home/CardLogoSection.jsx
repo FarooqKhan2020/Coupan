@@ -6,9 +6,9 @@ import { Link } from "react-router-dom";
 
 const CardLogoSection = ({data}) => {
   const apiUrl = import.meta.env.VITE_API_URL;
-  if (data.length === 0) {
-    return <Loader />;
-  }
+  // if (data.length === 0) {
+  //   return <Loader />;
+  // }
   return (
     <div className="mainLogo">
     <div className="card-logo-section">

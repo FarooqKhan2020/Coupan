@@ -1,4 +1,5 @@
-.popup-overlay {
+.offer-popup-overlay {
+  position: absolute; /* Change to absolute */
     position: fixed;
     top: 0;
     left: 0;
@@ -9,19 +10,23 @@
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    overflow-y: auto; /* Enable vertical scrolling */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
   }
   
-  .popup-content {
+  .offer-popup-content {    
     background: white;
-    width: 400px;
-    max-width: 90%;
-    padding: 20px;
+    width: 500px;
+    max-width: 80%;
+    padding: 0 !important;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     position: relative;
+    overflow-y: auto; /* Enable vertical scrolling */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
   }
   
-  .popup-close {
+  .offer-popup-close {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -31,68 +36,72 @@
     cursor: pointer;
   }
   
-  .popup-close svg {
+  .offer-popup-close svg {
     font-size: 24px;
   }
   
-  .popup-header {
+  .offer-popup-header {
     /* border: 2px solid; */
     text-align: center;
-    width: 100px;
-    height: 76px;
-    margin: auto
+    width: 250px !important;
+    height: 130px !important;
+    margin: auto;
+    padding-top: 20px;
   }
   
-  .popup-logo {
+  .offer-popup-header .popup-logo {
     max-width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center
   }
   
-  .popup-body {
-    margin-top: 15px;
+  .offer-popup-body {  
     text-align: center;
+    margin-top: 15px;
   }
   
-  .popup-body p {
-    margin: 10px 0;
+  .offer-popup-body h2 { 
+    font-size: 1.2em;
   }
   
-  .popup-button {
+  .offer-popup-button {
     display: inline-block;
     margin: 10px 0;
-    padding: 10px 20px;
-    background-color: #00c4cc;
+    padding: 10px 40px;
+    background-color: var(--btn-primary-hover);
+    /* background-color: #00c4cc; */
     color: white;
     text-decoration: none;
     border-radius: 5px;
     font-weight: bold;
   }
-  .popup-button:hover{
-    background-color: #06cfd6;
+  .offer-popup-button:hover{
+    /* background-color: #06cfd6; */
+    background-color: var(--primary);
   }
   
-  .popup-conditions {
-    margin-top: 20px;
+  .offer-popup-conditions {
     text-align: left;
+    padding: 0 20px;
   }
   
-  .popup-conditions h3 {
-    margin-bottom: 10px;
+  .offer-popup-conditions h3 {
+    font-size: 1.2em;
   }
   
-  .popup-conditions ul {
+  .offer-popup-conditions ul {
     list-style: none;
     padding: 0;
   }
   
-  .popup-conditions ul li {
+  .offer-popup-conditions ul li {
     display: flex;
     align-items: center;
     margin-bottom: 5px;
   }
 
-  .popup-conditions ul li svg {
+  .offer-popup-conditions ul li svg {
     margin-right: 8px;
     color: #27ae60 !important;
     /* color: var(--btn-primary-hover);  */
@@ -104,21 +113,23 @@
     margin-right: 10px;
   } */
   
-  .popup-footer {
-    margin-top: 20px;
+  .offer-popup-footer {
+    height: 130px;
     padding: 20px;
     background-color: #0d2940;
     color: white;
     text-align: center;
     border-radius: 10px;
+    border-top-left-radius: 0px !important;
+    border-top-right-radius: 0px !important;
   }
   
-  .popup-footer h3 {
+  /* .popup-footer h3 {
     margin-bottom: 10px;
     font-size: 18px;
-  }
+  } */
   
-  .activate-button {
+  .offer-activate-button {
     display: inline-block;
     margin-top: 10px;
     padding: 10px 20px;
@@ -130,7 +141,7 @@
     cursor: pointer;
     border: #3596C4;
   }
-  .activate-button:hover{
+  .offer-activate-button:hover{
     background-color: #30ace6;
   }
   

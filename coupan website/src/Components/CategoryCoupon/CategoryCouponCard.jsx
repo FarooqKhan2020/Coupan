@@ -8,7 +8,7 @@ import { FaCheckCircle, FaCrown, FaStar } from 'react-icons/fa';
 const CategoryCouponCard = ({ coupons }) => {
     const [isExpanded, setIsExpanded] = useState(false);
   const apiUrl = import.meta.env.VITE_API_URL;
-
+console.log(coupons, "couponsaaaaaa");
   const toggleDescription = () => {
     setIsExpanded(!isExpanded);
   };
@@ -73,10 +73,16 @@ const CategoryCouponCard = ({ coupons }) => {
           <span>Expire: {coupons.expire_date}</span>
         )
         }
-            {/* <span>Expire: {coupons.expire_date}</span> */}
-        <Link to="/" className="coupon-card-action">
+          <Link to={coupons.link} target="_blank" className="coupon-card-action">
+            Buy Now
+          </Link>
+          {/* <Link
+          to={coupons.link ? coupons.link : "/"}
+          target="_blank"
+          className="coupon-card-action"
+        >
           Buy Now
-        </Link>
+        </Link> */}
       </div>
     </div>
   );

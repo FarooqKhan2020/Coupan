@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import CouponBar from "../Components/CategoryCoupon/CouponBar";
+// import CouponBar from "../Components/CategoryCoupon/CouponBar";
 import CategoryCouponCard from "../Components/CategoryCoupon/CategoryCouponCard";
-import couponImage from "../assets/carouseImg/foot.webp";
 
 // Define your coupon data (can also be imported from another file)
 
@@ -26,7 +25,7 @@ export default function CategoryCouponPage() {
   }, []);
   return (
     <>
-      <CouponBar />
+      {/* <CouponBar /> */}
       <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', backgroundColor: 'var(--bg-main)' }}>
         {coupons.map((coupon, index) => (
           <CategoryCouponCard

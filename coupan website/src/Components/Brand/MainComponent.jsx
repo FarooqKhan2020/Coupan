@@ -12,8 +12,6 @@ import ShopsComponent from './ShopsComponent';
 const MainComponent = () => {
   const apiUrl = import.meta.env.VITE_API_URL;
   const [selectedType, setSelectedType] = useState(0);
-
-
   const brand = useLoaderData(); // Get the initial data from the loader
   const [brandName, setBrandName] = useState(brand);
   const [bannerImage, setBannerImage] = useState("");
@@ -24,40 +22,49 @@ const MainComponent = () => {
   const [featureStoreNames, setFeatureStoresName] = useState([]);
   const [storecoupons, setStoreCoupons] = useState([]);
   const [popupModal, setPopupModal] = useState(false);
+  const [topStores, setTopStores] = useState([]);
+  const [storepageBannerTwo, setStorepageBannerTwo] = useState("");
+  const [storepageBannerOne, setStorepageBannerOne] = useState("");
+  const [simlarcoupons, setSimilarcoupons] = useState([]);
   useEffect(() => {
     setBrandName(brand);
   // Update brandName when brand changes
   }, [brand]);
 
-
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(apiUrl + `api/store-detail/${brandName}`);
-        // console.log(response.data,"response.data");
+
         const storeData = response.data.store;
         const featureStores = response.data.featureStores;
+        const simlarcoupons = response.data.simlarcoupons;
         const popupModal = response.data.popupModal;
-        
+        const topStores = response.data.topStores;
+        const storepageBannerTwo = response.data.storepageBannerTwo;
+        const storepageBannerOne = response.data.storepageBannerOne;
         const reviews = storeData.reviews || [];
         const totalReviews = reviews.length;
         const averageRating = totalReviews > 0 
           ? reviews.reduce((acc, review) => acc + review.rating, 0) / totalReviews 
           : 0;
           // Extract names from featureStores array
-        const featureStoreNames = featureStores.map(store => store.name);
-        setFeatureStoresName(featureStoreNames);
+        // const featureStoreNames = featureStores.map(store => store.banner);
+        const topStore = topStores.map(store => store.store.name);
+        setTopStores(topStore);
+        setFeatureStoresName(featureStores);
          setPopupModal(popupModal);
+        setSimilarcoupons(simlarcoupons);
         setBannerImage(apiUrl + `public/${storeData.banner}`);
         setstoreName(storeData.name);
         setStoreDescription(storeData.description);
         setStoreCoupons(storeData.coupons);
-        
+        setStorepageBannerTwo(storepageBannerTwo);
+        setStorepageBannerOne(storepageBannerOne);
         setTotalReviews(totalReviews);
         setAverageRating(averageRating.toFixed(1));
-        // console.log("Banner URL:", storeData.banner);
-        // console.log("Store Data:", storeData);
-        console.log("Popup Modal main:", popupModal);
+       
         
       } catch (error) {
         console.error("Error fetching the data", error);
@@ -72,19 +79,17 @@ const MainComponent = () => {
   const handleRadioChange = (type) => {
     setSelectedType(type);
   };
-  console.log("types123",typeof selectedType);
   const filteredContainers = selectedType === 0
     ? storecoupons
     : storecoupons.filter(container => container.highlight == selectedType);
-console.log("filteredContainers",filteredContainers);
-console.log('coupons', storecoupons.filter(container => typeof container.highlight));
+// console.log(simlarcoupons, "similarCoupons---main");
+
   return (
     <div>
     <div className="main-component">
       <LeftSection 
         selectedType={selectedType} 
         handleRadioChange={handleRadioChange}
-        // storecoupons={storecoupons}
         containers={storecoupons}
         bannerImage={bannerImage} // Pass the banner image to LeftSection
         totalReviews={totalReviews}
@@ -92,21 +97,26 @@ console.log('coupons', storecoupons.filter(container => typeof container.highlig
         storeName ={storeName}
         storedescription={storedescription}
         featureStoreNames={featureStoreNames}
-
+        storepageBannerTwo={storepageBannerTwo}
+        storepageBannerOne={storepageBannerOne}
       />
       <RightSection 
-        containers={filteredContainers} 
+        selectedType={selectedType} 
+        handleRadioChange={handleRadioChange}
+        containers={filteredContainers} containerTest={storecoupons}
         storeName ={storeName}
         bannerImage={bannerImage} // Pass the banner image to LeftSection
         storecoupons={storecoupons}
         popupModal={popupModal}
+        simlarcoupons={simlarcoupons}
 
       />
     </div>
     <Summary/>
     <PromoTable/>
     <FAQComponent/>
-    <ShopsComponent featureStoreNames={featureStoreNames}/>
+    <ShopsComponent featureStoreNames={topStores}/>
+
     </div>
   );
 };

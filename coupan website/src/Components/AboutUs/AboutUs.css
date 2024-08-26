@@ -1,9 +1,9 @@
 .about-us-container {
-    font-family: Arial, sans-serif;
+    /* font-family: Arial, sans-serif; */
 }
 
 .about-us-banner {
-    background: url('http://coupon.gynerium.com/public/uploads/custom-images/about-us-2022-03-19-10-37-25-6629.jpg') no-repeat center center/cover;
+    /* background: url('http://coupon.gynerium.com/public/uploads/custom-images/about-us-2022-03-19-10-37-25-6629.jpg') no-repeat center center/cover; */
     height: 250px;
     position: relative;
 }

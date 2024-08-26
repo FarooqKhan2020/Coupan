@@ -13,8 +13,8 @@
 .atag{
     gap: 10px;
     text-decoration: none;
-    color: #003a8c;
-    width: 80px;
+    color: var(--primary);
+    width: 180px;
     height: 45px;
 }
 

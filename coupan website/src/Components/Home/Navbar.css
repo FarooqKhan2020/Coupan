@@ -3,14 +3,13 @@
   padding: 0;
   box-sizing: border-box;
   font-size: 14px;
-  /* font-family: Arial, sans-serif; */
 }
 
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;    
-  background-color: #003a8c;
+  background-color: var(--primary);
   padding: 10px 20px;
   position: relative; /* Ensure navbar is positioned relative for absolute dropdown positioning */
 }
@@ -18,13 +17,18 @@
 .navbar-menu {
   list-style: none;
   display: flex;
+  align-items: center;
   margin: 0;
   padding: 0;
+  gap: 8px;
 }
 
+.innerlogo-2{
+  display: none !important;
+}
 .navbar-item {
   position: relative; /* Ensure relative positioning for dropdown */
-  margin-right: 20px;
+  /* margin-right: 20px; */
 }
 
 .navbar-button {
@@ -39,7 +43,7 @@
 
 .navbar-button:hover,
 .navbar-button:focus {
-  background-color: #0056b3;
+  background-color: var(--btn-primary-hover);
   outline: none;
 }
 
@@ -75,6 +79,9 @@
   width: 200px; /* Adjust width as needed */
 }
 
+.icon-dropdownshaka{
+  margin-left: auto;
+}
 .dropdown-content ul {
   list-style-type: none;
   margin: 0;
@@ -104,7 +111,7 @@
   left: -250px;
   width: 250px;
   height: 100%;
-  background-color: #003a8c;
+  background-color: var(--primary);
   z-index: 99;
   transition: left 0.3s ease;
   /* padding: 20px; */
@@ -253,10 +260,26 @@
 .mainSM{
   gap: 10px;
 }
+.mainSM .menu-button{
+  display: none;
+}
+
 .mainSM .menu-button svg{
   color: white;
   font-size: 26px;
-  /* display: none; */
+}
+
+.atag{
+  gap: 10px;
+  text-decoration: none;
+  color: var(--primary);
+  /* width: 180px; */
+  height: 45px;
+}
+
+.atag img{
+  width: 100%;
+  height: auto;
 }
 
 /* Media query for max-width 992px */
@@ -267,6 +290,25 @@
     display: block;
   }
 
+  .atag{
+    gap: 10px;
+    text-decoration: none;
+    color: var(--primary);
+    width: 180px;   /****give width in logobar1 css for atag****/
+    height: 45px;
+}
+
+.atag img{
+    width: 100%;
+    height: auto;
+}
+  .innerlogo-1{
+    display: none;
+  }
+  .innerlogo-2{
+    display: block !important;
+  }
+ 
   .navbar-menu {
     flex-direction: column;
     width: 100%;
@@ -304,7 +346,7 @@
     margin-top: 10px; /* Add margin for spacing */
     width: 100%; /* Make dropdowns full width */
     box-shadow: none; /* Remove box shadow */
-    background-color: #003a8c; /* Match navbar background color */
+    background-color: var(--primary); /* Match navbar background color */
   }
   .dropdown-content ul li a {
     color: white; /* Text color white */
@@ -319,7 +361,7 @@
     width: 90vw;
   }
 
-  .mainSM .menu-icon{
+  .mainSM .menu-button{
     display: block;
   }
 }
@@ -371,7 +413,7 @@
 .category-button {
   background: none;
   border: none;
-  color: #0056b3;
+  color: var(--btn-primary-hover);
   padding: 5px 0;
   cursor: pointer;
   font-size: 14px;
@@ -455,7 +497,7 @@
 
 /* Active button styling for the first button */
 .category-button.active{
-  background-color: #003a8c;
+  background-color: var(--primary);
   color: white;
 }
 
@@ -474,7 +516,7 @@
 /* Sidebar-specific button styling */
 /* .sidebar-button.active,
 .sidebar-button:hover {
-  background-color: #0056b3;
+  background-color: var(--btn-primary-hover);
   color: white;
 } */
 
@@ -517,10 +559,10 @@
   justify-content: center;
   flex-direction: column;
   padding: 10px;
-  border: 1px solid #0056b3; /* Default border color */
+  border: 1px solid var(--btn-primary-hover); /* Default border color */
   border-radius: 8px;
   text-align: center;
-  color: #0056b3; /* Default text color */
+  color: var(--btn-primary-hover); /* Default text color */
 }
 
 .dropdown-grid li a {

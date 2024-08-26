@@ -1,6 +1,5 @@
 import React from 'react';
 import './Brandinfo.css';
-import amazonLogo from "../../assets/images/amazon.webp";
 const BrandInfo = ({storeName,bannerImage}) => {
   return (
     <div className="brand-info d-flex align-items-center pb-3">

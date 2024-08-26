@@ -1,60 +1,63 @@
 import React from "react";
 import "./CouponType.css";
 
-const CouponType = ({ selectedType, handleRadioChange, counts }) => {
-  console.log('type', selectedType)
+const CouponType = ({ selectedType, handleRadioChange, counts, offer }) => {
+  const buttonData = [
+    { id: 0, label: "All", count: counts.all },
+    { id: 1, label: "Featured", count: counts.featured },
+    { id: 2, label: "Verified", count: counts.verified },
+    { id: 3, label: "Exclusive", count: counts.exclusive },
+    { id: 4, label: "Offer", count: offer },
+  ];
   return (
     <div className="main-coupon">
       <div className="coupon-type">
         <h3>Coupon Type:</h3>
-        <label
-          className={`radio-label ${selectedType == 0 ? "selected" : ""}`}
+        {buttonData.map(
+          (button) =>
+            button.count > 0 && (
+              <button
+                key={button.id}
+                className={`coupon-button ${
+                  selectedType === button.id ? "selected" : ""
+                }`}
+                onClick={() => handleRadioChange(button.id)}
+              >
+                {button.label} ({button.count})
+              </button>
+            )
+        )}
+
+        {/* <button
+          className={`coupon-button ${selectedType === 0 ? "selected" : ""}`}
+          onClick={() => handleRadioChange(0)}
         >
-          <input
-            type="radio"
-            value="all"
-            checked={selectedType == 0}
-            onChange={() => handleRadioChange(0)}
-          />
           All ({counts.all})
-        </label>
-        <label
-          className={`radio-label ${selectedType == 1 ? "selected" : ""}`}
-        >
-          <input
-            type="radio"
-            value="featured"
-            checked={selectedType == 1}
-            onChange={() => handleRadioChange(1)}
-          />
-          Featured ({counts.featured})
-        </label>
-        <label
-          className={`radio-label ${
-            selectedType == 2 ? "selected" : ""
-          }`}
-        >
-          <input
-            type="radio"
-            value="verified"
-            checked={selectedType === 2}
-            onChange={() => handleRadioChange(2)}
-          />
-          Verified ({counts.verified})
-        </label>
-        <label
-          className={`radio-label ${
-            selectedType == 3 ? "selected" : ""
-          }`}
-        >
-          <input
-            type="radio"
-            value="exclusive"
-            checked={selectedType === 3}
-            onChange={() => handleRadioChange(3)}
-          />
-          Exclusive ({counts.exclusive})
-        </label>
+        </button>
+        {counts.featured > 0 && (
+          <button
+            className={`coupon-button ${selectedType === 1 ? "selected" : ""}`}
+            onClick={() => handleRadioChange(1)}
+          >
+            Featured ({counts.featured})
+          </button>
+        )}
+        {counts.verified > 0 && (
+          <button
+            className={`coupon-button ${selectedType === 2 ? "selected" : ""}`}
+            onClick={() => handleRadioChange(2)}
+          >
+            Verified ({counts.verified})
+          </button>
+        )}
+        {counts.exclusive > 0 && (
+          <button
+            className={`coupon-button ${selectedType === 3 ? "selected" : ""}`}
+            onClick={() => handleRadioChange(3)}
+          >
+            Exclusive ({counts.exclusive})
+          </button>
+        )} */}
       </div>
     </div>
   );

@@ -7,7 +7,7 @@
 
 .categories-container h2 {
   margin-bottom: 20px;
-  color: #003a8c;
+  color: var(--primary);
 }
 
 .categories-home {
@@ -82,14 +82,14 @@
   color: #fff;
   font-weight: 500;
   /* background-color: #007bff; */
-  background-color: #003a8c;
+  background-color: var(--primary);
   border-radius: 5px;
   text-decoration: none;
   transition: background-color 0.3s ease;
 }
 
 .all-categories-button:hover {
-  background-color: #0056b3;
+  background-color: var(--btn-primary-hover);
 }
 
 

@@ -9,6 +9,8 @@ import StorePage from "../pages/StorePage";
 import CategoryCouponPage from "../pages/CategoryCouponPage";
 import ContactUsPage from "../pages/ContactUsPage";
 import AboutUsPage from "../pages/AboutUsPage.jsx"
+import PrivacyPolicy from "../Components/Privacy/Policy.jsx";
+import TermsCondition from "../Components/TermsandCondition/TermsCondition.jsx";
 
 
 
@@ -55,6 +57,16 @@ const router=createBrowserRouter([
             {
                 path: 'aboutus/',
                 element: <AboutUsPage/>,
+
+            },
+            {
+                path: 'privacypolicy/',
+                element: <PrivacyPolicy/>,
+
+            },
+            {
+                path: 'termscondition/',
+                element: <TermsCondition/>,
 
             },
 

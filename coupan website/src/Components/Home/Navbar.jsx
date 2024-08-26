@@ -26,7 +26,8 @@ import {
   // FaHotel,
 } from "react-icons/fa";
 
-function Navbar() {
+
+function Navbar({logo}) {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [categoriesDropdownOpen, setcategoriesDropdownOpen] = useState(false);
   const [keepcategoriesDropdownOpen, setKeepcategoriesDropdownOpen] =
@@ -123,10 +124,10 @@ function Navbar() {
     setSelectedCoupons(
       coupons.filter((e) => e.id == category).map((e) => e.coupons)[0] || []
     );
-    //  console.log(coupons);
-    //  console.log(selectedCoupons);
     setSelectedCategory(category);
   };
+
+
 
   // khan-sab api
   const [stores, setStores] = useState([]);
@@ -137,8 +138,7 @@ function Navbar() {
 
     const selectedCoupons =
       storecoupons.find((e) => e.id === storeId)?.coupons || [];
-    console.log("Selected Store:", storeId);
-    console.log("Selected Coupons:", selectedCoupons);
+
 
     setSelectedStoreCoupons(selectedCoupons);
   };
@@ -148,7 +148,6 @@ function Navbar() {
   useEffect(() => {
     const fetchCategories = async () => {
       let response = await axios.get(apiUrl + "api/coupons");
-      // console.log(response)
       let categories = response.data.categories.map((category) => {
         return {
           name: category.name,
@@ -178,7 +177,6 @@ function Navbar() {
   useEffect(() => {
     const fetchStores = async () => {
       let response = await axios.get(apiUrl + "api/coupons");
-      // console.log(response)
 
       let stores = response.data.stores.map((store) => {
         return {
@@ -223,13 +221,22 @@ function Navbar() {
     }));
   };
 
+  // const toggleNestedDropdown = (parentDropdown, nestedDropdown) => {
+  //   setOpenDropdowns((prevState) => ({
+  //     ...prevState,
+  //     [`${parentDropdown}_${nestedDropdown}`]:
+  //       !prevState[`${parentDropdown}_${nestedDropdown}`],
+  //   }));
+  // };
+
   const toggleNestedDropdown = (parentDropdown, nestedDropdown) => {
     setOpenDropdowns((prevState) => ({
       ...prevState,
       [`${parentDropdown}_${nestedDropdown}`]:
-        !prevState[`${parentDropdown}_${nestedDropdown}`],
+        !prevState[`${parentDropdown}_${nestedDropdown}`], // Toggle current nested dropdown only
     }));
   };
+
 
   const closeOtherDropdowns = (currentDropdown) => {
     setOpenDropdowns((prevState) => {
@@ -274,7 +281,19 @@ function Navbar() {
     };
   }, [sidebarOpen]);
 
+
+
+
   // ####### //
+
+  const [categoryData, setCategoryData] = useState([]);
+  const getCategoryData = (id) => {
+    setCategoryData(coupons.filter((e) => e.id == id).map((e) => e.coupons)[0] || [])
+  }
+
+
+
+
   const dropdownData = [
     {
       name: "Stores", icon: <FaStore />,
@@ -311,8 +330,21 @@ function Navbar() {
 
   return (
     <nav className="navbar">
-      <div className="container">
+      
+        <div className="innerlogo-2">
+        <Link href="" className="d-flex align-items-center atag">
+            <img src={apiUrl + logo} alt="logo" />
+        </Link>
+        </div>
+      <div className="container">  
         <ul className="navbar-menu">
+
+        <li className="navbar-item innerlogo-1">
+        <Link href="" className="d-flex align-items-center atag">
+            <img src={apiUrl + logo} alt="logo" />
+        </Link>
+        </li>
+
           <li className="navbar-item">
             <Link to="/">
               <button className="navbar-button">Welcome</button>
@@ -553,7 +585,7 @@ function Navbar() {
       </div>
 
       {/* sidebar */}     
-      <div ref={sidebarRef} className={`sidebar ${sidebarOpen ? "show" : ""}`}>
+      {/* <div ref={sidebarRef} className={`sidebar ${sidebarOpen ? "show" : ""}`}>
         <ul className="sidebar-menu">
           <li className="sidebar-item">
             <Link to={"/"}>
@@ -618,8 +650,130 @@ function Navbar() {
             </li>
           ))}
         </ul>
-      </div>
+      </div> */}
       {/* endsidebar */}
+
+{/* kkkkkkkkk */}
+
+<div ref={sidebarRef} className={`sidebar ${sidebarOpen ? "show" : ""}`}>
+  <ul className="sidebar-menu">
+    <li className="sidebar-item">
+      <Link to="/">
+        <button className="sidebar-button" onClick={closeSidebar}>
+          <FaHome /> Welcome
+        </button>
+      </Link>
+    </li>
+
+   {/* Store Dropdown */}
+        <li className="sidebar-item dropdown">
+          <button
+            className="sidebar-button"
+            onClick={() => {
+              toggleDropdown("Stores");
+              closeOtherDropdowns("Stores");
+            }}
+          >
+            <i className="icon-store"> <FaShoppingCart/> </i> Stores <i className="icon-dropdownshaka"><FaAngleDown /></i>
+          </button>
+          <div className={`dropdown-content ${openDropdowns["Stores"] ? "show" : ""}`}>
+            <ul>
+              {stores.map((store) => (
+                <li key={store.id} className="sidebar-item dropdown">
+                  <button
+                    className="nested-sidebar-button"
+                    onClick={() => {
+                      toggleNestedDropdown("Stores", store.name);
+                      handleStoreClick(store.id);
+                    }}
+                  >
+                    <i className={store.icon}></i> {store.name}<i className="icon-dropdownshaka"><FaAngleDown /></i>
+                  </button>
+                  <div
+                    className={`dropdown-content ${
+                      openDropdowns[`Stores_${store.name}`] ? "show" : ""
+                    }`}
+                  >
+                    <ul>
+                      <li>
+                        <Link to={`/brand/${store.name}`} onClick={closeSidebar}>
+                          See all {store.name}
+                        </Link>
+                      </li>
+                      {selectedStoreCoupons.map((coupon) => (
+                        <li key={coupon.id}>
+                          <Link to= {`/brand/${store.name}`} onClick={closeSidebar}>
+                            {coupon.title}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </li>
+        
+    {/* Main Categories Dropdown */}
+    <li className="sidebar-item dropdown">
+      <button
+        className="sidebar-button"
+        onClick={() => {
+          toggleDropdown("Categories");
+          closeOtherDropdowns("Categories"); // Ensure it doesn't close nested dropdowns
+        }}
+      >
+        <i className="icon-category"><FaList/></i> Categories <i className="icon-dropdownshaka"><FaAngleDown /></i>
+      </button>
+      <div className={`dropdown-content ${openDropdowns["Categories"] ? "show" : ""}`}>
+        <ul>
+          {categories.map((category) => (
+            <li key={category.id} className="sidebar-item dropdown">
+              <button
+                className="nested-sidebar-button"
+                onClick={() => {
+                  toggleNestedDropdown("Categories", category.name);
+                  // Do not close nested dropdowns, only toggle on click
+                  handleCategoryClick(category.id);
+                  getCategoryData(category.id);
+                }}
+              >
+                <i className={category.icon}></i> {category.name} <i className="icon-dropdownshaka"><FaAngleDown /></i>
+              </button>
+              <div
+                className={`dropdown-content ${
+                  openDropdowns[`Categories_${category.name}`] ? "show" : ""
+                }`}
+              >
+                <ul>
+                  <li>
+                    <Link  to={`/categorycoupon/${category.name}`} onClick={closeSidebar}>
+                      See all {category.name}
+                    </Link>
+                  </li>
+                  {categoryData.map((coupon) => (
+                    <li key={coupon.id}>
+                      <Link to={`/categorycoupon/${category.name}`} onClick={closeSidebar}>
+                        {coupon.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </li>
+  </ul>
+</div>
+
+
+
+
+
+    {/* hggggggggggggg */}
     </nav>
   );
 }

@@ -6,7 +6,6 @@
     overflow: hidden;
     margin: 14px;
     position: relative;
-    font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column; /* Make the card a flex container */
     justify-content: space-between; /* Ensure content and footer are spaced */

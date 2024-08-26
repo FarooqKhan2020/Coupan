@@ -1,28 +1,29 @@
-/* CodePopup.css */
-.popup-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+.code-popup-overlay {
+  position: absolute; /* Change to absolute */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  overflow-y: auto; /* Enable vertical scrolling */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
   }
   
-  .popup-content {
+  .code-popup-content {
     background: white;
-    width: 400px;
+    width: 500px;
     max-width: 90%;
-    padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     position: relative;
   }
   
-  .popup-close {
+  .code-popup-close {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -32,36 +33,42 @@
     cursor: pointer;
   }
   
-  .popup-close svg {
+  .code-popup-close svg {
     font-size: 24px;
   }
   
-  .popup-header {
+  .code-popup-header {
     text-align: center;
+    width: 250px !important;
+    height: 130px !important;
+    margin: auto;
+    padding-top: 20px;
   }
   
-  .popup-logo {
+  .code-popup-header img {
     max-width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
+    object-position: center
   }
   
-  .popup-body {
-    margin-top: 20px;
+  .code-popup-body {
+    margin-top: 15px;
     text-align: center;
   }
   
-  .popup-body p {
-    margin: 10px 0;
+  .code-popup-body p {
+    font-size: 1.2em;
   }
   
-  .input-group {
+  .code-input-group {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px 0;
+    padding: 0px 20px;
   }
   
-  .code-input {
+  .code-code-input {
     padding: 8px;
     font-size: 16px;
     border: 1px solid #ddd;
@@ -70,7 +77,7 @@
     flex-grow: 1;
   }
   
-  .copy-button {
+  .code-copy-button {
     padding: 10px;
     background-color: #00c4cc;
     color: white;
@@ -81,15 +88,15 @@
     align-items: center;
   }
   
-  .copy-button svg {
+  .code-copy-button svg {
     margin-right: 5px;
   }
   
-  .copy-button:hover {
+  .code-copy-button:hover {
     background-color: #06cfd6;
   }
   
-  .popup-button {
+  .code-popup-button {
     display: inline-block;
     margin: 10px 0;
     padding: 10px 20px;
@@ -102,67 +109,74 @@
     border: none;
   }
   
-  .popup-button:hover {
+  .code-popup-button:hover {
     background-color: #06cfd6;
   }
   
-  .additional-info {
+  /* .code-additional-info {
     margin: 10px 0;
     text-align: left;
   }
   
-  .toggle-requirements {
+  .code-toggle-requirements {
     display: flex;
     justify-content: space-between;
     cursor: pointer;
     font-weight: bold;
     color: #00c4cc;
-  }
+  } */
   
-  .popup-conditions {
-    margin-top: 20px;
+  .code-popup-conditions {
     text-align: left;
+    padding: 0px 20px;
+  }
+  .code-popup-conditions h3 {
+    font-size: 1.2em !important;  
+  }
+
+  .code-popup-conditions ul {
+    padding-left: 0 !important;
   }
   
-  .popup-conditions h3 {
-    margin-bottom: 10px;
-  }
-  
-  .popup-conditions ul li {
+  .code-popup-conditions ul li {
     display: flex;
     align-items: center;
     margin-bottom: 5px;
   } 
-  
-  .popup-conditions ul li {
+  .code-popup-conditions ul li {
+    display: flex;
+    align-items: center;
     margin-bottom: 5px;
   }
   
-  .popup-conditions ul li svg {
+  .code-popup-conditions ul li svg {
     margin-right: 8px;
     color: #27ae60 !important;
     /* color: var(--btn-primary-hover);  */
   }
   
-  .popup-footer {
-    margin-top: 20px;
+  .code-popup-footer {
     padding: 20px;
     background-color: #0d2940;
     color: white;
     text-align: center;
     border-radius: 10px;
+    border-top-left-radius: 0px !important;
+    border-top-right-radius: 0px !important;
+    height: 130px;
   }
   
-  .popup-footer h3 {
+  /* .popup-footer h3 {
     margin-bottom: 10px;
     font-size: 18px;
-  }
+  } */
   
-  .activate-button {
+  .code-activate-button {
     display: inline-block;
     margin-top: 10px;
     padding: 10px 20px;
-    background-color: #3596C4;
+    /* background-color: #3596C4; */
+    background-color: var(--btn-primary-hover);
     color: white;
     text-decoration: none;
     border-radius: 5px;
@@ -171,7 +185,8 @@
     border: #3596C4;
   }
   
-  .activate-button:hover {
-    background-color: #30ace6;
+  .code-activate-button:hover {
+    /* background-color: #30ace6; */
+    background-color: var(--primary);
   }
   

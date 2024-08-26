@@ -2,7 +2,7 @@ import React from 'react'
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FaRegArrowAltCircleLeft } from "react-icons/fa";
 import './LogoBar1.css';
-import logo from '../../assets/images/logo.png';
+// import logo from '../../assets/images/logo.png';
 import {Link} from "react-router-dom";
 
 function LogoBar1({logo}) {
@@ -11,10 +11,6 @@ function LogoBar1({logo}) {
     <div className="container logocontainer d-flex p-0">
         <Link href="" className="d-flex align-items-center atag">
             <img src={apiUrl+logo} alt="logo" />
-
-            {/*<div className="back d-flex align-items-center">*/}
-            {/*<FaRegArrowAltCircleLeft className="icon"/><span>Back</span>*/}
-            {/*</div>*/}
         </Link>
     </div>
   )

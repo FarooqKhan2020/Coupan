@@ -1,8 +1,8 @@
-:root {
-  --primary: #003a8c;
-  --btn-primary-hover: #0056b3;
+/* :root {
+  --primary: var(--primary);
+  --btn-primary-hover: var(--btn-primary-hover);
   --btn-group: #007bff;
-}
+} */
 
 .container-list {
     /* margin: 20px 0; */
@@ -96,7 +96,12 @@
     align-items: center;
     margin-top: 10px;
   }
-  
+  .viewbutton{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin-top: auto;
+  }
   /* .container-recommended {
     display: flex;
     align-items: center;
@@ -113,7 +118,7 @@
   }
   
   .view-button {
-    background: #003a8c;
+    background: var(--primary);
     border: none;
     border-radius: 20px;
     color: #fff;
@@ -122,7 +127,7 @@
     font-weight: bold;
   }
   .view-button:hover {
-    background: #0056b3;
+    background: var(--btn-primary-hover);
   }
   
   .refunded .view-button {
@@ -253,6 +258,12 @@
     font-size: 18px !important;
     background-color: gray;
   } */
+
+
+  .similar-coupons h4{
+    margin-bottom: 20px !important;
+    font-size: 18px !important;
+  }
 
 
   

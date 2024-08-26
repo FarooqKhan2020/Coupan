@@ -1,5 +1,4 @@
 import React from "react";
-// import amazonLogo from "../../assets/images/amazon.webp";
 import "./asideLogoCard.css";
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 
