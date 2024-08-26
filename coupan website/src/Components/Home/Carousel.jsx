@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./Carousel.css";
-
 import { FaAngleLeft } from "react-icons/fa6";
 import { FaAngleRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";

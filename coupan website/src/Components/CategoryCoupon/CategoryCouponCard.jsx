@@ -12,6 +12,14 @@ const CategoryCouponCard = ({ coupons }) => {
   const toggleDescription = () => {
     setIsExpanded(!isExpanded);
   };
+  const displayValue = (value, fallback = "Not Available") => {
+    return value ? value : fallback;
+  };
+
+  if (!coupons) {
+    return <div>No coupons found.</div>;
+  }
+
   return (
     <div className="coupon-card">
       <div className="coupon-card-image">

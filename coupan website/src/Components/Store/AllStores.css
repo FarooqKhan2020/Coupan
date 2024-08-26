@@ -66,22 +66,14 @@
   /*  background-color: #0056b3;*/
   /*}*/
   
-  /* @media (max-width: 767px) {
-    .store-logo{
-      width: 120px; 
-    }
-  }
-  @media (max-width: 576px) {
+  @media (max-width: 992px) {
     .card-store-section {
-      padding-left: 5px;
-      padding-right: 5px;
-      padding-top: 10px;
+        padding: 20px 40px;
     }
-    .card-store-container{
-      gap: 15px;
+ }
+
+ @media (max-width: 767px) {
+  .card-store-section{
+        padding: 20px 20px;
     }
-    .store-logo{
-      width: 115px; 
-    }
-  }
-   */
+ }

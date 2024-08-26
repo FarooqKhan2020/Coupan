@@ -1,11 +1,21 @@
 import React, { useState, useEffect } from "react";
 import "./CardComponent.css";
 import { Link } from "react-router-dom";
+// import Loader from "../Loader/Loader";
+
 
 const CardComponent = ({ data }) => {
   const apiUrl = import.meta.env.VITE_API_URL;
   const [activeCategoryId, setActiveCategoryId] = useState(null);
+  const [rotatingCategoryId, setRotatingCategoryId] = useState(null);
 
+  const handleCategoryClick = (categoryId) => {
+    setActiveCategoryId(categoryId);
+    setRotatingCategoryId(categoryId);
+    setTimeout(() => {
+      setRotatingCategoryId(null);
+    }, 500); // Adjust this to match your rotation duration
+  };
   // State to manage expanded description
   const [expandedCouponIndex, setExpandedCouponIndex] = useState(null);
   useEffect(() => {
@@ -14,9 +24,9 @@ const CardComponent = ({ data }) => {
     }
   }, [data]);
 
-  if (!data || data.length === 0) {
-    return <div>No categories available.</div>;
-  }
+  // if (!data || data.length === 0) {
+  //   return <Loader/>
+  // }
 
   // Find the active category based on the activeCategoryId
   const activeCategory = data.find(
@@ -45,12 +55,24 @@ const CardComponent = ({ data }) => {
         <h1 className="card-heading">Promo codes and discounts of the week!</h1>
         <div className="group-buttons">
           {data.map((category) => (
+            // <button
+            //   key={category.id}
+            //   className={activeCategoryId === category.id ? "active" : ""}
+            //   onClick={() => setActiveCategoryId(category.id)}
+            // >
+            //   <i className={category.icon}></i>
+            //   {" " + category.name}
+            // </button>
             <button
               key={category.id}
               className={activeCategoryId === category.id ? "active" : ""}
-              onClick={() => setActiveCategoryId(category.id)}
+              onClick={() => handleCategoryClick(category.id)}
             >
-              <i className={category.icon}></i>
+              <i
+                className={`${category.icon} ${
+                  rotatingCategoryId === category.id ? "rotate" : ""
+                }`}
+              ></i>
               {" " + category.name}
             </button>
           ))}
@@ -61,22 +83,35 @@ const CardComponent = ({ data }) => {
               <div className="card-icon">
                 {/* Display the category icon for each coupon */}
                 <i className={activeCategory.icon}></i>
-              </div>
-              {coupon.highlight && (
+                {coupon.highlight && (
                 <span className="highlight-label">
                   {getHighlightLabel(coupon.highlight)}
                 </span>
               )}
-              <Link to={coupon.link} rel="noopener noreferrer">
+              </div>
+              {/* {coupon.highlight && (
+                <span className="highlight-label">
+                  {getHighlightLabel(coupon.highlight)}
+                </span>
+              )} */}
+              <Link to={coupon.link} rel="noopener noreferrer" target="_blank">
                 <img
                   src={apiUrl + `public/${coupon.banner}`}
-                  alt="Coupon Banner"
+                  // alt="Coupon Banner"
+                  alt={coupon.highlight}
                   className="card-logoImg"
                 />
               </Link>
-              {coupon.offer !== null && (
+              {/* {coupon.offer !== null && (
                 <div className="card-title">{coupon.offer}%</div>
-              )}
+              )} */}
+
+                {coupon.offer !== null ?(
+                  <div className="card-title">{coupon.offer}%</div>
+                ) : (
+                  <div className="card-title">Offer</div>
+                )}
+
               {/* <div className="card-description-home">{coupon.description}</div> */}
               <div
                 className={`card-description-home ${
@@ -93,23 +128,44 @@ const CardComponent = ({ data }) => {
                   {expandedCouponIndex === index ? "Show Less" : "Read More"}
                 </button>
               )}
+
+
+               {/* Conditional Rendering for Buttons */}
+               {coupon.code === null ? (
+                <Link to={coupon.link} rel="noopener noreferrer" target="_blank">
+                  <button className="card-button">
+                    See the promo
+                  </button>
+                </Link>
+              ) : (
+                <Link to={coupon.link} rel="noopener noreferrer" target="_blank">
+                  <button className="coupon-code-button">
+                    <span className="coupon-inner-text">{coupon.code}</span>
+                    <span className="coupon-blue-wrap">
+                      View code
+                      <span className="coupon-fold"></span>
+                    </span>
+                  </button>
+                </Link>
+              )} 
+
+
               {/* <Link to={coupon.link} rel="noopener noreferrer">
-                    <button className="card-button">
-                      {coupon.code ? `Use Code: ${coupon.code}` : "View Deal"}
-                    </button>
-                  </Link> */}
+                <button className="card-button">
+                  {coupon.code ? `Use Code: ${coupon.code}` : "See the promo"}
+                </button>
+              </Link>
 
               <Link to={coupon.link} rel="noopener noreferrer">
                 <button class="coupon-code-button">
-                  <span class="coupon-inner-text">SECRET CODE</span>
+                  <span class="coupon-inner-text">{coupon.code}</span>
                   <span class="coupon-blue-wrap">
                     View code
                     <span class="coupon-fold"></span>
                   </span>
                 </button>
-              </Link>
+              </Link> */}
             </div>
-            
           ))}
         </div>
       </div>

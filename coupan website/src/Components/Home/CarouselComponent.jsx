@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { FaCircleChevronRight } from "react-icons/fa6";
 import { FaCircleChevronLeft } from "react-icons/fa6";
 import "./CarouselComponent.css";
+import Loader from "../Loader/Loader";
 
 // Importing images
 import { Link } from "react-router-dom";
@@ -52,7 +53,9 @@ const CarouselComponent = ({data}) => {
       },
     ],
   };
-
+  if (!data || data.length === 0) {
+    return <Loader />;
+  }
 
   return (
     <div className="main">

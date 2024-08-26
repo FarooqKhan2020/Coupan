@@ -17,18 +17,18 @@ const StatsSection = () => {
     <div className="stats-section">
       <StatCard 
         Icon={FaTag} 
-        title="100 Mio." 
-        text="Mehr als 100 Millionen Gutscheine wurden bereits eingelöst."
+        title="100 million" 
+        text="More than 100 million vouchers have already been redeemed."
       />
       <StatCard 
         Icon={FaPiggyBank} 
-        title="180 Mio." 
-        text="Unsere User haben mehr als 180 Millionen Euro gespart."
+        title="180 million" 
+        text="Our users have saved more than 180 million euros."
       />
       <StatCard 
         Icon={FaClipboardCheck} 
-        title="45.000 Gutscheine" 
-        text="Jeden Monat werden über 45.000 neue Gutscheine von Hand getestet."
+        title="45,000 vouchers" 
+        text="Every month, over 45,000 new vouchers are tested by hand."
       />
     </div>
   );

@@ -222,17 +222,41 @@
 .sidebar-button.right-now {
   border-bottom: none; /* Remove the bottom border */
 }
+.nested-sidebar-button {
+  background: none;
+  border: none;
+  border-bottom: 1px solid white;
+  color: var(--primary);
+  font-size: 16px;
+  cursor: pointer;
+  padding: 12px 20px;
+  text-align: left;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s;
+  gap: 10px;
+}
+
+
 
 /* end siedbar */
 
 
+.menu-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
 .mainSM{
   gap: 10px;
 }
-.mainSM .menu-icon {
+.mainSM .menu-button svg{
   color: white;
   font-size: 26px;
-  display: none;
+  /* display: none; */
 }
 
 /* Media query for max-width 992px */
@@ -314,7 +338,7 @@
   display: none;
   flex-direction: row;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  z-index: 2; /* Ensure dropdown is above other elements */
+  z-index: 99; /* Ensure dropdown is above other elements */
 }
 
 .new-dropdown-content.show {

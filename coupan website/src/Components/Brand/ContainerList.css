@@ -18,6 +18,8 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
     padding: 20px;
+    border-left: 3px solid var(--primary);
+    border-right: 3px solid var(--primary);
     position: relative;
   }
   .container-items .a-main{
@@ -29,12 +31,22 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    cursor: auto;
   }
   
   .container-type-percentage {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+  }
+  .container-image{
+    width: 60px;
+    height: 50px;
+  }
+  .container-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
   
   .container-type {
@@ -74,9 +86,9 @@
     gap: 5px;
   }
   
-  .container-main {
-    margin-top: 10px;
-  }
+  /* .container-main p{
+    color: #555;
+  } */
   
   .container-info {
     display: flex;
@@ -85,7 +97,7 @@
     margin-top: 10px;
   }
   
-  .container-recommended {
+  /* .container-recommended {
     display: flex;
     align-items: center;
     gap: 5px;
@@ -102,7 +114,6 @@
   
   .view-button {
     background: #003a8c;
-    /* background: #003a8c; */
     border: none;
     border-radius: 20px;
     color: #fff;
@@ -119,7 +130,7 @@
   }
   .refunded .view-button:hover {
     background: #fbb827;
-  }
+  } */
 
   .container-extra {
     background: #f9f9f9;
@@ -127,6 +138,46 @@
     margin-top: 10px;
     padding: 10px 20px;
   }
+
+  .redemption-conditions ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 10px 0;
+}
+
+.redemption-conditions ul li {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+}
+
+.redemption-conditions ul li svg {
+    margin-right: 8px;
+    /* color: var(--btn-primary-hover);  */
+    color: #27ae60;
+}
+
+.redemption-conditions .price-info,
+.redemption-conditions .type-action,
+.redemption-conditions .frequency {
+    margin: 5px 0;
+}
+
+.redemption-conditions p {
+    margin-top: 10px;
+}
+
+.redemption-conditions hr {
+    border: none;
+    border-top:#8b8989 solid 1px;
+    /* border-top: 1px solid #ddd; */
+    margin: 15px 0;
+}
+
+.redemption-conditions .last-updated {
+    font-size: 0.9em;
+    color: #666;
+}
 
    
   /* expired-section */
@@ -140,30 +191,48 @@
     color: red !important;
   }
 
-  
+  .expired-section .container-items{
+    border-left: 3px solid #ccc;
+    border-right: 3px solid #ccc;
+  }  
   .expired-section .container-main {
     color: #999 !important;
   }
   
-  .expired-section .view-button {
+  .expired-section .card-button, 
+  .expired-section .coupon-code-button,
+  .expired-section .coupon-inner-text,
+  .expired-section .coupon-code-button .coupon-blue-wrap{
     background-color: #ccc !important;
+    border-color: #ccc !important;
     color: #999 !important;
     cursor: not-allowed !important;
   }
   
-  .expired-section .view-button:hover {
+  .expired-section .coupon-code-button .coupon-blue-wrap{
+    box-shadow: none;
+  }
+  .expired-section .coupon-blue-wrap .coupon-fold{
+    background-color: darkgray !important;
+  }
+
+  .expired-section .card-button:hover {
     background-color: #ccc !important;
   }
   
   .expired-section .container-type,
   .expired-section .container-percentage,
-  .expired-section .container-details{
+  .expired-section .container-details,
+  .expired-section .redemption-conditions,
+  .expired-section .redemption-conditions h3,
+  .expired-section .redemption-conditions span,
+  .expired-section .redemption-conditions ul li svg{
     color: #999 !important;
   }
 
-  .expired-section .thumb-icon{
+  /* .expired-section .thumb-icon{
     color: #999 !important;
-  }
+  } */
 
   
   /* Additional styles for specific types */

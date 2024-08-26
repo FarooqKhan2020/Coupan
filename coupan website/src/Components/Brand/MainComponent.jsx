@@ -23,6 +23,7 @@ const MainComponent = () => {
   const [storedescription, setStoreDescription] = useState("");
   const [featureStoreNames, setFeatureStoresName] = useState([]);
   const [storecoupons, setStoreCoupons] = useState([]);
+  const [popupModal, setPopupModal] = useState(false);
   useEffect(() => {
     setBrandName(brand);
   // Update brandName when brand changes
@@ -33,8 +34,10 @@ const MainComponent = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(apiUrl + `api/store-detail/${brandName}`);
+        // console.log(response.data,"response.data");
         const storeData = response.data.store;
         const featureStores = response.data.featureStores;
+        const popupModal = response.data.popupModal;
         
         const reviews = storeData.reviews || [];
         const totalReviews = reviews.length;
@@ -44,7 +47,7 @@ const MainComponent = () => {
           // Extract names from featureStores array
         const featureStoreNames = featureStores.map(store => store.name);
         setFeatureStoresName(featureStoreNames);
-         
+         setPopupModal(popupModal);
         setBannerImage(apiUrl + `public/${storeData.banner}`);
         setstoreName(storeData.name);
         setStoreDescription(storeData.description);
@@ -54,6 +57,7 @@ const MainComponent = () => {
         setAverageRating(averageRating.toFixed(1));
         // console.log("Banner URL:", storeData.banner);
         // console.log("Store Data:", storeData);
+        console.log("Popup Modal main:", popupModal);
         
       } catch (error) {
         console.error("Error fetching the data", error);
@@ -95,6 +99,7 @@ console.log('coupons', storecoupons.filter(container => typeof container.highlig
         storeName ={storeName}
         bannerImage={bannerImage} // Pass the banner image to LeftSection
         storecoupons={storecoupons}
+        popupModal={popupModal}
 
       />
     </div>

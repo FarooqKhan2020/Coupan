@@ -3,14 +3,17 @@
 .stats-section {
     display: flex;
     justify-content: space-around;
-    padding: 40px 0;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    background-color: #FFFF; /* Light grey background for the whole section */
+    padding: 15px 0;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
+    /* box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1);  */
+    background-color: #FFFF; 
+    border: 1px solid #eff2f4;
+    margin: 40px 0px;
   }
   
   .stat-card {
     text-align: center;
-    padding: 15px;
+    padding: 12px;
     width: 270px;
   }
 
@@ -32,3 +35,8 @@
     color: #333; /* Dark grey color */
   }
   
+  @media (max-width: 992px) {
+    .stats-section {
+      display: none;
+  }
+}

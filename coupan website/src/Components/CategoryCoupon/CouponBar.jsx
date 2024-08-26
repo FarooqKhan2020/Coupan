@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaCaretDown, FaSearch } from 'react-icons/fa'; // Importing icons
 import './CouponBar.css';
 
@@ -8,6 +8,20 @@ const CouponBar = ({ onFilter }) => {
     const [openDropdown, setOpenDropdown] = useState(null);
     const [categorySearch, setCategorySearch] = useState('');
     const [storeSearch, setStoreSearch] = useState('');
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (!event.target.closest('.coupon-dropdown')) {
+                setOpenDropdown(null);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
 
     const handleCategorySelect = (category) => {
         setSelectedCategory(category);

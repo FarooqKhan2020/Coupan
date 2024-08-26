@@ -128,19 +128,20 @@
     margin-bottom: 10px;
   }
   
-  .popup-conditions ul {
-    list-style: none;
-    padding: 0;
-  }
+  .popup-conditions ul li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  } 
   
   .popup-conditions ul li {
     margin-bottom: 5px;
   }
   
-  .popup-conditions ul li::before {
-    content: '✔';
-    color: #00c4cc;
-    margin-right: 10px;
+  .popup-conditions ul li svg {
+    margin-right: 8px;
+    color: #27ae60 !important;
+    /* color: var(--btn-primary-hover);  */
   }
   
   .popup-footer {

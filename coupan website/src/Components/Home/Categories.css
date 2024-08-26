@@ -93,9 +93,8 @@
 }
 
 
-@media (max-width: 576px) {
+@media (max-width: 767px) {
   .category-card {
     width: 150px;
   }
-
 }

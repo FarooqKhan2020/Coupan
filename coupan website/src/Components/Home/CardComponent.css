@@ -10,34 +10,82 @@
   font-weight: 500;
 }
 
-.card-heading{
+.card-heading {
   color: #003a8c;
 }
 
 /* group btn */
 .group-buttons {
   margin: 20px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 .group-buttons button {
-  margin: 5px 5px;
+  /* margin: 5px 5px;
   padding: 10px 20px;
   border: none;
   background-color: #007bff;
   color: white;
   cursor: pointer;
   border-radius: 5px;
+  transition: background-color 0.3s; */
+  padding: 10px 20px;
+  width: 18%;
+  border: none;
+  background-color: white;
+  color: gray;
+  cursor: pointer;
   transition: background-color 0.3s;
-}
-.button-icon{
-  position: relative;
-  top: -2px
-}
-.group-buttons button:hover {
-  background-color: #0056b3;
+  border-right: solid 1px !important; 
+  border-right-color: lightgray !important;
+  box-shadow: 0 2px 0px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
-.group-buttons button.active {
+.group-buttons button:first-child {
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+.group-buttons button:last-child {
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  border-right: none !important;
+}
+
+.button-icon {
+  position: relative;
+  top: -2px;
+}
+/* .group-buttons button:hover {
   background-color: #0056b3;
+} */
+
+.group-buttons button.active {
+  /* background-color: #0056b3; */
+  border-style: solid;
+  border-width: 0px 0px 2px 0px;
+  border-color: var(--btn-primary-hover);
+  color: var(--btn-primary-hover);
+  box-shadow: none !important;
+}
+.rotate {
+  transform: rotate(360deg);
+  transition: transform 0.5s ease-in-out;
+}
+@media (max-width: 992px) {
+  .group-buttons button::after {
+    content: "";
+    display: none;
+  }
+  .group-buttons button {
+    font-size: 0; /* Hide the button text */
+  }
 }
 
 .cards-section {
@@ -53,8 +101,8 @@
   border-radius: 10px;
   padding: 15px;
   text-align: center;
-  width: 280px; 
-   height: 100%; 
+  width: 280px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -67,8 +115,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 5px;
+  /* color: #555; */
+  color: var(--btn-primary-hover);
 }
-
 
 .card-logoImg {
   border-radius: 8px;
@@ -76,15 +126,16 @@
   width: 150px;
   height: 125px;
   margin: 10px auto;
+  object-fit: cover;
   transition: transform 0.2s ease-in-out;
 }
 .card-logoImg:hover {
   transform: scale(1.05);
 }
 .card-title {
-    font-size: 16px;
-    font-weight: bold;
-    color: #003a8c !important;
+  font-size: 16px;
+  font-weight: bold;
+  color: #003a8c !important;
 }
 
 .card-description-home {
@@ -102,7 +153,7 @@
 }
 
 .card-description-home.expanded {
-  max-height: 20em; 
+  max-height: 20em;
   opacity: 1;
 }
 
@@ -115,9 +166,8 @@
   font-size: 14px;
   text-decoration: underline;
   margin-top: 5px;
-  margin-bottom:5px ;
+  margin-bottom: 5px;
 }
-
 
 /* .card-description-home {
   display: -webkit-box;
@@ -144,22 +194,26 @@
 
 .card-button {
   padding: 10px 20px;
-  margin-top: 10px;
+  /* margin-top: 10px; */
   border: none;
   /* background-color: #007bff; */
-  background-color: #003a8c;
+  background-color: var(--btn-primary-hover);
+  border: 2px solid var(--btn-primary-hover);
   color: white;
   cursor: pointer;
   border-radius: 5px;
   font-weight: 500;
-  transition: background-color 0.3s;
+  border-radius: 30px;
+  /* transition: background-color 0.3s; */
 }
 
 .card-button:hover {
   /* background-color: #0c2851; */
-  background-color: #0056b3;
+  background-color: var(--primary);
+  border: 2px solid var(--primary);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
-.card-button a{
+.card-button a {
   color: white;
   text-decoration: none;
 }
@@ -173,67 +227,6 @@
     padding: 0px 10px;
   }
 }
-
-/* .coupon-code-button {
-  position: relative;
-  background-color: transparent;
-  border: 2px solid #4a44f2; 
-  cursor: pointer;
-  padding: 0;
-  font-size: 16px;
-  overflow: hidden;
-  border-radius: 30px;
-  display: inline-block;
-}
-
-.coupon-inner-text {
-  position: absolute;
-  right: 10px;
-  color: #333;
-  font-weight: bold;
-  z-index: 0;
-  transition: right 0.3s ease;
-}
-
-.coupon-blue-wrap {
-  background-color: #4a44f2;
-  color: white;
-  padding: 10px 18px; 
-  border-radius: 28px; 
-  position: relative;
-  z-index: 1;
-  transform-origin: right;
-  clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
-  transition: all 0.3s ease;
-  display: inline-block;
-}
-
-.coupon-blue-wrap .coupon-fold {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 35px;
-  height: 35px;
-  background-color: #2e2bb0;
-  clip-path: polygon(100% 0, 0% 100%, 100% 100%);
-  transition: all 0.3s ease;
-  transform: rotate(45deg);
-  transform-origin: right bottom;
-  z-index: 2; 
-}
-
-.coupon-code-button:hover .coupon-blue-wrap {
-  clip-path: polygon(0 0, 100% 0, 70% 100%, 0% 100%);
-}
-
-.coupon-code-button:hover .coupon-blue-wrap .coupon-fold {
-  transform: rotate(60deg) translate(-5px, 5px);
-}
-
-.coupon-code-button:hover .coupon-inner-text {
-  right: 20px;
-} */
-
 
 .coupon-code-button {
   position: relative;
@@ -253,7 +246,7 @@
   border-color: var(--primary);
   /* box-shadow: var(--primary) 0px 0px 0px 0.5px; */
   /* box-shadow: 0 0 5px rgba(74, 68, 242, 0.5); */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 .coupon-inner-text {
@@ -270,9 +263,10 @@
 .coupon-blue-wrap {
   background-color: var(--btn-primary-hover);
   color: white;
+  font-weight: 500;
   padding: 10px 33px;
-  /* border-radius: 28px; */
-  border-radius: 0;
+  border-radius: 28px;
+  /* border-radius: 0; */
   position: relative;
   z-index: 2;
   transform-origin: right;
@@ -280,7 +274,6 @@
   transition: all 0.3s ease;
   display: inline-block;
   box-shadow: inset 0 0 0 2px var(--btn-primary-hover); /* Matches the border color and removes the thin white area */
-  
 }
 
 .coupon-blue-wrap .coupon-fold {
@@ -315,3 +308,4 @@
 .coupon-code-button:hover .coupon-inner-text {
   right: 10px; /* No movement on hover */
 }
+

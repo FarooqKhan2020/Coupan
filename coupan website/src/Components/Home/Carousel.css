@@ -97,6 +97,7 @@
 .carousel-description .description {
   margin: 0;
   font-size: 0.8em;
+  width: 95%;
 }
 
 .carousel-description button {
