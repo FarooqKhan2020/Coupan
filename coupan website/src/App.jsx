@@ -15,15 +15,21 @@ function App() {
     const [logo, setLogo] = useState('');
     const [footerLogo, setFooterLogo] = useState('');
     const [favicon, setFavicon] = useState('');
+    const [footer, setFooter] = useState('');
+    const [footerSocialLinks, setFooterSocialLinks] = useState([]);
     useEffect(() => {
         // Fetch the settings from your API
         axios.get(`${apiUrl}api/settings`)
             .then(response => {
-                const {  logo,footer_logo,favicon } = response.data;
-
+                const { logo, footer_logo, favicon } = response.data.setting;
+                const{footer}=response.data;
+                const {footerSocialLinks}=response.data;
+                setFooterSocialLinks(footerSocialLinks);
+                setFooter(footer);
                 setLogo(logo);
                 setFooterLogo(footer_logo);
                 setFavicon(favicon);
+
 
                 // Update the favicon in the index.html
                 if (favicon) {
@@ -45,7 +51,8 @@ function App() {
     <LogoBar1 logo={logo}/>
     <Navbar/>
     <Outlet/>
-    <Footer footerLogo={footerLogo}></Footer>
+    <Footer footerLogo={footerLogo} footer={footer} footerSocialLinks={footerSocialLinks}
+    ></Footer>
     </>
   )
 }
