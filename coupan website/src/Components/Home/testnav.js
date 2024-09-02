@@ -7,7 +7,6 @@ import { FaAngleRight } from "react-icons/fa6";
 import Loader from "../Loader/Loader";
 import { Link } from "react-router-dom";
 import NotFound from "../NotFound/NotFound";
-import { useNavigate } from "react-router-dom";
 import {
   FaHome,
   FaStore,
@@ -27,7 +26,8 @@ import {
   // FaHotel,
 } from "react-icons/fa";
 
-function Navbar({ logo }) {
+
+function Navbar({logo}) {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [categoriesDropdownOpen, setcategoriesDropdownOpen] = useState(false);
   const [keepcategoriesDropdownOpen, setKeepcategoriesDropdownOpen] =
@@ -124,6 +124,7 @@ function Navbar({ logo }) {
     setSelectedCoupons(
       coupons.filter((e) => e.id == category).map((e) => e.coupons)[0] || []
     );
+
     setSelectedCategory(category);
   };
 
@@ -174,6 +175,7 @@ function Navbar({ logo }) {
   useEffect(() => {
     const fetchStores = async () => {
       let response = await axios.get(apiUrl + "api/coupons");
+   
 
       let stores = response.data.stores.map((store) => {
         return {
@@ -218,19 +220,11 @@ function Navbar({ logo }) {
     }));
   };
 
-  // const toggleNestedDropdown = (parentDropdown, nestedDropdown) => {
-  //   setOpenDropdowns((prevState) => ({
-  //     ...prevState,
-  //     [`${parentDropdown}_${nestedDropdown}`]:
-  //       !prevState[`${parentDropdown}_${nestedDropdown}`],
-  //   }));
-  // };
-
   const toggleNestedDropdown = (parentDropdown, nestedDropdown) => {
     setOpenDropdowns((prevState) => ({
       ...prevState,
       [`${parentDropdown}_${nestedDropdown}`]:
-        !prevState[`${parentDropdown}_${nestedDropdown}`], // Toggle current nested dropdown only
+        !prevState[`${parentDropdown}_${nestedDropdown}`],
     }));
   };
 
@@ -251,8 +245,8 @@ function Navbar({ logo }) {
 
   const openSidebar = () => {
     setSidebarOpen(true);
-    // Close all dropdowns when opening the sidebar
-    setOpenDropdowns({});
+      // Close all dropdowns when opening the sidebar
+  setOpenDropdowns({});
   };
 
   const closeSidebar = () => {
@@ -281,15 +275,15 @@ function Navbar({ logo }) {
 
   const [categoryData, setCategoryData] = useState([]);
   const getCategoryData = (id) => {
-    setCategoryData(
-      coupons.filter((e) => e.id == id).map((e) => e.coupons)[0] || []
-    );
-  };
+    setCategoryData(coupons.filter((e) => e.id == id).map((e) => e.coupons)[0] || [])
+  }
+
+
+
 
   const dropdownData = [
     {
-      name: "Stores",
-      icon: <FaStore />,
+      name: "Stores", icon: <FaStore />,
       items: [
         {
           name: "Software",
@@ -306,8 +300,7 @@ function Navbar({ logo }) {
       ],
     },
     {
-      name: "Categories",
-      icon: <FaShoppingCart />,
+      name: "Categories", icon: <FaShoppingCart/>,
       items: [
         {
           name: "Electronics",
@@ -321,45 +314,23 @@ function Navbar({ logo }) {
     },
   ];
   // sidebar code end
-  const [searchQuery, setSearchQuery] = useState(""); // State to handle input
-  const navigate = useNavigate(); // Hook to navigate to different routes
-
-  const handleInputChange = (event) => {
-    setSearchQuery(event.target.value); // Update state with input value
-  };
-
-  const handleSearch = () => {
-    if (searchQuery.trim()) {
-      // Check if the input is not empty
-      // Navigate to the categorycoupon route with the search query parameter
-      navigate(
-        `/categorycoupon?search=${encodeURIComponent(searchQuery.trim())}`
-      );
-    }
-  };
-
-  const handleKeyPress = (event) => {
-    if (event.key === "Enter") {
-      // Trigger search when the Enter key is pressed
-      handleSearch();
-    }
-  };
-  // searchbar
 
   return (
     <nav className="navbar">
-      <div className="innerlogo-2">
+      
+        <div className="innerlogo-2">
         <Link href="" className="d-flex align-items-center atag">
-          <img src={apiUrl + logo} alt="logo" />
+            <img src={apiUrl + logo} alt="logo" />
         </Link>
-      </div>
-      <div className="container">
+        </div>
+      <div className="container">  
         <ul className="navbar-menu">
-          <li className="navbar-item innerlogo-1">
-            <Link href="" className="d-flex align-items-center atag">
-              <img src={apiUrl + logo} alt="logo" />
-            </Link>
-          </li>
+
+        <li className="navbar-item innerlogo-1">
+        <Link href="" className="d-flex align-items-center atag">
+            <img src={apiUrl + logo} alt="logo" />
+        </Link>
+        </li>
 
           <li className="navbar-item">
             <Link to="/">
@@ -529,10 +500,7 @@ function Navbar({ logo }) {
                                 : "Select a category"}
                             </p>
                             <Link
-                              to={{
-                                pathname: "/categorycoupon", // base path for the CategoryCouponPage
-                                search: `?category=${category.name}`, // constructing the query parameters
-                              }}
+                              to={`/categorycoupon/${category.name}`}
                               target="_blank"
                               className="see-all-clothing-apparel"
                             >
@@ -548,10 +516,7 @@ function Navbar({ logo }) {
                               {selectedCoupons.map((coupon) => {
                                 return (
                                   <Link
-                                    to={{
-                                      pathname: "/categorycoupon", // base path for the CategoryCouponPage
-                                      search: `?category=${category.name}`, // constructing the query parameters
-                                    }}
+                                    to={`/categorycoupon/${category.name}`}
                                     key={coupon.id}
                                     className="store-link"
                                     onClick={handleLinkClick}
@@ -584,18 +549,14 @@ function Navbar({ logo }) {
           <div className="navbar-search">
             <input
               type="text"
-              value={searchQuery} // Controlled input
-              onChange={handleInputChange} // Handle input change
-              onKeyPress={handleKeyPress} // Handle Enter key press
-              placeholder="Search for coupons"
+              placeholder="Amazon, Cdiscount, Nike..."
               className="search-input"
             />
-            <FaSearch className="search-icon" onClick={handleSearch} />{" "}
-            {/* Handle click on search icon */}
+            <FaSearch className="search-icon" />
           </div>
           {/* <IoMenu className="menu-icon" onClick={toggleSidebar} /> */}
-          <button
-            ref={menuButtonRef}
+          <button 
+          ref={menuButtonRef}
             onClick={() => {
               if (sidebarOpen) {
                 closeSidebar();
@@ -610,8 +571,8 @@ function Navbar({ logo }) {
         </div>
       </div>
 
-      {/* sidebar */}
-      {/* <div ref={sidebarRef} className={`sidebar ${sidebarOpen ? "show" : ""}`}>
+      {/* sidebar */}     
+      <div ref={sidebarRef} className={`sidebar ${sidebarOpen ? "show" : ""}`}>
         <ul className="sidebar-menu">
           <li className="sidebar-item">
             <Link to={"/"}>
@@ -620,6 +581,7 @@ function Navbar({ logo }) {
             </button>
             </Link>
           </li>
+          
           {dropdownData.map((dropdown) => (
             <li key={dropdown.name} className="sidebar-item dropdown">
               <button
@@ -676,174 +638,8 @@ function Navbar({ logo }) {
             </li>
           ))}
         </ul>
-      </div> */}
-      {/* endsidebar */}
-
-      {/* kkkkkkkkk */}
-
-      <div ref={sidebarRef} className={`sidebar ${sidebarOpen ? "show" : ""}`}>
-        <ul className="sidebar-menu">
-          <li className="sidebar-item">
-            <Link to="/">
-              <button className="sidebar-button" onClick={closeSidebar}>
-                <FaHome /> Welcome
-              </button>
-            </Link>
-          </li>
-
-          {/* Store Dropdown */}
-          <li className="sidebar-item dropdown">
-            <button
-              className="sidebar-button"
-              onClick={() => {
-                toggleDropdown("Stores");
-                closeOtherDropdowns("Stores");
-              }}
-            >
-              <i className="icon-store">
-                {" "}
-                <FaShoppingCart />{" "}
-              </i>{" "}
-              Stores{" "}
-              <i className="icon-dropdownshaka">
-                <FaAngleDown />
-              </i>
-            </button>
-            <div
-              className={`dropdown-content ${
-                openDropdowns["Stores"] ? "show" : ""
-              }`}
-            >
-              <ul>
-                {stores.map((store) => (
-                  <li key={store.id} className="sidebar-item dropdown">
-                    <button
-                      className="nested-sidebar-button"
-                      onClick={() => {
-                        toggleNestedDropdown("Stores", store.name);
-                        handleStoreClick(store.id);
-                      }}
-                    >
-                      <i className={store.icon}></i> {store.name}
-                      <i className="icon-dropdownshaka">
-                        <FaAngleDown />
-                      </i>
-                    </button>
-                    <div
-                      className={`dropdown-content ${
-                        openDropdowns[`Stores_${store.name}`] ? "show" : ""
-                      }`}
-                    >
-                      <ul>
-                        <li>
-                          <Link
-                            to={`/brand/${store.name}`}
-                            onClick={closeSidebar}
-                          >
-                            See all {store.name}
-                          </Link>
-                        </li>
-                        {selectedStoreCoupons.map((coupon) => (
-                          <li key={coupon.id}>
-                            <Link
-                              to={`/brand/${store.name}`}
-                              onClick={closeSidebar}
-                            >
-                              {coupon.title}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </li>
-
-          {/* Main Categories Dropdown */}
-          <li className="sidebar-item dropdown">
-            <button
-              className="sidebar-button"
-              onClick={() => {
-                toggleDropdown("Categories");
-                closeOtherDropdowns("Categories"); // Ensure it doesn't close nested dropdowns
-              }}
-            >
-              <i className="icon-category">
-                <FaList />
-              </i>{" "}
-              Categories{" "}
-              <i className="icon-dropdownshaka">
-                <FaAngleDown />
-              </i>
-            </button>
-            <div
-              className={`dropdown-content ${
-                openDropdowns["Categories"] ? "show" : ""
-              }`}
-            >
-              <ul>
-                {categories.map((category) => (
-                  <li key={category.id} className="sidebar-item dropdown">
-                    <button
-                      className="nested-sidebar-button"
-                      onClick={() => {
-                        toggleNestedDropdown("Categories", category.name);
-                        // Do not close nested dropdowns, only toggle on click
-                        handleCategoryClick(category.id);
-                        getCategoryData(category.id);
-                      }}
-                    >
-                      <i className={category.icon}></i> {category.name}{" "}
-                      <i className="icon-dropdownshaka">
-                        <FaAngleDown />
-                      </i>
-                    </button>
-                    <div
-                      className={`dropdown-content ${
-                        openDropdowns[`Categories_${category.name}`]
-                          ? "show"
-                          : ""
-                      }`}
-                    >
-                      <ul>
-                        <li>
-                          <Link
-                          // to={`/categorycoupon/${category.name}`}
-                          to={{
-                            pathname: "/categorycoupon", // base path for the CategoryCouponPage
-                            search: `?category=${category.name}`, // constructing the query parameters
-                          }}
-                            onClick={closeSidebar}
-                          >
-                            See all {category.name}
-                          </Link>
-                        </li>
-                        {categoryData.map((coupon) => (
-                          <li key={coupon.id}>
-                            <Link
-                              to={{
-                                pathname: "/categorycoupon", // base path for the CategoryCouponPage
-                                search: `?category=${category.name}`, // constructing the query parameters
-                              }}
-                              onClick={closeSidebar}
-                            >
-                              {coupon.title}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </li>
-        </ul>
       </div>
-
-      {/* hggggggggggggg */}
+      {/* endsidebar */}
     </nav>
   );
 }

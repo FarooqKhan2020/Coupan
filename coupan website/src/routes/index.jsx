@@ -44,10 +44,16 @@ const router=createBrowserRouter([
 
             },
             {
-                path: 'categorycoupon/:categorycouponName',
-                // path: 'categorycoupon/',
-                element: <CategoryCouponPage/>,
-
+                path: 'categorycoupon',  // base path, no parameters in the path
+                element: <CategoryCouponPage />,
+                loader: ({ request }) => {
+                    const url = new URL(request.url);
+                    const category = url.searchParams.get('category');
+                    const store = url.searchParams.get('store');
+                    const search = url.searchParams.get('search');
+                    const highlight = url.searchParams.get('highlight');
+                    return { category, store, search, highlight}; // pass these to the component as needed
+                },
             },
             {
                 path: 'contactus/',

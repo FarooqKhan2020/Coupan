@@ -15,7 +15,7 @@ const CodePopup = ({ code, popupModal, onClose }) => {
   const [showRequirements, setShowRequirements] = useState(false);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(offer.code).then(() => {
+    navigator.clipboard.writeText(code.code).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     });
@@ -53,7 +53,7 @@ const CodePopup = ({ code, popupModal, onClose }) => {
               {copied ? " Copied!" : " Copy"}
             </button>
           </div>
-          <Link to={code.link}>
+          <Link to={code.link}  target="_blank">
             <button className="code-popup-button" onClick={handleCopyAndVisit}>
               Copy voucher & visit shop
             </button>
@@ -105,14 +105,19 @@ const CodePopup = ({ code, popupModal, onClose }) => {
         </div>
         <div
           className="code-popup-footer"
+          // style={{
+          //   backgroundImage: `url(${apiUrl + popupModal.background_image})`, 
+          //   backgroundSize: "cover",
+          //   backgroundPosition: "center",
+          // }}
           style={{
-            backgroundImage: `url(${apiUrl + popupModal.background_image})`, // Set background image from API
+            backgroundImage: `url(${popupModal?.background_image ? apiUrl + popupModal.background_image : 'default-image-url'})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
         >
           {/* <h3>Redeem vouchers automatically with savably</h3> */}
-          <Link to={code.link}>
+          <Link to={popupModal.link} target="_blank"> 
             <button className="code-activate-button">
               Activate now for free
             </button>

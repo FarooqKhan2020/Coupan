@@ -45,3 +45,127 @@
     margin: 0;
   }
   
+
+  /* Popup Overlay */
+.review-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* High z-index to overlay all content */
+}
+
+/* Popup Content */
+.popup-content {
+  background: #fff; /* White background */
+  padding: 20px;
+  border-radius: 8px; /* Rounded corners */
+  width: 400px; /* Fixed width */
+  max-width: 90%; /* Responsive on smaller screens */
+  position: relative; /* For positioning the close button */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Soft shadow */
+}
+
+/* Close Button */
+.close-popup {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--btn-primary-hover); /* Matching color with the submit button */
+  color: #fff; /* White text */
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+}
+
+.close-popup:hover {
+  background: var(--primary) /* Slightly darker on hover */
+}
+
+/* Popup Title */
+.popup-content h2 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #333; /* Darker title color */
+  text-align: center; /* Centered title */
+}
+
+/* Form Group */
+.form-group {
+  margin-bottom: 15px; /* Space between elements */
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Dropdown */
+.form-group select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd; /* Light border */
+  border-radius: 4px; /* Rounded corners */
+  font-size: 1rem;
+}
+
+/* Textarea */
+.form-group textarea {
+  width: 100%;
+  height: 100px; /* Fixed height */
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  resize: none; /* Disable resizing */
+}
+
+/* Submit Button */
+.btn-primary {
+  padding: 10px;
+ background-color: var(--btn-primary-hover); /* Matching button color */
+  color: #fff;
+  border: none;
+  font-weight: 500;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary); /* Slightly darker on hover */
+}
+
+/* Media Queries for Smaller Screens */
+@media (max-width: 480px) {
+  .popup-content {
+    width: 90%; /* Almost full width on small screens */
+    padding: 15px; /* Smaller padding */
+  }
+
+  .btn-primary {
+    font-size: 0.9rem; /* Slightly smaller font size */
+  }
+}
+
+
+/* Style the stars inside the dropdown */
+#rating {
+  color: gold;
+}
+

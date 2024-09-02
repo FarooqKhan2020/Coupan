@@ -77,12 +77,17 @@ const OfferPopup = ({ storeName, popupModal, offer, onClose }) => {
         </div>
         <div
           className="offer-popup-footer"
+          // style={{
+          //   backgroundImage: `url(${apiUrl + popupModal.background_image})`, // Set background image from API
+          //   backgroundSize: "cover",
+          //   backgroundPosition: "center",
+          // }}
           style={{
-            backgroundImage: `url(${apiUrl + popupModal.background_image})`, // Set background image from API
+            backgroundImage: `url(${popupModal?.background_image ? apiUrl + popupModal.background_image : 'default-image-url'})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
-        >
+>
           <Link to={popupModal.link} target="_blank">
             <button className="offer-activate-button">
               Activate now for free

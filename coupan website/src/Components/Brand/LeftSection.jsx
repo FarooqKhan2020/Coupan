@@ -19,6 +19,7 @@ const LeftSection = ({
   storeName,
   storedescription,
   featureStoreNames,
+  storeId,
 }) => {
   const countContainers = (type) => {
     return containers.filter((container) => container.highlight == type).length;
@@ -41,6 +42,7 @@ const LeftSection = ({
         logo={bannerImage}
         totalReviews={totalReviews}
         averageRating={averageRating}
+        storeId={storeId}
       />
       {/* <CouponType
         selectedType={selectedType}

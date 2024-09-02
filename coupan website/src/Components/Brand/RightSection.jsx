@@ -15,7 +15,7 @@ const RightSection = ({
   popupModal,
   simlarcoupons,
 }) => {
-  // console.log(containerTest, "containerTest");
+
   const countContainers = (type) => {
     return containerTest.filter((container) => container.highlight == type).length;
   };

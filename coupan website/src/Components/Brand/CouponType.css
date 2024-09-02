@@ -61,7 +61,10 @@
   }
   
   .coupon-type {
-    margin-left: 75px;
+    /* margin-left: 75px; */
+    margin-left: 3%;
+    padding: 20px;
+    padding-bottom: 0;
   }
   
   .coupon-type h3 {

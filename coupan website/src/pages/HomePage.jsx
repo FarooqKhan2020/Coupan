@@ -48,7 +48,7 @@ export default function HomePage(){
         <>
             <CarouselComponent data={data.stores}/>
             <Carousel data={data.sliders}/>
-            <CardComponent data={data.categoryCoupon}/>
+            <CardComponent data={data.categoryCoupon} popupModal={data.popupModal}/>
             <StatsSection data={data.statistic}/>
             <Categories data={data.categories}/>
             {data.homepageBannerOne && <PromiseComponent data={data.homepageBannerOne} />}

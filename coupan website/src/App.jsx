@@ -17,11 +17,13 @@ function App() {
     const [favicon, setFavicon] = useState('');
     const [footer, setFooter] = useState('');
     const [footerSocialLinks, setFooterSocialLinks] = useState([]);
+    const [themeColors, setThemeColors] = useState();
+    
     useEffect(() => {
         // Fetch the settings from your API
         axios.get(`${apiUrl}api/settings`)
             .then(response => {
-                const { logo, footer_logo, favicon } = response.data.setting;
+                const { logo, footer_logo, favicon ,theme_one,theme_two} = response.data.setting;
                 const{footer}=response.data;
                 const {footerSocialLinks}=response.data;
                 setFooterSocialLinks(footerSocialLinks);
@@ -29,8 +31,10 @@ function App() {
                 setLogo(logo);
                 setFooterLogo(footer_logo);
                 setFavicon(favicon);
+                setThemeColors({ themeOne: theme_one, themeTwo: theme_two });
 
-
+                document.documentElement.style.setProperty('--primary', theme_one);
+                document.documentElement.style.setProperty('--btn-primary-hover', theme_two);
                 // Update the favicon in the index.html
                 if (favicon) {
                     const faviconLink = document.getElementById('favicon');
@@ -44,24 +48,6 @@ function App() {
             });
     }, []);
 
-    // color api testing
-    const [themeColors, setThemeColors] = useState({ themeOne: '#FFC0CB', themeTwo: ' #FF69B4' });
-
-    useEffect(() => {
-      axios.get('http://coupon.gynerium.com/api/settings')
-        .then(response => {
-          const { theme_one, theme_two } = response.data;
-          setThemeColors({ themeOne: theme_one, themeTwo: theme_two });
-          
-          // Update CSS variables
-          document.documentElement.style.setProperty('--theme-one', theme_one);
-          document.documentElement.style.setProperty('--theme-two', theme_two);
-        })
-        .catch(error => {
-          console.error('Error fetching theme colors:', error);
-        });
-    }, []);
-//   color api testing
 
 
   return (

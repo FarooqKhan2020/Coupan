@@ -26,6 +26,7 @@ const MainComponent = () => {
   const [storepageBannerTwo, setStorepageBannerTwo] = useState("");
   const [storepageBannerOne, setStorepageBannerOne] = useState("");
   const [simlarcoupons, setSimilarcoupons] = useState([]);
+  const [storeId, setStoreId] = useState("");
   useEffect(() => {
     setBrandName(brand);
   // Update brandName when brand changes
@@ -41,6 +42,7 @@ const MainComponent = () => {
         const featureStores = response.data.featureStores;
         const simlarcoupons = response.data.simlarcoupons;
         const popupModal = response.data.popupModal;
+        const storeId = response.data.store.id;
         const topStores = response.data.topStores;
         const storepageBannerTwo = response.data.storepageBannerTwo;
         const storepageBannerOne = response.data.storepageBannerOne;
@@ -63,6 +65,7 @@ const MainComponent = () => {
         setStorepageBannerTwo(storepageBannerTwo);
         setStorepageBannerOne(storepageBannerOne);
         setTotalReviews(totalReviews);
+        setStoreId(storeId);
         setAverageRating(averageRating.toFixed(1));
        
         
@@ -82,7 +85,6 @@ const MainComponent = () => {
   const filteredContainers = selectedType === 0
     ? storecoupons
     : storecoupons.filter(container => container.highlight == selectedType);
-// console.log(simlarcoupons, "similarCoupons---main");
 
   return (
     <div>
@@ -99,6 +101,7 @@ const MainComponent = () => {
         featureStoreNames={featureStoreNames}
         storepageBannerTwo={storepageBannerTwo}
         storepageBannerOne={storepageBannerOne}
+        storeId={storeId}
       />
       <RightSection 
         selectedType={selectedType} 

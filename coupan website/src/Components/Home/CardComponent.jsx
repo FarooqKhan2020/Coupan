@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from "react";
 import "./CardComponent.css";
 import { Link } from "react-router-dom";
+import OfferPopup from "../Brand/OfferPopup";
+import CodePopup from "../Brand/CodePopup";
 // import Loader from "../Loader/Loader";
 
 
-const CardComponent = ({ data }) => {
+const CardComponent = ({ data, popupModal }) => {
   const apiUrl = import.meta.env.VITE_API_URL;
   const [activeCategoryId, setActiveCategoryId] = useState(null);
   const [rotatingCategoryId, setRotatingCategoryId] = useState(null);
-
+  const [expandedCouponIndex, setExpandedCouponIndex] = useState(null);
+  const [selectedOffer, setSelectedOffer] = useState(null);
+  const [selectedCodeOffer, setSelectedCodeOffer] = useState(null);
   const handleCategoryClick = (categoryId) => {
     setActiveCategoryId(categoryId);
     setRotatingCategoryId(categoryId);
@@ -17,7 +21,7 @@ const CardComponent = ({ data }) => {
     }, 500); // Adjust this to match your rotation duration
   };
   // State to manage expanded description
-  const [expandedCouponIndex, setExpandedCouponIndex] = useState(null);
+
   useEffect(() => {
     if (data && data.length > 0) {
       setActiveCategoryId(data[0].id);
@@ -32,6 +36,12 @@ const CardComponent = ({ data }) => {
   const activeCategory = data.find(
     (category) => category.id === activeCategoryId
   );
+
+  // if (!activeCategory) {
+  //   return <div>No data found.</div>;
+  // }
+
+  
   const getHighlightLabel = (highlight) => {
     switch (highlight) {
       case 1:
@@ -47,6 +57,19 @@ const CardComponent = ({ data }) => {
 
   const toggleDescription = (index) => {
     setExpandedCouponIndex(expandedCouponIndex === index ? null : index);
+  };
+
+  const handleViewOffer = (coupon) => {
+    if (coupon.code === null) {
+      setSelectedOffer(coupon);
+    } else {
+      setSelectedCodeOffer(coupon);
+    }
+  };
+
+  const handleClosePopup = () => {
+    setSelectedOffer(null);
+    setSelectedCodeOffer(null);
   };
 
   return (
@@ -132,14 +155,21 @@ const CardComponent = ({ data }) => {
 
                {/* Conditional Rendering for Buttons */}
                {coupon.code === null ? (
-                <Link to={coupon.link} rel="noopener noreferrer" target="_blank">
-                  <button className="card-button">
+                // this is *****link-tag****
+                <Link to={coupon.link} rel="noopener noreferrer" target="_blank">   
+                  <button className="card-button"
+                  onClick={() => handleViewOffer(coupon)}
+                  >
                     See the promo
                   </button>
                 </Link>
+                // this is *****link-tag-end****
               ) : (
+                // this is *****link-tag****
                 <Link to={coupon.link} rel="noopener noreferrer" target="_blank">
-                  <button className="coupon-code-button">
+                  <button className="coupon-code-button"
+                  onClick={() => handleViewOffer(coupon)}
+                  >
                     <span className="coupon-inner-text">{coupon.code}</span>
                     <span className="coupon-blue-wrap">
                       View code
@@ -147,6 +177,7 @@ const CardComponent = ({ data }) => {
                     </span>
                   </button>
                 </Link>
+                // this is *****link-tag-end****
               )} 
 
 
@@ -169,6 +200,15 @@ const CardComponent = ({ data }) => {
           ))}
         </div>
       </div>
+    
+          {/* Offer Popups */}
+          {selectedOffer && (
+        <OfferPopup offer={selectedOffer} popupModal={popupModal} onClose={handleClosePopup} />
+      )}
+
+      {selectedCodeOffer && (
+        <CodePopup code={selectedCodeOffer} onClose={handleClosePopup}  popupModal={popupModal}/>
+      )}
     </div>
   );
 };
