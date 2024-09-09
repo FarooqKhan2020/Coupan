@@ -27,7 +27,6 @@ const sampleCodeOffer = {
   logo: amazonLogo,
   title: "Amazon",
   description: "33 percent voucher at Amazon",
-  // code: "03SDDeal",
   url: "#",
   expiryDate: "30 September 2024",
   minimumPurchaseValue: "79€ minimum purchase value",
