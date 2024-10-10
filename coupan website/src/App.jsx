@@ -3,8 +3,6 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import LogoBar1 from './Components/Home/LogoBar1';
 import Navbar from './Components/Home/Navbar';
-
-
 import Footer from './Components/Home/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 

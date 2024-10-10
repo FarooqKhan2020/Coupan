@@ -4,13 +4,15 @@ import { FaAngleLeft } from "react-icons/fa6";
 import { FaAngleRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { MdKeyboardArrowRight } from "react-icons/md";
-
-const Carousel = ({data}) => {
+import { useTranslation } from "react-i18next";
+const Carousel = ({ data }) => {
   const apiUrl = import.meta.env.VITE_API_URL;
-    // Find the initial slide based on serial
-  const initialSlide = data.findIndex(slide => slide.serial === 1); // Adjust the serial value as needed
-
-  const [currentSlide, setCurrentSlide] = useState(initialSlide >= 0 ? initialSlide : 0);
+  // Find the initial slide based on serial
+  const initialSlide = data.findIndex((slide) => slide.serial === 1); // Adjust the serial value as needed
+  const [currentSlide, setCurrentSlide] = useState(
+    initialSlide >= 0 ? initialSlide : 0
+  );
+  const { t } = useTranslation();
 
   const nextSlide = () => {
     setCurrentSlide((currentSlide + 1) % data.length);
@@ -23,7 +25,6 @@ const Carousel = ({data}) => {
   if (!Array.isArray(data) || data.length <= 0) {
     return null;
   }
-
   return (
     <div className="mainCarousel">
       <div className="carousel">
@@ -36,21 +37,33 @@ const Carousel = ({data}) => {
         <div className="carousel-content">
           <div
             className="carousel-background"
-            style={{ backgroundImage: `url(${apiUrl+data[currentSlide].image})` }}
+            style={{
+              backgroundImage: `url(${apiUrl + data[currentSlide].image})`,
+            }}
           >
-            <Link to={data[currentSlide].link} target={"_blank"} className="carousel-logo">
-              <img src={apiUrl+data[currentSlide].image} alt="Logo" />
+            <Link
+              to={data[currentSlide].link}
+              target={"_blank"}
+              className="carousel-logo"
+            >
+              <img src={apiUrl + data[currentSlide].image} alt="Logo" />
             </Link>
           </div>
           <div className="carousel-text">
             <div className="carousel-description">
               <p className="header">{data[currentSlide].title}</p>
-              <h1 className="percentage">{data[currentSlide].offer}</h1>
+              {/* <h1 className="percentage">{data[currentSlide].offer}</h1> */}
+              <h1 className="percentage">
+                {data[currentSlide].offer > 0
+                  ? `${data[currentSlide].offer}%`
+                  : null}
+              </h1>
               <p className="description">{data[currentSlide].description}</p>
               {/* <button>{slides[currentSlide].buttonText}</button> */}
 
-              <Link target={"_blank"}  to={data[currentSlide].link}>
-                <button> See The Offers <MdKeyboardArrowRight />
+              <Link target={"_blank"} to={data[currentSlide].link}>
+                <button>
+                  {t("see_offers")} <MdKeyboardArrowRight />
                 </button>
               </Link>
             </div>

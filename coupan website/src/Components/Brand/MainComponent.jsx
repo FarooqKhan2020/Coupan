@@ -8,6 +8,7 @@ import Summary from './Summary';
 import PromoTable from './PromoTable';
 import FAQComponent from './FAQComponent';
 import ShopsComponent from './ShopsComponent';
+import MobileAddsStore from './MobileAddsStore';
 
 const MainComponent = () => {
   const apiUrl = import.meta.env.VITE_API_URL;
@@ -27,6 +28,8 @@ const MainComponent = () => {
   const [storepageBannerOne, setStorepageBannerOne] = useState("");
   const [simlarcoupons, setSimilarcoupons] = useState([]);
   const [storeId, setStoreId] = useState("");
+  const [faqs, setFaqs] = useState([]);
+  const [storeData, setStoreData] = useState({});
   useEffect(() => {
     setBrandName(brand);
   // Update brandName when brand changes
@@ -46,6 +49,7 @@ const MainComponent = () => {
         const topStores = response.data.topStores;
         const storepageBannerTwo = response.data.storepageBannerTwo;
         const storepageBannerOne = response.data.storepageBannerOne;
+        const faqs = response.data.store.faqs || [];
         const reviews = storeData.reviews || [];
         const totalReviews = reviews.length;
         const averageRating = totalReviews > 0 
@@ -56,7 +60,7 @@ const MainComponent = () => {
         const topStore = topStores.map(store => store.store.name);
         setTopStores(topStore);
         setFeatureStoresName(featureStores);
-         setPopupModal(popupModal);
+        setPopupModal(popupModal);
         setSimilarcoupons(simlarcoupons);
         setBannerImage(apiUrl + `public/${storeData.banner}`);
         setstoreName(storeData.name);
@@ -67,25 +71,22 @@ const MainComponent = () => {
         setTotalReviews(totalReviews);
         setStoreId(storeId);
         setAverageRating(averageRating.toFixed(1));
-       
-        
+        setStoreData(storeData);
+       setFaqs(faqs);
       } catch (error) {
         console.error("Error fetching the data", error);
       }
     };
-
     if (brandName) {
       fetchData();
     }
   }, [brandName]);
-
   const handleRadioChange = (type) => {
     setSelectedType(type);
   };
   const filteredContainers = selectedType === 0
     ? storecoupons
     : storecoupons.filter(container => container.highlight == selectedType);
-
   return (
     <div>
     <div className="main-component">
@@ -102,22 +103,34 @@ const MainComponent = () => {
         storepageBannerTwo={storepageBannerTwo}
         storepageBannerOne={storepageBannerOne}
         storeId={storeId}
+        simlarcoupons={simlarcoupons}
       />
       <RightSection 
         selectedType={selectedType} 
         handleRadioChange={handleRadioChange}
         containers={filteredContainers} containerTest={storecoupons}
         storeName ={storeName}
+        storedescription={storedescription}
         bannerImage={bannerImage} // Pass the banner image to LeftSection
         storecoupons={storecoupons}
         popupModal={popupModal}
         simlarcoupons={simlarcoupons}
+        totalReviews={totalReviews}
+        averageRating={averageRating}
+        storeData={storeData}
 
       />
     </div>
-    <Summary/>
-    <PromoTable/>
-    <FAQComponent/>
+     
+    <MobileAddsStore
+    storepageBannerOne={storepageBannerOne}  
+    storepageBannerTwo={storepageBannerTwo}
+    featureStoreNames={featureStoreNames}
+    simlarcoupons={simlarcoupons}
+    />
+    {/* <Summary/> */}
+    {/* <PromoTable/> */}
+    <FAQComponent faqs={faqs}/>
     <ShopsComponent featureStoreNames={topStores}/>
 
     </div>

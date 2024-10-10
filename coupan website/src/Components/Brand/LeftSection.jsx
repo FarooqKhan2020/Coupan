@@ -20,6 +20,7 @@ const LeftSection = ({
   storedescription,
   featureStoreNames,
   storeId,
+  simlarcoupons,
 }) => {
   const countContainers = (type) => {
     return containers.filter((container) => container.highlight == type).length;
@@ -63,7 +64,7 @@ const LeftSection = ({
         storepageBannerTwo={storepageBannerTwo}
       />
       <SecondCardComponent storepageBannerOne={storepageBannerOne} />
-      <SimilarStores featureStoreNames={featureStoreNames} />
+      <SimilarStores featureStoreNames={featureStoreNames} simlarcoupons={simlarcoupons}/>
     </aside>
   );
 };

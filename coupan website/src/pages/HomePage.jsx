@@ -27,6 +27,7 @@ export default function HomePage(){
         sections: [],
         popupModal: null,
         statistic:[],
+
     });
     useEffect(() => {
         const apiUrl = import.meta.env.VITE_API_URL;

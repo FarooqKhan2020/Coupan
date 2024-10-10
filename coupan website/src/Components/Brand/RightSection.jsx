@@ -10,10 +10,14 @@ const RightSection = ({
   containerTest,
   containers,
   storeName,
+  storedescription,
   bannerImage,
   storecoupons,
   popupModal,
   simlarcoupons,
+  totalReviews,
+  averageRating,
+  storeData,
 }) => {
 
   const countContainers = (type) => {
@@ -21,6 +25,13 @@ const RightSection = ({
   };
   return (
     <section className="right-section">
+      <BrandInfo 
+      storeName={storeName} 
+      storedescription={storedescription}
+      bannerImage={bannerImage} 
+      totalReviews={totalReviews}
+      averageRating={averageRating}
+      />
       <CouponType
         selectedType={selectedType}
         handleRadioChange={handleRadioChange}
@@ -31,7 +42,6 @@ const RightSection = ({
           exclusive: countContainers(3),
         }}
       />
-      <BrandInfo storeName={storeName} bannerImage={bannerImage} />
       <ContainerList
         containers={containers}
         storeName={storeName}
@@ -39,6 +49,7 @@ const RightSection = ({
         bannerImage={bannerImage}
         popupModal={popupModal}
         simlarcoupons={simlarcoupons}
+        storeData={storeData}
       />
     </section>
   );

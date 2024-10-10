@@ -1,3 +1,12 @@
+.main-class-logocard .main-aside{
+  margin: 0px;
+  display: none;
+}
+.main-class-logocard .main-aside .logo-card{
+  width: 300px;
+  margin: auto;
+}
+
 .brand-info {
   padding-top: 38px;
   width: 88%;
@@ -24,6 +33,9 @@
   font-size: 1.5rem;
 }
 
+.TextComponent-mobile .text-component{
+  display: none;
+}
 
 @media (max-width: 992px) {
    .brand-info .bd-img {
@@ -31,7 +43,22 @@
   }
   .brand-info {
     margin-right: auto;
+    justify-content: center;
+    padding: 0;
+    margin-top: 15px;
   }
+  .main-class-logocard .main-aside{
+    display: block;
+  }
+  .TextComponent-mobile .text-component {
+    display: block;
+    width: 88%;
+    margin: auto;
+}
+  .TextComponent-mobile .text-component h3,p{
+    text-align: center;
+  }
+
 }
 
 @media (max-width: 576px) {
@@ -48,5 +75,8 @@
 }
 .brand-info p{
   margin-bottom: 0px;
+}
+.main-class-logocard .main-aside .logo-card{
+  width: 75%;
 }
 }

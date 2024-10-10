@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Loader from '../Loader/Loader';
-
+import NotFound from "../NotFound/NotFound";
+import { useTranslation } from 'react-i18next';
 const PrivacyPolicy = () => {
     const [privacypolicy, setPrivacypolicy] = useState(null);
     const [loading, setLoading] = useState(true);
     const apiUrl = import.meta.env.VITE_API_URL;
+    const { t } = useTranslation();
 
     useEffect(() => {
         const fetchPrivacypolicy = async () => {
@@ -29,7 +31,8 @@ const PrivacyPolicy = () => {
     }
 
     if (!privacypolicy) {
-        return <div>No content available.</div>;
+        // return <div>No content available.</div>;
+        return <div className="mian_not_found"><NotFound/></div>;
     }
 
     return (
@@ -39,9 +42,9 @@ const PrivacyPolicy = () => {
                 style={{ backgroundImage: `url(${apiUrl + privacypolicy.privacy_banner})` }}
             >
                 <div className="about-us-overlay">
-                    <h1>Privacy Policy</h1>
+                    <h1>{t('privacy_policy')}</h1>
                     <p className="about-us-breadcrumbs">
-                        <Link to="/">Home</Link> ➜ <span>Privacy Policy</span>
+                        <Link to="/">{t('home')}</Link> ➜ <span>{t('privacy_policy')}</span>
                     </p>
                 </div>
             </div>
@@ -49,7 +52,7 @@ const PrivacyPolicy = () => {
                 {privacypolicy && privacypolicy.privacy_policy ? (
                     <div dangerouslySetInnerHTML={{ __html: privacypolicy.privacy_policy }} />
                 ) : (
-                    <p>No content available</p>
+                    <p>{t('not_available')}</p>
                 )}
             </div>
         </div>

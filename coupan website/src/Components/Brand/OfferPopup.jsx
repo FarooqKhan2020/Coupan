@@ -4,10 +4,10 @@ import "./OfferPopup.css";
 // import { FaCheckCircle } from "react-icons/ai";
 import { FaCheckCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 const apiUrl = import.meta.env.VITE_API_URL;
-
-const OfferPopup = ({ storeName, popupModal, offer, onClose }) => {
-
+const OfferPopup = ({ popupModal, offer, onClose, storeData,}) => {
+  const { t } = useTranslation();
   return (
     <div className="offer-popup-overlay">
       <div className="offer-popup-content">
@@ -15,50 +15,46 @@ const OfferPopup = ({ storeName, popupModal, offer, onClose }) => {
           <FaTimes />
         </button>
         <div className="offer-popup-header">
-          <img src={apiUrl + offer.banner} alt="Logo" className="popup-logo" />
+          <img 
+        //  src={apiUrl + (offer?.store?.banner ? offer.store.banner : storeData?.banner)}
+         src={apiUrl +(offer?.store?.banner ? offer.store.banner : storeData?.banner)}
+          alt="Logo" className="popup-logo" />
         </div>
         <div className="offer-popup-body">
           <h2>{offer.title}</h2>
           {/* <p>{offer.description}</p> */}
 
           <Link to={offer.link} className="offer-popup-button" target="_blank">
-            To The Offer
+            {t('to-the-offer')}
           </Link>
-          <p>Valid without coupon code.</p>
+          <p>{t('valid_without_promo_code')}</p>
           <div className="offer-popup-conditions">
-            <h3>Details</h3>
+            <h3>{t('details')}</h3>
             <ul>
-              {offer.highlight !== null && (
+              {offer.highlight !== 0 && (
                 <li>
                   <FaCheckCircle /> Type of action:{" "}
                   {offer.highlight === 1
-                    ? "Featured"
-                    : offer.highlight === 2
-                    ? "Verified"
-                    : offer.highlight === 3
-                    ? "Exclusive"
-                    : "All"}
+                    ? t("featured")
+                    : code.highlight === 2
+                    ? t("verified")
+                    : code.highlight === 3
+                    ? t("exclusive")
+                    : t("all")}
                 </li>
               )}
 
-{offer.highlight !== null && (
+{offer.offer !== null && (
                 <li>
-                  <FaCheckCircle /> Type of action:{" "}
-                  {offer.highlight === 1
-                    ? "Featured"
-                    : offer.highlight === 2
-                    ? "Verified"
-                    : offer.highlight === 3
-                    ? "Exclusive"
-                    : "All"}
+                  <FaCheckCircle /> {t('price_reduction')} {offer.offer}%
                 </li>
-              )} 
+              )}
 
               {/* <li> <FaCheckCircle />Start: {offer.expire_date}</li> */}
 
               {offer.start_date && (
                 <li>
-                  <FaCheckCircle /> Start:{" "}
+                  <FaCheckCircle /> {t('start')}{" "}
                   {new Date(offer.start_date).toLocaleDateString()}
                 </li>
               )}
@@ -67,7 +63,7 @@ const OfferPopup = ({ storeName, popupModal, offer, onClose }) => {
 
               {offer.expire_date && (
                 <li>
-                  <FaCheckCircle /> Expire:{" "}
+                  <FaCheckCircle /> {t('expire')}{" "}
                   {new Date(offer.expire_date).toLocaleDateString()}
                 </li>
               )}
@@ -90,7 +86,7 @@ const OfferPopup = ({ storeName, popupModal, offer, onClose }) => {
 >
           <Link to={popupModal.link} target="_blank">
             <button className="offer-activate-button">
-              Activate now for free
+            {t("activate_now_for_free")}
             </button>
           </Link>
         </div>

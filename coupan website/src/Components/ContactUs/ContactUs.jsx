@@ -3,13 +3,14 @@ import "./ContactUs.css";
 import { Link } from "react-router-dom";
 import Loader from "../Loader/Loader";
 import { FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa"; // Assuming you're using React Icons
-import AboutUs from "../AboutUs/AboutUs";
+import NotFound from "../NotFound/NotFound";
+import { useTranslation } from 'react-i18next';
 
 const ContactUs = () => {
   const [contactus, setContactus] = useState(null); // Initialize as null since it's an object
   const [loading, setLoading] = useState(true);
   const apiUrl = import.meta.env.VITE_API_URL; // Ensure this is defined correctly
-
+  const { t } = useTranslation(); // Hook to get the translation function
   useEffect(() => {
     const fetchContactus = async () => {
       try {
@@ -43,7 +44,8 @@ const ContactUs = () => {
   }
 
   if (!contactus) {
-    return <div>No content available.</div>; // Handle case when there's no data
+    return <div className="mian_not_found"><NotFound/></div>;
+    // return <div>No content available.</div>; // Handle case when there's no data
   }
 
   const contactInfo = [
@@ -64,6 +66,7 @@ const ContactUs = () => {
     },
   ];
 
+
   return (
     <>
       <div
@@ -73,9 +76,9 @@ const ContactUs = () => {
         }}
       >
         <div className="about-us-overlay">
-          <h1>Terms & Conditions</h1>
+          <h1>{t('contact_us')}</h1>
           <p className="about-us-breadcrumbs">
-            <Link to="/">Home</Link> ➜ <span>Contact Us</span>
+            <Link to="/">{t('home')}</Link> ➜ <span>{t('contact_us')}</span>
           </p>
         </div>
       </div>

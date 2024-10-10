@@ -8,68 +8,45 @@ import { IoIosPhonePortrait } from "react-icons/io";
 import { CiLocationOn } from "react-icons/ci";
 import { CiMail } from "react-icons/ci";
 import { FaRegCopyright } from "react-icons/fa6";
+import { useTranslation } from 'react-i18next';
 
 const Footer = ({ footerLogo, footer, footerSocialLinks }) => {
   const apiUrl = import.meta.env.VITE_API_URL;
+  const { t } = useTranslation();
   return (
     <>
       <footer className="footer">
         <div className="footer-section">
-          <h4>Help</h4>
+          <h4>{t('help')}</h4>
           <ul>
-            <li>
+            {/* <li>
               <Link to="/store">All Stores</Link>
             </li>
             <li>
               <Link to="/Category">All Categories</Link>
+            </li> */}
+            <li>
+              <Link to="/contactus">{t('contact_us')}</Link>
             </li>
             <li>
-              <Link to="/contactus">Contact Us</Link>
+              <Link to="/privacypolicy">{t('privacy_policy')}</Link>
             </li>
             <li>
-              <Link to="/privacypolicy">Privacy/Policy</Link>
-            </li>
-            <li>
-              <Link to="/termscondition">Terms & Conditions</Link>
+              <Link to="/termscondition">{t('terms_condition')}</Link>
             </li>
           </ul>
         </div>
         <div className="footer-section">
-          <h4>Pursue</h4>
+          <h4>{t('pursue')}</h4>
           <ul>
             <li>
-              <Link to="/aboutus">About Us</Link>
+              <Link to="/aboutus">{t('About_us')}</Link>
             </li>
             <li>
-              <Link
-                to={{
-                  pathname: "/categorycoupon", // base path for the CategoryCouponPage
-                  search: `?highlight=${1}`, // constructing the query parameters
-                }}
-              >
-                Featured Coupons
-              </Link>
-            </li>
-
-            <li>
-              <Link
-                to={{
-                  pathname: "/categorycoupon", // base path for the CategoryCouponPage
-                  search: `?highlight=${2}`, // constructing the query parameters
-                }}
-              >
-                Verified Coupons
-              </Link>
+              <Link to="/store">{t('All_Stores')}</Link>
             </li>
             <li>
-              <Link
-                to={{
-                  pathname: "/categorycoupon", // base path for the CategoryCouponPage
-                  search: `?highlight=${3}`, // constructing the query parameters
-                }}
-              >
-                Exclusive Coupons
-              </Link>
+              <Link to="/Category">{t('all_categories')}</Link>
             </li>
           </ul>
         </div>
@@ -96,12 +73,6 @@ const Footer = ({ footerLogo, footer, footerSocialLinks }) => {
               </span>
             </li>
           </ul>
-          {/* <p>
-          <IoIosPhonePortrait/> {footer.phone}.<br/>
-          <CiMail/> {footer.email}.<br/>
-          <CiLocationOn/> {footer.address}.<br/>
-          <FaRegCopyright/> {footer.copyright}
-        </p> */}
 
           <div className="footer-icons">
             {footerSocialLinks.map((footerSocialLink) => (
@@ -114,12 +85,9 @@ const Footer = ({ footerLogo, footer, footerSocialLinks }) => {
               </Link>
             ))}
           </div>
-
-          {/* <div className="footer-links">
-          <Link to="/">Privacy/Cookies</Link>
-          <Link to="/">Conditions</Link>
-        </div> */}
         </div>
+       
+        {/* <LanguageSelector/> */}
       </footer>
 
       {/* Additional Footer End Section */}
@@ -127,6 +95,7 @@ const Footer = ({ footerLogo, footer, footerSocialLinks }) => {
         <FaRegCopyright />
         {footer.copyright}
       </div>
+      {/* <LanguageSelector/> */}
     </>
   );
 };

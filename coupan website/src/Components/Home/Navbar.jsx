@@ -8,6 +8,8 @@ import Loader from "../Loader/Loader";
 import { Link } from "react-router-dom";
 import NotFound from "../NotFound/NotFound";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import LanguageSelector from "../LanguageSelecctor/LanguageSelector";
 import {
   FaHome,
   FaStore,
@@ -38,7 +40,8 @@ function Navbar({ logo }) {
   // const [categoriesDropdownOpen, setCategoriesDropdownOpen] = useState(false);
   // const [rightNowDropdownOpen, setRightNowDropdownOpen] = useState(false);
   // const [keepRightNowDropdownOpen, setkeepRightNowDropdownOpen] =
-  //   useState(false); // remains open when on right now dropdown
+  //   useState(false); // remains open when on right now dropdown 
+  const { t } = useTranslation(); // Hook to get the translation function
 
   const dropdownRefs = {
     categories: useRef(null),
@@ -150,12 +153,13 @@ function Navbar({ logo }) {
           name: category.name,
           id: category.id,
           icon: category.icon,
-          coupons: category.coupons,
+          coupons: category.coupon_store,
+          slug: category.slug,
         };
       });
 
       let couponsList = response.data.categories.map((category) => {
-        return { id: category.id, coupons: category.coupons };
+        return { id: category.id, coupons: category.coupon_store };
       });
       setCoupons(couponsList);
       setCategories(categories);
@@ -181,11 +185,12 @@ function Navbar({ logo }) {
           id: store.id,
           icon: store.icon,
           coupons: store.coupons,
+          banner: store.banner,
         };
       });
 
       let couponsListstore = response.data.stores.map((store) => {
-        return { id: store.id, coupons: store.coupons };
+        return { id: store.id, coupons: store.coupons, banner: store.banner };
       });
 
       setStoreCoupons(couponsListstore);
@@ -321,6 +326,8 @@ function Navbar({ logo }) {
     },
   ];
   // sidebar code end
+
+  // searchbar
   const [searchQuery, setSearchQuery] = useState(""); // State to handle input
   const navigate = useNavigate(); // Hook to navigate to different routes
 
@@ -332,9 +339,7 @@ function Navbar({ logo }) {
     if (searchQuery.trim()) {
       // Check if the input is not empty
       // Navigate to the categorycoupon route with the search query parameter
-      navigate(
-        `/categorycoupon?search=${encodeURIComponent(searchQuery.trim())}`
-      );
+      navigate(`/store?search=${encodeURIComponent(searchQuery.trim())}`);
     }
   };
 
@@ -363,7 +368,7 @@ function Navbar({ logo }) {
 
           <li className="navbar-item">
             <Link to="/">
-              <button className="navbar-button">Welcome</button>
+              <button className="navbar-button">{t("nav_welcome")}</button>
             </Link>
           </li>
 
@@ -374,7 +379,7 @@ function Navbar({ logo }) {
             onMouseLeave={handlestoresMouseLeave}
           >
             <button className="navbar-button" onClick={togglestoresDropdown}>
-              Stores
+              {t("nav_store")}
               {storesDropdownOpen ? (
                 <FaAngleUp style={{ marginLeft: "3px" }} />
               ) : (
@@ -387,7 +392,7 @@ function Navbar({ logo }) {
               }`}
             >
               <div className="first-section">
-                <p>Popular Stores</p>
+                <p>{t("popular_store")}</p>
 
                 {/* Conditionally render the loader or the list of stores */}
                 {!stores || stores.length === 0 ? (
@@ -411,7 +416,7 @@ function Navbar({ logo }) {
                   target={"_blank"}
                   className="see-all-categories"
                 >
-                  See all Stores
+                  {t("see_all_store")}
                 </Link>
               </div>
 
@@ -421,13 +426,14 @@ function Navbar({ logo }) {
                   .map((store) => (
                     <div key={store.id}>
                       <div className="d-flex justify-content-between align-items-baseline">
-                        <p>{`Top ${store.name} stores`}</p>
+                        {/* <p>{`Top ${store.name} stores`}</p> */}
+                        <p>{t("top_store", { storeName: store.name })}</p>
                         <Link
                           to={`/brand/${store.name}`}
                           target="_blank"
                           className="see-all-clothing-apparel"
                         >
-                          See all {store.name}
+                          {t("see_all")} {store.name}
                         </Link>
                       </div>
 
@@ -444,10 +450,8 @@ function Navbar({ logo }) {
                             >
                               <div className="store-image">
                                 <img
-                                  src={apiUrl + `public/${storeCoupon.banner}`}
-                                  alt={
-                                    storeCoupon.title || "No Title Available"
-                                  }
+                                  src={apiUrl + `public/${store.banner}`}
+                                  alt={store.name || "No Title Available"}
                                 />
                               </div>
                               <span>
@@ -473,7 +477,7 @@ function Navbar({ logo }) {
               className="navbar-button"
               onClick={togglecategoriesDropdown}
             >
-              Categories
+              {t("nav_category")}
               {categoriesDropdownOpen ? (
                 <FaAngleUp style={{ marginLeft: "3px" }} />
               ) : (
@@ -486,7 +490,7 @@ function Navbar({ logo }) {
               }`}
             >
               <div className="first-section">
-                <p>Popular Categories</p>
+                <p>{t("popular_category")}</p>
 
                 {/* Conditionally render the loader or the list of categories */}
                 {!categories || categories.length === 0 ? (
@@ -511,7 +515,7 @@ function Navbar({ logo }) {
                   target={"_blank"}
                   className="see-all-categories"
                 >
-                  See all categories
+                  {t("see_all_category")}
                 </Link>
               </div>
 
@@ -523,20 +527,27 @@ function Navbar({ logo }) {
                       return (
                         <>
                           <div className="d-flex justify-content-between align-items-baseline">
-                            <p>
+                            {/* <p>
                               {selectedCategory
                                 ? `Top ${category.name} categories`
                                 : "Select a category"}
+                            </p> */}
+                            <p>
+                              {selectedCategory
+                                ? t("top_category", {
+                                    categoryName: category.name,
+                                  })
+                                : t("select_category")}
                             </p>
                             <Link
                               to={{
-                                pathname: "/categorycoupon", // base path for the CategoryCouponPage
-                                search: `?category=${category.name}`, // constructing the query parameters
+                                pathname: "/store", // base path for the CategoryCouponPage
+                                search: `?category=${category.id}`, // constructing the query parameters
                               }}
                               target="_blank"
                               className="see-all-clothing-apparel"
                             >
-                              See all {category.name}
+                              {t("see_all")} {category.name}
                             </Link>
                           </div>
 
@@ -548,10 +559,7 @@ function Navbar({ logo }) {
                               {selectedCoupons.map((coupon) => {
                                 return (
                                   <Link
-                                    to={{
-                                      pathname: "/categorycoupon", // base path for the CategoryCouponPage
-                                      search: `?category=${category.name}`, // constructing the query parameters
-                                    }}
+                                    to={`/brand/${coupon.name}`}
                                     key={coupon.id}
                                     className="store-link"
                                     onClick={handleLinkClick}
@@ -560,12 +568,12 @@ function Navbar({ logo }) {
                                       <img
                                         src={apiUrl + `public/${coupon.banner}`}
                                         alt={
-                                          coupon.title || "No Title Available"
+                                          coupon.name || "No Title Available"
                                         }
                                       />
                                     </div>
                                     <span>
-                                      {coupon.title || "No Title Available"}
+                                      {coupon.name || "No Title Available"}
                                     </span>
                                   </Link>
                                 );
@@ -581,13 +589,17 @@ function Navbar({ logo }) {
           </li>
         </ul>
         <div className="d-flex align-items-center mainSM">
+          <div>
+            <LanguageSelector/>          
+            </div>
+            
           <div className="navbar-search">
             <input
               type="text"
               value={searchQuery} // Controlled input
               onChange={handleInputChange} // Handle input change
               onKeyPress={handleKeyPress} // Handle Enter key press
-              placeholder="Search for coupons"
+              placeholder={t('search_for_store')}
               className="search-input"
             />
             <FaSearch className="search-icon" onClick={handleSearch} />{" "}
@@ -611,82 +623,12 @@ function Navbar({ logo }) {
       </div>
 
       {/* sidebar */}
-      {/* <div ref={sidebarRef} className={`sidebar ${sidebarOpen ? "show" : ""}`}>
-        <ul className="sidebar-menu">
-          <li className="sidebar-item">
-            <Link to={"/"}>
-            <button className="sidebar-button" onClick={closeSidebar}>
-              <FaHome /> Welcome
-            </button>
-            </Link>
-          </li>
-          {dropdownData.map((dropdown) => (
-            <li key={dropdown.name} className="sidebar-item dropdown">
-              <button
-                className="sidebar-button"
-                onClick={() => {
-                  toggleDropdown(dropdown.name);
-                  closeOtherDropdowns(dropdown.name);
-                }}
-              >
-                  {dropdown.icon} {dropdown.name} <FaAngleDown />
-              </button>
-              <div
-                className={`dropdown-content ${
-                  openDropdowns[dropdown.name] ? "show" : ""
-                }`}
-              >
-                <ul>
-                  {dropdown.items.map((item) => (
-                    <li key={item.name} className="sidebar-item dropdown">
-                      <button
-                        className="nested-sidebar-button"
-                        onClick={() =>
-                          toggleNestedDropdown(dropdown.name, item.name)
-                        }
-                      >
-                        {item.name} <FaAngleDown />
-                      </button>
-                      <div
-                        className={`dropdown-content ${
-                          openDropdowns[`${dropdown.name}_${item.name}`]
-                            ? "show"
-                            : ""
-                        }`}
-                      >
-                        <ul>
-                          <li>
-                            <Link to="/" onClick={closeSidebar}>
-                              See all {item.name}
-                            </Link>
-                          </li>
-                          {item.products.map((product) => (
-                            <li key={product}>
-                              <Link to="/" onClick={closeSidebar}>
-                                {product}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div> */}
-      {/* endsidebar */}
-
-      {/* kkkkkkkkk */}
-
       <div ref={sidebarRef} className={`sidebar ${sidebarOpen ? "show" : ""}`}>
         <ul className="sidebar-menu">
           <li className="sidebar-item">
             <Link to="/">
               <button className="sidebar-button" onClick={closeSidebar}>
-                <FaHome /> Welcome
+                <FaHome /> {t("nav_welcome")}
               </button>
             </Link>
           </li>
@@ -704,7 +646,7 @@ function Navbar({ logo }) {
                 {" "}
                 <FaShoppingCart />{" "}
               </i>{" "}
-              Stores{" "}
+              {t("nav_store")}{" "}
               <i className="icon-dropdownshaka">
                 <FaAngleDown />
               </i>
@@ -739,8 +681,9 @@ function Navbar({ logo }) {
                           <Link
                             to={`/brand/${store.name}`}
                             onClick={closeSidebar}
+                            target="_blank"
                           >
-                            See all {store.name}
+                            {t("see_all")} {store.name}
                           </Link>
                         </li>
                         {selectedStoreCoupons.map((coupon) => (
@@ -773,7 +716,7 @@ function Navbar({ logo }) {
               <i className="icon-category">
                 <FaList />
               </i>{" "}
-              Categories{" "}
+              {t("nav_category")}{" "}
               <i className="icon-dropdownshaka">
                 <FaAngleDown />
               </i>
@@ -810,26 +753,28 @@ function Navbar({ logo }) {
                       <ul>
                         <li>
                           <Link
-                          // to={`/categorycoupon/${category.name}`}
-                          to={{
-                            pathname: "/categorycoupon", // base path for the CategoryCouponPage
-                            search: `?category=${category.name}`, // constructing the query parameters
-                          }}
+                            // to={`/categorycoupon/${category.name}`}
+                            to={{
+                              pathname: "/store", // base path for the CategoryCouponPage
+                              search: `?category=${category.id}`, // constructing the query parameters
+                            }}
                             onClick={closeSidebar}
+                            target="_blank"
                           >
-                            See all {category.name}
+                            {t("see_all")} {category.name}
                           </Link>
                         </li>
                         {categoryData.map((coupon) => (
                           <li key={coupon.id}>
                             <Link
-                              to={{
-                                pathname: "/categorycoupon", // base path for the CategoryCouponPage
-                                search: `?category=${category.name}`, // constructing the query parameters
-                              }}
+                              // to={{
+                              //   pathname: "/categorycoupon", // base path for the CategoryCouponPage
+                              //   search: `?category=${category.name}`, // constructing the query parameters
+                              // }}
+                              to={`/brand/${coupon.name}`}
                               onClick={closeSidebar}
                             >
-                              {coupon.title}
+                              {coupon.name}
                             </Link>
                           </li>
                         ))}
@@ -842,8 +787,7 @@ function Navbar({ logo }) {
           </li>
         </ul>
       </div>
-
-      {/* hggggggggggggg */}
+      {/* sidebar-end */}
     </nav>
   );
 }

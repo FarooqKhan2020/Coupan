@@ -193,7 +193,9 @@
 } */
 
 .card-button {
-  padding: 10px 20px;
+  padding: 10px 10px;
+  width: 80%;
+  /* padding: 10px 20px; */
   /* margin-top: 10px; */
   border: none;
   /* background-color: #007bff; */
@@ -202,7 +204,7 @@
   color: white;
   cursor: pointer;
   border-radius: 5px;
-  font-weight: 500;
+  font-weight: 700;
   border-radius: 30px;
   /* transition: background-color 0.3s; */
 }
@@ -226,6 +228,34 @@
   .card-heading {
     padding: 0px 10px;
   }
+  .card {
+    width: 170px;
+  }
+  .coupon-blue-wrap {
+    font-size: 14px;
+    width: 100% !important;
+    text-align: start;
+    padding: 10px 20px !important;
+  }
+  .card-button {
+    font-size: 14px;
+    width: 100%;
+  }
+  .card-logoImg {
+    width: 130px;
+  }
+  /* .coupon-blue-wrap .coupon-fold {
+    height: 39px;
+  } */
+  .cards-section {
+    gap : 15px;
+  }
+  .coupon-code-button {
+    width: 100% !important;
+  }
+  .coupon-blue-wrap .coupon-fold {
+    width: 35px !important;
+  }
 }
 
 .coupon-code-button {
@@ -238,6 +268,7 @@
   overflow: hidden;
   border-radius: 30px;
   display: inline-block;
+  width: 80%;
   /* box-shadow: 0 0 5px rgba(74, 68, 242, 0.5); 
   transform: translateZ(0); */
 }
@@ -263,8 +294,10 @@
 .coupon-blue-wrap {
   background-color: var(--btn-primary-hover);
   color: white;
-  font-weight: 500;
-  padding: 10px 33px;
+  font-weight: 700;
+  padding: 10px 10px;
+  width: 100%;
+  /* padding: 10px 33px; */
   border-radius: 28px;
   /* border-radius: 0; */
   position: relative;
@@ -282,8 +315,8 @@
   /* transform: rotate(-25deg) translateY(9px) scale(1.1);
   transition: all .2s cubic-bezier(.25,.1,.37,1.45) 0s; */
   right: 0;
-  width: 33px;
-  height: 42px;
+  width: 50px;
+  height: 41px;
   background-color: var(--primary);
   border-radius: 0 0 50% 50%; /* Creates a half-circle or D-shape */
   transition: all 0.3s ease;
@@ -297,7 +330,7 @@
 }
 
 .coupon-code-button:hover .coupon-fold {
-  width: 45px;
+  width: 77px;
   transition: all 0.3s ease;
   transform: translate(-20px, 0); /* Move the fold slightly on hover */
 }

@@ -18,15 +18,14 @@ export default function CategoryCouponPage() {
   const store = searchParams.get('store');
   const search = searchParams.get('search');
   const highlight = searchParams.get('highlight');
-
-
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         // const response = await axios.get('https://coupon.gynerium.com/api/search');
         // const response = await axios.get(`https://coupon.gynerium.com/api/search?category=${categorycouponName}`);
-        const response = await axios.get(`https://coupon.gynerium.com/api/search`, {
+        const response = await axios.get(`${apiUrl}api/search`, {
           params: {
             category: category || '', // Use category from URL or default to an empty string
             store: store || '',       // Use store from URL or default to an empty string

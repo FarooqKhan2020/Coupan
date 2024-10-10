@@ -98,3 +98,8 @@
     width: 150px;
   }
 }
+@media (max-width: 576px) {
+  .category-card-home {
+    width: 150px;
+  }
+}

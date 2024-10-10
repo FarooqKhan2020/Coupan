@@ -4,7 +4,7 @@ import bild from '../../assets/hoverImg/bild.webp'
 import diewelt from '../../assets/hoverImg/diewelt.webp'
 import chip from '../../assets/hoverImg/chip.webp'
 import stern from '../../assets/hoverImg/stern.webp'
-
+import { useTranslation } from 'react-i18next';
 const ImageHover = () => {
   const images = [
     { src: bild , alt: 'Bild', className: 'bild-logo'},
@@ -13,9 +13,10 @@ const ImageHover = () => {
     { src: stern, alt: 'Stern', className: 'stern-logo'},
   ];
 
+  const { t } = useTranslation();
   return (
     <div className="image-hover-container">
-      <h2 className='pb-5'>Known from</h2>
+      <h2 className='pb-5'>{t('known_from')}</h2>
       <div className="image-grid">
         {images.map((image, index) => (
           <img

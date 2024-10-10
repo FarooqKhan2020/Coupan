@@ -40,9 +40,14 @@ const router=createBrowserRouter([
 
             {
                 path: 'store/',
-                element: <StorePage/>,
-
-            },
+                element: <StorePage />,
+                loader: ({ request }) => {
+                  const url = new URL(request.url);
+                  const category = url.searchParams.get('category'); // Properly define the URL object from request.url
+                  const search = url.searchParams.get('search'); // Extract the 'search' parameter from the URL
+                  return { search, category }; // Pass 'search' to the component via useLoaderData
+                },
+              },
             {
                 path: 'categorycoupon',  // base path, no parameters in the path
                 element: <CategoryCouponPage />,

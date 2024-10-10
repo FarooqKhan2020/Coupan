@@ -9,18 +9,18 @@ import {
 import "./CodePopup.css";
 import { FaCheckCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 const apiUrl = import.meta.env.VITE_API_URL;
-const CodePopup = ({ code, popupModal, onClose }) => {
+const CodePopup = ({ code, popupModal, onClose, storeData }) => {
   const [copied, setCopied] = useState(false);
   const [showRequirements, setShowRequirements] = useState(false);
-
+  const { t } = useTranslation();
   const handleCopy = () => {
     navigator.clipboard.writeText(code.code).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     });
   };
-
   const handleCopyAndVisit = () => {
     handleCopy();
     window.open(offer.url, "_blank");
@@ -37,7 +37,10 @@ const CodePopup = ({ code, popupModal, onClose }) => {
           <FaTimes />
         </button>
         <div className="code-popup-header">
-          <img src={apiUrl + code.banner} alt="Logo" className="popup-logo" />
+          <img
+           src={apiUrl +(code?.store?.banner ? code.store.banner : storeData?.banner)}
+          alt="Logo" className="popup-logo" />
+          {/* <img src={apiUrl + code.store.banner} alt="Logo" className="popup-logo" /> */}
         </div>
         <div className="code-popup-body">
           <p>{code.title}</p>
@@ -50,12 +53,13 @@ const CodePopup = ({ code, popupModal, onClose }) => {
             />
             <button className="code-copy-button" onClick={handleCopy}>
               {copied ? <FaCheck /> : <FaCopy />}
-              {copied ? " Copied!" : " Copy"}
+              {copied ? t("copied") : t("copy")}
+              {/* {copied ? " Copied!" : " Copy"} */}
             </button>
           </div>
           <Link to={code.link}  target="_blank">
             <button className="code-popup-button" onClick={handleCopyAndVisit}>
-              Copy voucher & visit shop
+             {t("copy_voucher_code")}
             </button>
           </Link>
           {/* <div className="code-additional-info">
@@ -65,29 +69,29 @@ const CodePopup = ({ code, popupModal, onClose }) => {
             {showRequirements && <p>{offer.title}</p>}
           </div> */}
           <div className="code-popup-conditions">
-            <h3>Details</h3>
+            <h3>{t("details")}</h3>
             <ul>
-              {code.highlight !== null && (
+              {code.highlight !==0 &&  (
                 <li>
                   <FaCheckCircle /> Type of action:{" "}
                   {code.highlight === 1
-                    ? "Featured"
+                    ? t("featured")
                     : code.highlight === 2
-                    ? "Verified"
+                    ? t("verified")
                     : code.highlight === 3
-                    ? "Exclusive"
-                    : "All"}
+                    ? t("exclusive")
+                    : t("all")}
                 </li>
               )}
 
               {code.offer !== null && (
                 <li>
-                  <FaCheckCircle /> Price reduction: {code.offer}%
+                  <FaCheckCircle /> {t('price_reduction')} {code.offer}%
                 </li>
               )}
               {code.start_date && (
                 <li>
-                  <FaCheckCircle /> Start:{" "}
+                  <FaCheckCircle /> {t('start')}{" "}
                   {new Date(code.start_date).toLocaleDateString()}
                 </li>
               )}
@@ -95,7 +99,7 @@ const CodePopup = ({ code, popupModal, onClose }) => {
 
               {code.expire_date && (
                 <li>
-                  <FaCheckCircle /> Expire:{" "}
+                  <FaCheckCircle /> {t('expire')}{" "}
                   {new Date(code.expire_date).toLocaleDateString()}
                 </li>
               )}
@@ -117,9 +121,9 @@ const CodePopup = ({ code, popupModal, onClose }) => {
           }}
         >
           {/* <h3>Redeem vouchers automatically with savably</h3> */}
-          <Link to={popupModal.link} target="_blank"> 
+          <Link to={popupModal? popupModal.link : "/"} target="_blank"> 
             <button className="code-activate-button">
-              Activate now for free
+              {t("activate_now_for_free")}
             </button>
           </Link>
         </div>

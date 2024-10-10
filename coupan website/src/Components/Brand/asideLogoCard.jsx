@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import "./asideLogoCard.css";
 import { FaStar, FaStarHalfAlt, FaRegStar, FaTimes } from "react-icons/fa";
 import { v4 as uuidv4 } from "uuid";
+import { useTranslation } from 'react-i18next';
 
 const AsideLogoCard = ({ logo, averageRating, totalReviews, storeId }) => {
   const [isReviewPopupVisible, setReviewPopupVisible] = useState(false);
@@ -12,6 +13,7 @@ const AsideLogoCard = ({ logo, averageRating, totalReviews, storeId }) => {
   const [reviewerId, setReviewerId] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const apiUrl = import.meta.env.VITE_API_URL;
+  const { t } = useTranslation();
 
   // Generate or retrieve the unique reviewer ID
   useEffect(() => {
@@ -56,17 +58,17 @@ const AsideLogoCard = ({ logo, averageRating, totalReviews, storeId }) => {
 
       const result = await response.json();
       if (result.status === 1) {
-        alert("Review submitted successfully");
+        alert(t('review_submit_success'));
         // Optionally, reset the form
         setSelectedRating(1);
         setComment("");
       } 
       else {
-        alert(result.message || "Failed to submit review");
+        alert(result.message || t('faild_to_submit'));
       }
     } catch (error) {
       console.error("Error submitting review:", error);
-      alert("An error occurred. Please try again.");
+      alert(t('an_error_occurred'));
     } finally {
       setIsSubmitting(false); // End submitting
       setReviewPopupVisible(false); // Close the popup
@@ -86,11 +88,14 @@ const AsideLogoCard = ({ logo, averageRating, totalReviews, storeId }) => {
             <FaRegStar key={`empty-${index}`} className="star empty-star" />
           ))}
         </div>
-        <p>
+        {/* <p>
           Average of {averageRating} out of {totalReviews} reviews.
-        </p>
+        </p> */}
+          <p>
+          {t('average_reviews', { averageRating, totalReviews })}
+          </p>
         <button className="btn btn-primary mt-3" onClick={toggleReviewPopup}>
-          Submit Review
+          {t('submit_review')}
         </button>
       </div>
 
@@ -101,10 +106,10 @@ const AsideLogoCard = ({ logo, averageRating, totalReviews, storeId }) => {
             <button className="close-popup" onClick={toggleReviewPopup}>
               <FaTimes />
             </button>
-            <h2>Write A Review</h2>
+            <h2>{t('write_a_review')}</h2>
             <form onSubmit={handleSubmit}>
               <div className="form-group">
-                <label htmlFor="rating">Rating</label>
+                <label htmlFor="rating">{t('rating')}</label>
                 <select
                   id="rating"
                   value={selectedRating}
@@ -119,17 +124,17 @@ const AsideLogoCard = ({ logo, averageRating, totalReviews, storeId }) => {
                 </select>
               </div>
               <div className="form-group">
-                <label htmlFor="comment">Comment</label>
+                <label htmlFor="comment">{t('comment')}</label>
                 <textarea
                   id="comment"
                   value={comment}
                   onChange={(e) => setComment(e.target.value)}
-                  placeholder="Write your review here..."
+                  placeholder={t('write_your_comment_here')}
                   required
                 />
               </div>
               <button type="submit" className="btn btn-primary mt-3" disabled={isSubmitting}>
-                {isSubmitting ? "Submitting..." : "Submit"}
+                {isSubmitting ? t('submitting') : t('submit')}
               </button>
             </form>
           </div>

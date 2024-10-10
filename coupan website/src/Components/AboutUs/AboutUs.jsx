@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./AboutUs.css"; // You will define styles here
 import { Link } from "react-router-dom";
 import Loader from '../Loader/Loader';
+import NotFound from "../NotFound/NotFound";
 
 const AboutUs = () => {
     const [aboutUs, setAboutUs] = useState(null); // Initialize as null since it's an object
@@ -39,7 +40,8 @@ const AboutUs = () => {
     }
   
     if (!aboutUs) {
-      return <div>No content available.</div>;  // Handle case when there's no data
+      return <div className="mian_not_found"><NotFound/></div>;
+      // return <div>No content available.</div>;  // Handle case when there's no data
     }
     
 

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Loader from '../Loader/Loader';
-
+import NotFound from '../NotFound/NotFound';
+import { useTranslation } from 'react-i18next';
 const TermsCondition = () => {
     const [termscondition, setTermscondition] = useState(null);
     const [loading, setLoading] = useState(true);
     const apiUrl = import.meta.env.VITE_API_URL;
+    const { t } = useTranslation();
 
     useEffect(() => {
         const fetchTermscondition = async () => {
@@ -29,7 +31,8 @@ const TermsCondition = () => {
     }
 
     if (!termscondition) {
-        return <div>No content available.</div>;
+        return <div className="mian_not_found"><NotFound/></div>;
+        // <div>No content available.</div>;
     }
 
     return (
@@ -39,9 +42,9 @@ const TermsCondition = () => {
                 style={{ backgroundImage: `url(${apiUrl + termscondition.terms_condition_banner})` }}
             >
                 <div className="about-us-overlay">
-                    <h1>Terms & Conditions</h1>
+                    <h1>{t('terms_condition')}</h1>
                     <p className="about-us-breadcrumbs">
-                        <Link to="/">Home</Link> ➜ <span>Terms & Conditions</span>
+                        <Link to="/">{t('home')}</Link> ➜ <span>{t('terms_condition')}</span>
                     </p>
                 </div>
             </div>

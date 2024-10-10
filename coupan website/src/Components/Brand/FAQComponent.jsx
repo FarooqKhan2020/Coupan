@@ -1,36 +1,21 @@
 import React, { useState } from 'react';
 import './FAQComponent.css';
+import { useTranslation } from 'react-i18next';
 
-const FAQComponent = () => {
+const FAQComponent = ({faqs}) => {
   const [activeIndex, setActiveIndex] = useState(null);
-
-  const faqs = [
-    {
-      question: "How to get an H&M promo code?",
-      answer: "Don't search for hours, the best H&M promo codes are on this page. Get an H&M promo code that gives you a discount on your favorite items, or even delivery with no minimum order. All the best H&M promo codes valid in July 2024 are here!"
-    },
-    {
-      question: "What will be the dates of H&M Black Friday?",
-      answer: "H&M Black Friday dates will be announced soon. Stay tuned for updates."
-    },
-    {
-      question: "How to use an H&M promo code?",
-      answer: "To use an H&M promo code, simply enter the code at checkout on the H&M website or app."
-    },
-    {
-      question: "Can I combine several H&M promo codes?",
-      answer: "Generally, H&M does not allow combining multiple promo codes. Please check the terms and conditions of each promo code."
-    }
-  ];
-
+  const { t } = useTranslation(); // Hook to get the translation function
   const toggleFAQ = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
   };
-
+  // Return nothing if 'faqs' is empty or null
+  if (!faqs || faqs.length === 0) {
+    return ; // Or you can return a message like <p>No FAQs available.</p>
+  }
   return (
     <div className="main-faq">
     <div className="faq-container">
-      <h2>H&M FAQ</h2>
+      <h2>{t('faq')}</h2>
       <div className="faq-list">
         {faqs.map((faq, index) => (
           <div
